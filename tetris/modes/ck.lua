@@ -226,7 +226,7 @@ function SurvivalCKGame:drawGrid()
 			self.grid:drawInvisible(self.rollOpacityFunction4)
 		elseif self.level >= 1900 and self.level < 2000 then
 			self.grid:drawInvisible(self.rollOpacityFunction5)
-		end
+		else self.grid:draw() end
 	else
 		self.grid:draw()
 	end
