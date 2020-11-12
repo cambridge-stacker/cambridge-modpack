@@ -92,7 +92,7 @@ function MarathonC88Game:updateScore(level, drop_bonus, cleared_lines)
 	self.score = self.score + score_table[cleared_lines] * 100 * self:getScoreMultiplier() * bravo
 	self.level_lines = self.level_lines + cleared_lines
 	self.lines = self.lines + cleared_lines
-	self.line_clears = self.line_clears + 1
+	if (cleared_lines >= 1) then self.line_clears = self.line_clears + 1 end
 	if (cleared_lines == 4) then self.tetrises = self.tetrises + 1 end
 	if (cleared_lines == 0 and self.level_timer >= self:getLevelTimerLimit()) or (self.level_lines >= 4) then
 		self.level = self.level + 1
@@ -115,14 +115,13 @@ function MarathonC88Game:drawGrid()
 end
 
 function MarathonC88Game:drawScoringInfo()
-	MarathonC88Game.super.drawScoringInfo(self)
 	love.graphics.setColor(1, 1, 1, 1)
 
 	love.graphics.setFont(font_3x5_2)
 	love.graphics.print(
 		self.das.direction .. " " ..
 		self.das.frames .. " " ..
-		math.floor(self.tetrises / self.line_clears) .. "% " ..
+		(self.line_clears ~= 0 and math.floor(self.tetrises * 100 / self.line_clears) or 0) .. "% " ..
 		strTrueValues(self.prev_inputs)
 	)
 	love.graphics.printf("NEXT", 64, 40, 40, "left")
