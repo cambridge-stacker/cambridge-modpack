@@ -14,7 +14,7 @@ ScoreDrainGame.tagline = "Your score goes down over time! Avoid hitting 0 points
 function ScoreDrainGame:new()
 	self.super:new()
 	
-	self.score = 2500
+	self.score = 3000
 	self.drain_rate = 50
 	self.combo = 1
 	self.randomizer = History6RollsRandomizer()
