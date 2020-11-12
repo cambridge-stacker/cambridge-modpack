@@ -1,5 +1,5 @@
 # cambridge-modpack
-Repository for custom modes in Cambridge.
+Repository for custom modes in [Cambridge](https://github.com/SashLilac/cambridge).
 
 ## How to use
 Download the source code ZIP from [here](https://github.com/SashLilac/cambridge-modpack/archive/main.zip).
