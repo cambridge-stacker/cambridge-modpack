@@ -21,7 +21,10 @@ function MarathonC89Game:new()
 	self.waiting_frames = 72
 
 	self.start_level = 12
-	self.level = 12
+	self.level = self.start_level
+	
+	self.tetrises = 0
+	self.line_clears = 0
 
 	self.lock_drop = true
 	self.enable_hard_drop = false
@@ -136,6 +139,8 @@ function MarathonC89Game:updateScore(level, drop_bonus, cleared_lines)
 		self.score = self.score + cleared_line_scores[cleared_lines] * (self.level + 1)
 		self.lines = self.lines + cleared_lines
 		self.level = self:getLevelForLines()
+		self.line_clears = self.line_clears + 1
+		if cleared_lines == 4 then self.tetrises = self.tetrises + 1 end
 	else
 		self.drop_bonus = 0
 		self.combo = 1
@@ -150,13 +155,13 @@ function MarathonC89Game:drawGrid()
 end
 
 function MarathonC89Game:drawScoringInfo()
-	MarathonC89Game.super.drawScoringInfo(self)
 	love.graphics.setColor(1, 1, 1, 1)
 
 	love.graphics.setFont(font_3x5_2)
 	love.graphics.print(
 		self.das.direction .. " " ..
 		self.das.frames .. " " ..
+		(self.line_clears ~= 0 and math.floor(self.tetrises * 100 / self.line_clears) or 0) .. "% " ..
 		strTrueValues(self.prev_inputs)
 	)
 	love.graphics.printf("NEXT", 64, 40, 40, "left")
@@ -165,7 +170,9 @@ function MarathonC89Game:drawScoringInfo()
 
 	love.graphics.setFont(font_3x5_3)
 	love.graphics.printf(self.lines, 240, 140, 90, "left")
+	if self.score >= 999999 then love.graphics.setColor(1, 1, 0, 1) end
 	love.graphics.printf(self.score, 240, 220, 90, "left")
+	love.graphics.setColor(1, 1, 1, 1)
 
 	love.graphics.setFont(font_8x11)
 	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
