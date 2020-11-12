@@ -215,7 +215,7 @@ function SurvivalCKGame:advanceBottomRow(dx)
 end
 
 function SurvivalCKGame:drawGrid()
-	if not (self.completed or self.game_over)
+	if not (self.completed or self.game_over) then
 		if self.level >= 1500 and self.level < 1600 then
 			self.grid:drawInvisible(self.rollOpacityFunction1)
 		elseif self.level >= 1600 and self.level < 1700 then
