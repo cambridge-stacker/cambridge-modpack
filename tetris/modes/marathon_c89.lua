@@ -149,9 +149,6 @@ end
 
 function MarathonC89Game:drawGrid()
 	self.grid:draw()
-	if self.piece ~= nil and self.level < 100 then
-		self:drawGhostPiece(ruleset)
-	end
 end
 
 function MarathonC89Game:drawScoringInfo()
