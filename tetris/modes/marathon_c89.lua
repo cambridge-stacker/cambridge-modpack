@@ -3,7 +3,7 @@ require 'funcs'
 local GameMode = require 'tetris.modes.gamemode'
 local Piece = require 'tetris.components.piece'
 
-local Randomizer = require 'tetris.randomizers.randomizer'
+local Randomizer = require 'tetris.randomizers.nes'
 
 local MarathonC89Game = GameMode:extend()
 
