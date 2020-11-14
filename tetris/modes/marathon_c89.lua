@@ -18,9 +18,9 @@ function MarathonC89Game:new()
 	self.randomizer = Randomizer()
 
 	self.ready_frames = 1
-	self.waiting_frames = 72
+	self.waiting_frames = 96
 
-	self.start_level = 12
+	self.start_level = 18
 	self.level = self.start_level
 	
 	self.tetrises = 0
@@ -90,6 +90,8 @@ function MarathonC89Game:chargeDAS(inputs)
 	if inputs["down"] == false and self.prev_inputs["down"] == true then
 		self.drop_bonus = 0
 	end
+	
+	if inputs["down"] then self.waiting_frames = 0 end
 end
 
 local gravity_table = {
@@ -164,12 +166,14 @@ function MarathonC89Game:drawScoringInfo()
 	love.graphics.printf("NEXT", 64, 40, 40, "left")
 	love.graphics.printf("LINES", 240, 120, 40, "left")
 	love.graphics.printf("SCORE", 240, 200, 40, "left")
+	love.graphics.printf("LEVEL", 240, 280, 40, "left")
 
 	love.graphics.setFont(font_3x5_3)
 	love.graphics.printf(self.lines, 240, 140, 90, "left")
 	if self.score >= 999999 then love.graphics.setColor(1, 1, 0, 1) end
 	love.graphics.printf(self.score, 240, 220, 90, "left")
 	love.graphics.setColor(1, 1, 1, 1)
+	love.graphics.printf(self.level, 240, 300, 90, "left")
 
 	love.graphics.setFont(font_8x11)
 	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
