@@ -6,4 +6,6 @@ Download the source code ZIP from [here](https://github.com/SashLilac/cambridge-
 
 Once done, extract the `tetris` folder into your Cambridge installation. That's it!
 
+Also, we have a `skins` folder. Click it to read instructions.
+
 Remember to check out this repository for new modes!
