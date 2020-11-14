@@ -111,7 +111,7 @@ MarathonC88Game.ceilingOpacityFunction = function(age)
 end
 
 function MarathonC88Game:drawGrid()
-	self.grid:drawInvisible(self.opacityFunction, self.ceilingOpacityFunction, true, 1)
+	self.grid:drawInvisible(self.opacityFunction, self.ceilingOpacityFunction, false, 0.75)
 end
 
 function MarathonC88Game:drawScoringInfo()
