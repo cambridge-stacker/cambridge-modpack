@@ -66,9 +66,9 @@ end
 
 function Nintendo:get180RotationValue() 
 	if config.gamesettings.world_reverse == 3 then
-		return 3
-	else
 		return 1
+	else
+		return 3
 	end
 end
 
