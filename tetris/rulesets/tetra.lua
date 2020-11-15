@@ -86,8 +86,21 @@ function Tetra:attemptWallkicks(piece, new_piece, rot_dir, grid)
 
 end
 
+function Tetra:checkNewLow(piece)
+        for _, block in pairs(piece:getBlockOffsets()) do
+                local y = piece.position.y + block.y
+                if y > piece.lowest_y then
+			piece.lock_delay = 0
+			piece.lowest_y = y
+                end
+        end
+end
+
+function Tetra:onPieceCreate(piece) piece.lowest_y = -math.huge end
+function Tetra:onPieceDrop(piece) self:checkNewLow(piece) end
 function Tetra:onPieceMove() end
 function Tetra:onPieceRotate() end
 function Tetra:get180RotationValue() return 2 end
 
 return Tetra
+
