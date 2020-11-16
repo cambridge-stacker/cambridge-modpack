@@ -31,6 +31,8 @@ function MarathonC89Game:new()
 	self.enable_hold = false
 	self.next_queue_length = 1
 	self.additive_gravity = false
+	
+	self.irs = false
 end
 
 function MarathonC89Game:getDropSpeed() return 1/2 end

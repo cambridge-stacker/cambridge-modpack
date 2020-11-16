@@ -36,6 +36,9 @@ function Race40Game:new()
 	self.instant_soft_drop = false
 	self.enable_hold = true
 	self.next_queue_length = 3
+	
+	self.irs = false
+	self.ihs = false
 end
 
 function Race40Game:getDropSpeed()
