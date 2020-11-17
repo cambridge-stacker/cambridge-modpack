@@ -6,6 +6,10 @@ local DTET = Ruleset:extend()
 DTET.name = "D.R.S."
 DTET.hash = "DTET"
 
+DTET.softdrop_lock = false
+DTET.harddrop_lock = true
+DTET.are_cancel = true
+
 DTET.spawn_positions = {
 	I = { x=5, y=4 },
 	J = { x=4, y=5 },
