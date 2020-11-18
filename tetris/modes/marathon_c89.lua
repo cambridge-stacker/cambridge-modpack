@@ -22,6 +22,8 @@ function MarathonC89Game:new()
 
 	self.start_level = 18
 	self.level = self.start_level
+
+	self.last_row = 1
 	
 	self.tetrises = 0
 	self.line_clears = 0
@@ -39,9 +41,22 @@ function MarathonC89Game:getDropSpeed() return 1/2 end
 function MarathonC89Game:getDasLimit() return 16 end
 function MarathonC89Game:getARR() return 6 end
 
-function MarathonC89Game:getARE() return 14 end
+function MarathonC89Game:getARE()
+	    if self.last_row > 22 then return 10
+	elseif self.last_row > 18 then return 12
+	elseif self.last_row > 14 then return 14
+	elseif self.last_row > 10 then return 16
+	else return 18 end
+end
+
 function MarathonC89Game:getLineARE() return self:getARE() end
-function MarathonC89Game:getLineClearDelay() return 20 end
+
+function MarathonC89Game:getLineClearDelay()
+	for i = 17, 20 do
+		if (self.frames + i) % 4 == 0 then return i end
+	end
+end
+
 function MarathonC89Game:getLockDelay() return 0 end
 
 function MarathonC89Game:chargeDAS(inputs)
@@ -124,6 +139,7 @@ function MarathonC89Game:onPieceLock()
 	self.super:onPieceLock()
 	self.score = self.score + self.drop_bonus
 	self.drop_bonus = 0
+	self.last_row = self.piece.position.y
 end
 
 local cleared_line_scores = { 40, 100, 300, 1200 }
