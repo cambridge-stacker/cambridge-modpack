@@ -39,9 +39,9 @@ function MarathonC89Game:getDropSpeed() return 1/2 end
 function MarathonC89Game:getDasLimit() return 16 end
 function MarathonC89Game:getARR() return 6 end
 
-function MarathonC89Game:getARE() return 6 end
-function MarathonC89Game:getLineARE() return 6 end
-function MarathonC89Game:getLineClearDelay() return 30 end
+function MarathonC89Game:getARE() return 14 end
+function MarathonC89Game:getLineARE() return self:getARE() end
+function MarathonC89Game:getLineClearDelay() return 20 end
 function MarathonC89Game:getLockDelay() return 0 end
 
 function MarathonC89Game:chargeDAS(inputs)
