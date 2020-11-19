@@ -149,7 +149,7 @@ function MarathonC89Game:getTransitionLines()
 end
 
 function MarathonC89Game:getLevelForLines()
-	return self.start_level + math.max(0, math.floor(self.lines - self:getTransitionLines()) + 1)
+	return self.start_level + math.max(0, math.floor((self.lines - self:getTransitionLines()) / 10) + 1)
 end
 
 function MarathonC89Game:updateScore(level, drop_bonus, cleared_lines)
