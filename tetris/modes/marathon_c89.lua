@@ -144,14 +144,12 @@ end
 
 local cleared_line_scores = { 40, 100, 300, 1200 }
 
+function MarathonC89Game:getTransitionLines()
+	return math.min(self.start_level * 10 + 10, math.max(100, self.start_level * 10 - 50))
+end
+
 function MarathonC89Game:getLevelForLines()
-	if self.start_level < 10 then
-		return math.max(self.start_level, math.floor(self.lines / 10))
-	elseif self.start_level < 16 then
-		return math.max(self.start_level, self.start_level + math.floor((self.lines - 100) / 10))
-	else
-		return math.max(self.start_level, math.floor((self.lines - 60) / 10))
-	end
+	return self.start_level + math.max(0, math.floor(self.lines - self:getTransitionLines()) + 1)
 end
 
 function MarathonC89Game:updateScore(level, drop_bonus, cleared_lines)
