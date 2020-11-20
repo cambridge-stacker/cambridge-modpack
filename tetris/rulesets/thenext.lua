@@ -20,13 +20,13 @@ TheNext.colourscheme = {
 }
 
 TheNext.spawn_positions = {
-	I = { x=5, y=4 },
-	J = { x=4, y=5 },
-	L = { x=4, y=5 },
-	O = { x=5, y=5 },
-	S = { x=4, y=5 },
-	T = { x=4, y=5 },
-	Z = { x=4, y=5 },
+	I = { x=5, y=3 },
+	J = { x=4, y=4 },
+	L = { x=4, y=4 },
+	O = { x=5, y=4 },
+	S = { x=4, y=4 },
+	T = { x=4, y=4 },
+	Z = { x=4, y=4 },
 }
 
 TheNext.big_spawn_positions = {
