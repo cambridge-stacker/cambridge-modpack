@@ -59,7 +59,7 @@ function JokerGame:onLineClear(cleared_row_count)
 		self.time_limit = math.min(self.time_limit + frameTime(0,15), frameTime(5,00))
 	end
 
-	if self.stock <= 0 and (self.level == 200 or self.level == 300) then self.game_over = true end
+	if self.stock <= 0 and (self.level == 200 or self.level >= 300) then self.game_over = true end
 end
 
 function JokerGame:drawGrid() self.grid:drawOutline() end
