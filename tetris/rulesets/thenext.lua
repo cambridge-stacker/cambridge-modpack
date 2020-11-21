@@ -88,12 +88,11 @@ TheNext.wallkicks_ccw = {{x=-1, y=0}, {x=0, y=1}, {x=1, y=0}, {x=0, y=-1}}
 TheNext.wallkicks_cw = {{x=1, y=0}, {x=0, y=1}, {x=-1, y=0}, {x=0, y=-1}}
 
 function TheNext:attemptWallkicks(piece, new_piece, rot_dir, grid)
-
+	
 	local kicks
     if piece.shape == "O" then
 		return
-	elseif new_piece.rotation == piece.rotation + 1 or
-    (piece.rotation == 3 and new_piece.rotation == 0) then
+	elseif rot_dir == 1 then
 		kicks = TheNext.wallkicks_cw
 	else
 		kicks = TheNext.wallkicks_ccw
