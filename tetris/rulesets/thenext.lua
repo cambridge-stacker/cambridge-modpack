@@ -3,7 +3,7 @@ local Ruleset = require 'tetris.rulesets.ruleset'
 
 local TheNext = Ruleset:extend()
 
-TheNext.name = "The Next Tetris"
+TheNext.name = "The Nextris"
 TheNext.hash = "TheNext"
 
 TheNext.softdrop_lock = false
