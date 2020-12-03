@@ -58,6 +58,7 @@ function TetraXRandomizer:generatePiece()
     -- shuffle the piece selection for the next time
     self.pieceselection = {}
     for piece, count in pairs(self.count) do
+        -- in this case 6 = #piece types - 1, so all probabilities sum to 1
         local probability = (self.totalcount - count) / (self.totalcount * 6)
         local chances = math.floor(probability * 1000 + 0.5) -- simulated "round"
         for _ = 1, chances do
