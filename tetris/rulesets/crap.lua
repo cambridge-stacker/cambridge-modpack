@@ -137,23 +137,11 @@ end
 function CRAP:onPieceMove(piece, grid)
 	CRAP:randomizeColours()
 	piece.lock_delay = 0 -- move reset
-	if piece:isDropBlocked(grid) then
-		piece.manipulations = piece.manipulations + 1
-		if piece.manipulations >= 10 then
-			piece.locked = true
-		end
-	end
 end
 
 function CRAP:onPieceRotate(piece, grid)
 	CRAP:randomizeColours()
 	piece.lock_delay = 0 -- rotate reset
-	if piece:isDropBlocked(grid) then
-		piece.rotations = piece.rotations + 1
-		if piece.rotations >= 8 then
-			piece.locked = true
-		end
-	end
 end
 
 function CRAP:get180RotationValue() return 2 end
