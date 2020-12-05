@@ -206,7 +206,9 @@ function GLock:drawScoringInfo()
 	love.graphics.setFont(font_3x5_3)
 
 	if self:getGSection() == 11 then
-		if self.frames <= 18000 then love.graphics.printf("GM", 240, 140, 90, "left")
+		-- blame gizmo4487 for this time
+		-- he's a legend
+		if self.frames <= frameTime(5,19) then love.graphics.printf("GM", 240, 140, 90, "left")
 		else love.graphics.printf("M", 240, 140, 90, "left") end
 	else
 		love.graphics.printf("G"..1+self:getGSection(), 240, 140, 90, "left")

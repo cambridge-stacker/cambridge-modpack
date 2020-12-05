@@ -27,6 +27,7 @@ function MarathonC88Game:new()
 	self.enable_hold = false
 	self.next_queue_length = 1
 
+	self.irs = false
 	self.grid:applyCeiling(4)
 end
 

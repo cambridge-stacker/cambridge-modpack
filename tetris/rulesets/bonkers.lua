@@ -1,27 +1,12 @@
-local Piece = require 'tetris.components.piece'
-local Ruleset = require 'tetris.rulesets.ruleset'
+local Ruleset = require "tetris.rulesets.ruleset"
 
-local CRAP = Ruleset:extend()
+local BONKERS = Ruleset:extend()
 
-CRAP.name = "C.R.A.P."
-CRAP.hash = "Completely Random Auto-Positioner"
-CRAP.world = true
-CRAP.colors={"C","O","M","R","G","Y","B"}
-CRAP.colourscheme = {
-	I = CRAP.colors[math.ceil(math.random(7))],
-	L = CRAP.colors[math.ceil(math.random(7))],
-	J = CRAP.colors[math.ceil(math.random(7))],
-	S = CRAP.colors[math.ceil(math.random(7))],
-	Z = CRAP.colors[math.ceil(math.random(7))],
-	O = CRAP.colors[math.ceil(math.random(7))],
-	T = CRAP.colors[math.ceil(math.random(7))],
-}
-CRAP.softdrop_lock = true
-CRAP.harddrop_lock = false
+BONKERS.name = "B.O.N.K.E.R.S."
+BONKERS.hash = "Bonkers"
+BONKERS.world = true
 
-CRAP.enable_IRS_wallkicks = true
-
-CRAP.spawn_positions = {
+BONKERS.spawn_positions = {
 	I = { x=5, y=4 },
 	J = { x=4, y=5 },
 	L = { x=4, y=5 },
@@ -31,17 +16,21 @@ CRAP.spawn_positions = {
 	Z = { x=4, y=5 },
 }
 
-CRAP.big_spawn_positions = {
-	I = { x=3, y=2 },
-	J = { x=2, y=3 },
-	L = { x=2, y=3 },
-	O = { x=3, y=3 },
-	S = { x=2, y=3 },
-	T = { x=2, y=3 },
-	Z = { x=2, y=3 },
+BONKERS.colourscheme = {
+	I = "G",
+	J = "G",
+	L = "G",
+	O = "G",
+	S = "G",
+	T = "G",
+	Z = "G",
 }
 
-CRAP.block_offsets = {
+BONKERS.softdrop_lock = false
+BONKERS.harddrop_lock = true
+BONKERS.enable_IRS_wallkicks = true
+
+BONKERS.block_offsets = {
 	I={
 		{ {x=0, y=0}, {x=-1, y=0}, {x=-2, y=0}, {x=1, y=0} },
 		{ {x=0, y=0}, {x=0, y=-1}, {x=0, y=1}, {x=0, y=2} },
@@ -88,7 +77,7 @@ CRAP.block_offsets = {
 
 -- Component functions.
 
-function CRAP:attemptRotate(new_inputs, piece, grid, initial)
+function BONKERS:attemptRotate(new_inputs, piece, grid, initial)
 	local rot_dir = 0
 	
 	if (new_inputs["rotate_left"] or new_inputs["rotate_left2"]) then
@@ -103,71 +92,56 @@ function CRAP:attemptRotate(new_inputs, piece, grid, initial)
     if config.gamesettings.world_reverse == 3 or (self.world and config.gamesettings.world_reverse == 2) then
         rot_dir = 4 - rot_dir
     end
-	
+
 	local new_piece = piece:withRelativeRotation(rot_dir)
-	
-	self:attemptWallkicks(piece, new_piece, rot_dir, grid)
-end
 
-function CRAP:attemptWallkicks(piece, new_piece, rot_dir, grid)
-
-	for i=1,20 do
-		dx=math.floor(math.random(11))-5
-		dy=math.floor(math.random(11))-5
-		if grid:canPlacePiece(new_piece:withOffset({x=dx, y=dy})) then
+	if (grid:canPlacePiece(new_piece)) then
+		if piece:isDropBlocked(grid) then
+			self:attemptWallkicks(piece, new_piece, rot_dir, grid)
+		else
+			piece:setRelativeRotation(rot_dir)
 			self:onPieceRotate(piece, grid)
-			piece:setRelativeRotation(rot_dir):setOffset({x=dx, y=dy})
-			return
+		end
+	else
+		if not(initial and self.enable_IRS_wallkicks == false) then
+			self:attemptWallkicks(piece, new_piece, rot_dir, grid)
 		end
 	end
-	
 end
 
-function CRAP:onPieceCreate(piece, grid)
-	CRAP:randomizeColours()
-	piece.manipulations = 0
-	piece.rotations = 0
+function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
+
+	if piece.shape == "I" then
+		horizontal_kicks = {0, 1, -1, 2, -2}
+	else
+		horizontal_kicks = {0, 1, -1}
+	end
+
+	for y_offset = 24, -24, -1 do
+		for idx, x_offset in pairs(horizontal_kicks) do
+			local offset = {x=x_offset, y=y_offset}
+			kicked_piece = new_piece:withOffset(offset)
+			if grid:canPlacePiece(kicked_piece) then
+				piece:setRelativeRotation(rot_dir)
+				piece:setOffset(offset)
+				piece.lock_delay = 0 -- rotate reset
+				return
+			end
+		end
+	end
+
 end
 
-function CRAP:onPieceDrop(piece, grid)
-	CRAP:randomizeColours()
+function BONKERS:onPieceDrop(piece, grid)
 	piece.lock_delay = 0 -- step reset
 end
 
-function CRAP:onPieceMove(piece, grid)
-	CRAP:randomizeColours()
+function BONKERS:onPieceMove(piece, grid)
 	piece.lock_delay = 0 -- move reset
-	if piece:isDropBlocked(grid) then
-		piece.manipulations = piece.manipulations + 1
-		if piece.manipulations >= 10 then
-			piece.locked = true
-		end
-	end
 end
 
-function CRAP:onPieceRotate(piece, grid)
-	CRAP:randomizeColours()
+function BONKERS:onPieceRotate(piece, grid)
 	piece.lock_delay = 0 -- rotate reset
-	if piece:isDropBlocked(grid) then
-		piece.rotations = piece.rotations + 1
-		if piece.rotations >= 8 then
-			piece.locked = true
-		end
-	end
 end
 
-function CRAP:get180RotationValue() return 2 end
-
-function CRAP:randomizeColours()
-	CRAP.colourscheme = {
-		I = CRAP.colors[math.ceil(math.random(7))],
-		L = CRAP.colors[math.ceil(math.random(7))],
-		J = CRAP.colors[math.ceil(math.random(7))],
-		S = CRAP.colors[math.ceil(math.random(7))],
-		Z = CRAP.colors[math.ceil(math.random(7))],
-		O = CRAP.colors[math.ceil(math.random(7))],
-		T = CRAP.colors[math.ceil(math.random(7))],
-	}
-end
-
-return CRAP
+return BONKERS

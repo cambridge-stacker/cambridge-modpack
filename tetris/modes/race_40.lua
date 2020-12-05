@@ -58,7 +58,7 @@ function Race40Game:getLineARE()
 end
 
 function Race40Game:getDasLimit()
-	return 10
+	return 8
 end
 
 function Race40Game:getLineClearDelay()

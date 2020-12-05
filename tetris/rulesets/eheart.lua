@@ -37,8 +37,8 @@ end
 
 function EHeart:lateralKick(dx, piece, new_piece, rot_dir, grid)
 	if (grid:canPlacePiece(new_piece:withOffset({x=dx, y=0}))) then
-		piece:setRelativeRotation(rot_dir):setOffset({x=dx, y=0})
 		self:onPieceRotate(piece, grid)
+		piece:setRelativeRotation(rot_dir):setOffset({x=dx, y=0})
 	end
 end
 
