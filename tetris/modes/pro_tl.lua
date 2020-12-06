@@ -12,7 +12,14 @@ ProGame.tagline = "Your next pieces start disappearing! What lies past Mach 9?"
 function ProGame:new()
     self.super:new()
     self.next_queue_length = 6
-    self.randomizer = TetraRandomizer()
+	self.randomizer = TetraRandomizer()
+	self.active_time = 0
+end
+
+function ProGame:initialize(ruleset)
+	self.super.initialize(self, ruleset)
+	ruleset.onPieceMove = function() end
+	ruleset.onPieceRotate = function() end
 end
 
 function ProGame:getARE() return 6 end
@@ -57,11 +64,19 @@ function ProGame:advanceOneFrame(inputs, ruleset)
 			self.game_over = true
 		end
     end
-    
-	ruleset.onPieceMove = function() end
-	ruleset.onPieceRotate = function() end
 
 	return true
+end
+
+function ProGame:onPieceEnter()
+	self.active_time = 0
+end
+
+function ProGame:whilePieceActive()
+	if self.piece:isDropBlocked(self.grid) then
+		self.active_time = self.active_time + 1
+		self.piece.locked = self.active_time >= self:getLockDelay() * 4
+	end
 end
 
 function ProGame:onLineClear(cleared_row_count)
