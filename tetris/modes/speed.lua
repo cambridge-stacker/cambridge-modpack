@@ -77,6 +77,11 @@ function LudicrousSpeed:advanceOneFrame()
     return true
 end
 
+function LudicrousSpeed:onPieceEnter()
+    self.irs = false
+    self.ihs = false
+end
+
 function LudicrousSpeed:onPieceLock()
     self.super:onPieceLock()
     self.pieces = self.pieces + 1
