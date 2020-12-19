@@ -15,8 +15,8 @@ IntervalTrainingGame.tagline = "Can you clear the time hurdles when the game goe
 
 
 function IntervalTrainingGame:new()
-	self.level = 0
 	IntervalTrainingGame.super:new()
+
 	self.roll_frames = 0
 	self.combo = 1
 	self.randomizer = History6RollsRandomizer()
@@ -27,12 +27,6 @@ function IntervalTrainingGame:new()
 	self.lock_hard_drop = true
 	self.enable_hold = true
 	self.next_queue_length = 3
-end
-
-function IntervalTrainingGame:initialize(ruleset)
-	self.section_time_limit = 1800
-	if ruleset.world then self.section_time_limit = 37 * 60 end
-	self.super.initialize(self, ruleset)
 end
 
 function IntervalTrainingGame:getARE()
@@ -63,7 +57,7 @@ function IntervalTrainingGame:getSection()
 	return math.floor(level / 100) + 1
 end
 
-function IntervalTrainingGame:advanceOneFrame()
+function IntervalTrainingGame:advanceOneFrame(inputs, ruleset)
 	if self.clear then
 		self.roll_frames = self.roll_frames + 1
 		if self.roll_frames > 2968 then
@@ -74,6 +68,8 @@ function IntervalTrainingGame:advanceOneFrame()
 		if self:getSectionTime() >= self.section_time_limit then
 			self.game_over = true
 		end
+	else
+		self.section_time_limit = ruleset.world and 37 * 60 or 1800
 	end
 	return true
 end

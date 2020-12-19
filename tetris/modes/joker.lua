@@ -3,7 +3,7 @@ require 'funcs'
 local GameMode = require 'tetris.modes.gamemode'
 local Piece = require 'tetris.components.piece'
 
-local History6RollsRandomizer = require 'tetris.randomizers.history_6rolls'
+local DTETRandomizer = require 'tetris.randomizers.dtet'
 
 local JokerGame = GameMode:extend()
 
@@ -14,7 +14,7 @@ JokerGame.tagline = "One of the hardest modes! Can you retain your stock to leve
 function JokerGame:new()
 	self.super:new()
 
-	self.randomizer = History6RollsRandomizer()
+	self.randomizer = DTETRandomizer()
 	
 	self.level = 50
 	self.stock = 0

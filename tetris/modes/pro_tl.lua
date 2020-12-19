@@ -13,11 +13,11 @@ function ProGame:new()
     self.super:new()
     self.next_queue_length = 6
 	self.randomizer = TetraRandomizer()
-	self.active_time = 0
 end
 
 function ProGame:initialize(ruleset)
 	self.super.initialize(self, ruleset)
+	ruleset.onPieceDrop = function() end
 	ruleset.onPieceMove = function() end
 	ruleset.onPieceRotate = function() end
 end
@@ -25,12 +25,13 @@ end
 function ProGame:getARE() return 6 end
 function ProGame:getLineARE() return 6 end
 function ProGame:getLineClearDelay() return 6 end
-function ProGame:getDasLimit() return 6 end
+function ProGame:getDasLimit() return config.das end
+function ProGame:getARR() return config.arr end
 function ProGame:getDropSpeed() return 20 end
 
 function ProGame:getGravity()
     if self.lines < 20 then return 1
-    elseif self.lines < 40 then return 3
+    elseif self.lines < 40 then return 2
     elseif self.lines < 60 then return 5
     else return 20 end
 end
@@ -69,14 +70,18 @@ function ProGame:advanceOneFrame(inputs, ruleset)
 end
 
 function ProGame:onPieceEnter()
-	self.active_time = 0
+	self.section_clear = false
+	self.piece.lowest_y = -math.huge
+end
+
+function ProGame:onHold()
+	self.piece.lowest_y = -math.huge
 end
 
 function ProGame:whilePieceActive()
-	if self.piece:isDropBlocked(self.grid) then
-		self.active_time = self.active_time + 1
-		self.piece.locked = self.active_time >= self:getLockDelay() * 4
-	end
+	self.piece.lock_delay = self.piece.lowest_y < self.piece.position.y
+							and 0 or self.piece.lock_delay
+	self.piece.lowest_y = math.max(self.piece.lowest_y, self.piece.position.y)
 end
 
 function ProGame:onLineClear(cleared_row_count)

@@ -23,7 +23,7 @@ function MarathonWCBGame:new()
 	self.instant_hard_drop = true
 	self.instant_soft_drop = true
 	self.enable_hold = false
-	self.next_queue_length = 3
+	self.next_queue_length = 6
 
     self.piece_is_active = false
 end

@@ -42,7 +42,7 @@ function MarathonC89Game:getDasLimit() return 16 end
 function MarathonC89Game:getARR() return 6 end
 
 function MarathonC89Game:getARE()
-	    if self.last_row > 22 then return 10
+		if self.last_row > 22 then return 10
 	elseif self.last_row > 18 then return 12
 	elseif self.last_row > 14 then return 14
 	elseif self.last_row > 10 then return 16

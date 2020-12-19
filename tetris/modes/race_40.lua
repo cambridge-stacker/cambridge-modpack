@@ -36,9 +36,6 @@ function Race40Game:new()
 	self.instant_soft_drop = false
 	self.enable_hold = true
 	self.next_queue_length = 3
-	
-	self.irs = false
-	self.ihs = false
 end
 
 function Race40Game:getDropSpeed()
@@ -46,7 +43,7 @@ function Race40Game:getDropSpeed()
 end
 
 function Race40Game:getARR()
-	return 1
+	return config.arr
 end
 
 function Race40Game:getARE()
@@ -58,7 +55,7 @@ function Race40Game:getLineARE()
 end
 
 function Race40Game:getDasLimit()
-	return 8
+	return config.das
 end
 
 function Race40Game:getLineClearDelay()
@@ -84,6 +81,11 @@ function Race40Game:advanceOneFrame()
 		self.frames = self.frames + 1
 	end
 	return true
+end
+
+function Race40Game:onPieceEnter()
+	self.irs = false
+	self.ihs = false
 end
 
 function Race40Game:onPieceLock()

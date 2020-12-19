@@ -40,7 +40,8 @@ end
 function LudicrousSpeed:getARE() return 0 end
 function LudicrousSpeed:getLineARE() return 0 end
 function LudicrousSpeed:getLineClearDelay() return 0 end
-function LudicrousSpeed:getDasLimit() return 8 end
+function LudicrousSpeed:getDasLimit() return config.das end
+function LudicrousSpeed:getARR() return config.arr end
 function LudicrousSpeed:getDropSpeed() return 20 end
 
 local function mean(t)
