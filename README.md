@@ -8,6 +8,8 @@ Once done, extract the `tetris` folder into your Cambridge installation. That's 
 
 If you're using a .love file or a .exe file, you'll need to drag the folder into one of [these](https://love2d.org/wiki/love.filesystem) locations instead.
 
+**WARNING:** The .exe / .love files and the bleeding edge releases have different save directories. Read the above link carefully!
+
 Also, we have a `skins` folder. Click it to read instructions.
 
 Remember to check out this repository for new modes!
