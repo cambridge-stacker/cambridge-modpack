@@ -19,8 +19,6 @@ CRAP.colourscheme = {
 CRAP.softdrop_lock = true
 CRAP.harddrop_lock = false
 
-CRAP.enable_IRS_wallkicks = true
-
 CRAP.spawn_positions = {
 	I = { x=5, y=4 },
 	J = { x=4, y=5 },

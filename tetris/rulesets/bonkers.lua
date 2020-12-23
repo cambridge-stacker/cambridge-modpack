@@ -28,7 +28,6 @@ BONKERS.colourscheme = {
 
 BONKERS.softdrop_lock = false
 BONKERS.harddrop_lock = true
-BONKERS.enable_IRS_wallkicks = true
 
 BONKERS.block_offsets = {
 	I={
