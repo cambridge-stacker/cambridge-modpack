@@ -23,7 +23,7 @@ function JokerGame:new()
 	self.lock_drop = true
 	self.lock_hard_drop = true
 	self.enable_hold = false
-	self.next_queue_length = 5
+	self.next_queue_length = 6
 end
 
 function JokerGame:getARE() return 16 end

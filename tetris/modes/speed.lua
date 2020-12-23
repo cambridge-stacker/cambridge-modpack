@@ -25,10 +25,7 @@ function LudicrousSpeed:new()
     self.instant_soft_drop = false
     self.instant_hard_drop = true
     self.enable_hold = true
-    self.next_queue_length = 3
-
-    self.irs = false
-    self.ihs = false
+    self.next_queue_length = 6
 end
 
 function LudicrousSpeed:getGravity()

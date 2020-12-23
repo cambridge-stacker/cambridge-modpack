@@ -25,7 +25,7 @@ function MarathonGFGame:new()
 	self.instant_hard_drop = true
 	self.instant_soft_drop = false
 	self.enable_hold = true
-    self.next_queue_length = 5
+    self.next_queue_length = 6
 end
 
 function MarathonGFGame:getARE() return 6 end
@@ -91,7 +91,7 @@ end
 function MarathonGFGame:updateScore(level, drop_bonus, cleared_lines)
     local normal_table = {[0] = 0, 1, 3, 5, 8}
     local spin_score = 4 * (cleared_lines + 1)
-    local all_clear_table = {8, 12, 18, 20}
+    local all_clear_table = {[0] = 0, 8, 12, 18, 20}
 
     if self.grid:checkForBravo(cleared_lines) then
         self.score = self.score + (
@@ -139,11 +139,15 @@ function MarathonGFGame:onAttemptPieceMove(piece)
 end
 
 function MarathonGFGame:onAttemptPieceRotate(piece)
-    if self.piece ~= nil and piece:isDropBlocked(self.grid) and
+    if self.piece ~= nil then
+       if piece:isDropBlocked(self.grid) and
        piece:isMoveBlocked(self.grid, { x=-1, y=0 }) and 
        piece:isMoveBlocked(self.grid, { x=1, y=0 }) and
        piece:isMoveBlocked(self.grid, { x=0, y=-1 }) then
         piece.spin = true
+       else
+        piece.spin = false
+       end
     end
 end
 

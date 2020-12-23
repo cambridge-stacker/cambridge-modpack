@@ -28,6 +28,13 @@ function MarathonWCBGame:new()
     self.piece_is_active = false
 end
 
+function MarathonWCBGame:initialize(ruleset)
+	self.super.initialize(self, ruleset)
+	ruleset.onPieceDrop = function() end
+	ruleset.onPieceMove = function() end
+	ruleset.onPieceRotate = function() end
+end
+
 function MarathonWCBGame:getDropSpeed()
 	return 20
 end

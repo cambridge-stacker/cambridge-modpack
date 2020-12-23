@@ -26,7 +26,7 @@ function DemonModeGame:new()
 	self.enable_hold = true
 	self.lock_drop = true
 	self.lock_hard_drop = true
-	self.next_queue_length = 3
+	self.next_queue_length = 6
 	if math.random() < 1/6.66 then
 		self.rpc_details = "Suffering"
 	end
