@@ -106,6 +106,7 @@ end
 function MarathonWCBGame:getHighscoreData()
 	return {
 		pieces = self.pieces,
+		lines = self.lines,
 		frames = self.frames,
 	}
 end

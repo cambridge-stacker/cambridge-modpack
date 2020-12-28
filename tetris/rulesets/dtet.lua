@@ -81,7 +81,10 @@ DTET.wallkicks_ccw = {{x=-1, y=0}, {x=1, y=0}, {x=0, y=1}, {x=-1, y=1}, {x=1, y=
 function DTET:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	
 	local kicks
-    if piece.shape == "O" then
+	if piece.shape == "O" or (
+		(piece.shape == "S" or piece.shape == "Z" or piece.shape == "I")
+		and rot_dir == 2
+	) then
 		return
 	elseif rot_dir == 1 then
 		kicks = DTET.wallkicks_cw

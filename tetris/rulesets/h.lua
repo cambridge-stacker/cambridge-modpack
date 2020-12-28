@@ -25,8 +25,8 @@ function H:attemptRotate(new_inputs, piece, grid, initial)
 	local new_piece = piece:withRelativeRotation(rot_dir)
 
 	if not(initial and self.enable_IRS_wallkicks == false) then
-		self:onPieceRotate(piece, grid)
 		piece:setRelativeRotation(rot_dir)
+		self:onPieceRotate(piece, grid)
 	end
 end
 

@@ -75,8 +75,8 @@ PPTPRS.wallkicks_O = {
 }
 
 function PPTPRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
-	local kicks
 
+	local kicks
 	if piece.shape == "O" then
 		kicks = PPTPRS.wallkicks_O[piece.rotation][new_piece.rotation]
 	elseif piece.shape == "I" then
@@ -90,9 +90,9 @@ function PPTPRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	for idx, offset in pairs(kicks) do
 		kicked_piece = new_piece:withOffset(offset)
 		if grid:canPlacePiece(kicked_piece) then
-			self:onPieceRotate(piece, grid)
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset(offset)
+			self:onPieceRotate(piece, grid)
 			return
 		end
 	end
