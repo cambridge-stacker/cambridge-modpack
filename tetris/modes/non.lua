@@ -25,8 +25,8 @@ function NightOfNights:new()
 
     self.lock_drop = true
     self.lock_hard_drop = true
-    self.instant_soft_drop = false
-    self.instant_hard_drop = false
+    self.lock_on_soft_drop = false
+    self.lock_on_hard_drop = false
     self.enable_hold = true
     self.next_queue_length = 6
 end
@@ -47,6 +47,8 @@ function NightOfNights:advanceOneFrame()
         end
         self.frames = self.frames + 1
     else
+        self.lock_on_soft_drop = false
+        self.lock_on_hard_drop = false
         switchBGM(nil)
     end
 end

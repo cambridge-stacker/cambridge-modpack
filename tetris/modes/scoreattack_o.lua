@@ -25,7 +25,8 @@ function ArcadeScoreAttack:new()
     
 	self.randomizer = History4RollsRandomizer()
     
-	self.lock_drop = false
+    self.lock_drop = true
+    self.lock_hard_drop = true
 	self.enable_hard_drop = true
 	self.enable_hold = true
 	self.next_queue_length = 5
@@ -121,15 +122,12 @@ end
 function ArcadeScoreAttack:onPieceEnter()
 end
 
-function ArcadeScoreAttack:onLineClear(cleared_row_count)
-    self.lines = self.lines + cleared_row_count
+function ArcadeScoreAttack:updateScore(level, drop_bonus, cleared_lines)
+    self.lines = self.lines + cleared_lines
     if self.lines >= levelchanges[self.level] then
         self.level = self.level + 1
         self.timeleft = self.timeleft + 1800
     end
-end
-
-function ArcadeScoreAttack:updateScore(level, drop_bonus, cleared_lines)
     local pts = 0
     if cleared_lines == 0 then
         if not self.b2b then self.chain = 0 end

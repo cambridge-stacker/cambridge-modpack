@@ -26,11 +26,25 @@ function JokerGame:new()
 	self.next_queue_length = 6
 end
 
-function JokerGame:getARE() return 16 end
+function JokerGame:getARE()
+	if self.level < 200 then return math.ceil(20 - (self.level - 50) / 10)
+	else return math.max(math.ceil(20 - (self.level - 200) / 7), 5) end
+end
+
 function JokerGame:getLineARE() return self:getARE() end
-function JokerGame:getDasLimit() return 8 end
-function JokerGame:getLineClearDelay() return 6 end
-function JokerGame:getLockDelay() return 30 end
+function JokerGame:getDasLimit() return 6 end
+function JokerGame:getARR() return math.min(1, config.arr) end
+
+function JokerGame:getLineClearDelay()
+	if self.level < 200 then return math.ceil(6 - (self.level - 50) / 50)
+	else return math.max(math.ceil(6 - (self.level - 200) / 33), 3) end
+end
+
+function JokerGame:getLockDelay()
+	if self.level < 200 then return math.ceil(30 - (self.level - 50) / 10)
+	else return math.max(math.ceil(30 - (self.level - 200) / 7), 15) end
+end
+
 function JokerGame:getGravity() return 20 end
 
 function JokerGame:advanceOneFrame()
