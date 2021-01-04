@@ -16,7 +16,6 @@ function MarathonC88Game:new()
 
 	self.level_timer = 0
 	self.level_lines = 0
-	self.last_cleared = 0
 	self.tetrises = 0
 	self.line_clears = 0
 	
@@ -28,7 +27,22 @@ function MarathonC88Game:new()
 	self.next_queue_length = 1
 
 	self.irs = false
-	self.grid:applyCeiling(4)
+
+	self.grid.getCell = function(_, x, y)
+		if x < 1 or x > 10 or y < 5 or y > 24 then return oob
+		elseif y < 1 then return empty
+		else return self.grid[y][x]
+		end
+	end
+end
+
+function MarathonC88Game:initialize(ruleset)
+	self.super:initialize(ruleset)
+	for _, p in pairs(ruleset.spawn_positions) do
+		while p.y < 4 do
+			p.y = p.y + 2
+		end
+	end
 end
 
 function MarathonC88Game:getARE() return 30 end
@@ -81,11 +95,6 @@ function MarathonC88Game:advanceOneFrame()
 	end
 end
 
-function MarathonC88Game:onPieceEnter()
-	for row = 5, 4 + self.last_cleared do self.grid:clearSpecificRow(row) end
-	self.grid:applyCeiling(4)
-end
-
 local score_table = {[0] = 0, 1, 4, 9, 20}
 
 function MarathonC88Game:updateScore(level, drop_bonus, cleared_lines)
@@ -100,19 +109,10 @@ function MarathonC88Game:updateScore(level, drop_bonus, cleared_lines)
 		self.level_lines = 0
 		self.level_timer = 0
 	end
-	self.last_cleared = cleared_lines
-end
-
-MarathonC88Game.opacityFunction = function(age)
-	return 1
-end
-
-MarathonC88Game.ceilingOpacityFunction = function(age)
-    return 0
 end
 
 function MarathonC88Game:drawGrid()
-	self.grid:drawInvisible(self.opacityFunction, self.ceilingOpacityFunction, false, 0.75)
+	self.grid:draw()
 end
 
 function MarathonC88Game:drawScoringInfo()
@@ -142,7 +142,7 @@ function MarathonC88Game:drawScoringInfo()
 end
 
 function MarathonC88Game:getBackground()
-	return math.min(math.floor(self.level / 2), 19)
+	return math.floor(self.level / 2) % 20
 end
 
 function MarathonC88Game:getHighscoreData()
