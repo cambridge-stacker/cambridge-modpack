@@ -9,6 +9,7 @@ DTET.hash = "DTET"
 DTET.softdrop_lock = false
 DTET.harddrop_lock = true
 DTET.are_cancel = true
+DTET.enable_IRS_wallkicks = true
 
 DTET.spawn_positions = {
 	I = { x=5, y=4 },
