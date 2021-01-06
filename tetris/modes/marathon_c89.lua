@@ -19,6 +19,7 @@ function MarathonC89Game:new()
 
 	self.ready_frames = 1
 	self.waiting_frames = 96
+	self.in_menu = true
 
 	self.start_level = 18
 	self.level = self.start_level
@@ -126,8 +127,19 @@ function MarathonC89Game:getGravity()
 	else return gravity_table[self.level] end
 end
 
-function MarathonC89Game:advanceOneFrame()
-	if self.waiting_frames > 0 then
+function MarathonC89Game:advanceOneFrame(inputs, ruleset)
+	if self.in_menu then
+		if not self.prev_inputs["right"] and inputs["right"] then
+			self.start_level = math.min(29, self.start_level + 1)
+		elseif not self.prev_inputs["left"] and inputs["left"] then
+			self.start_level = math.max(0, self.start_level - 1)
+		elseif inputs["hold"] then
+			self.in_menu = false
+		end
+		self.level = self.start_level
+		self.prev_inputs = copy(inputs)
+		return false
+	elseif self.waiting_frames > 0 then
 		self.waiting_frames = self.waiting_frames - 1
 	else
 		self.frames = self.frames + 1
@@ -195,9 +207,28 @@ function MarathonC89Game:drawScoringInfo()
 	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
 end
 
+function MarathonC89Game:drawCustom()
+	love.graphics.setColor(1, 1, 1, 1)
+	
+	if self.in_menu then
+		love.graphics.setFont(font_3x5_3)
+		love.graphics.printf("CHOOSE A LEVEL", 64, 120, 160, "center")
+
+		love.graphics.setFont(font_3x5_4)
+		love.graphics.printf(
+			(self.start_level == 0 and "-- " or "<- ") ..
+			(self.start_level <= 9 and 0 .. self.start_level or self.start_level) ..
+			(self.start_level == 29 and " --" or " ->"),
+			64, 200, 160, "center"
+		)
+
+		love.graphics.setFont(font_3x5_2)
+		love.graphics.printf("Press hold to start", 64, 260, 160, "center")
+	end
+end
 
 function MarathonC89Game:getBackground()
-	return math.min(self.level, 19)
+	return self.level % 20
 end
 
 function MarathonC89Game:getHighscoreData()

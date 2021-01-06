@@ -11,13 +11,23 @@ MarathonC88Game.name = "Marathon C88"
 MarathonC88Game.hash = "MarathonC88"
 MarathonC88Game.tagline = "An old Japanese game! Can you hit the max score?"
 
-function MarathonC88Game:new()
+function MarathonC88Game:new(secret_inputs)
 	self.super:new()
 
 	self.level_timer = 0
 	self.level_lines = 0
 	self.tetrises = 0
 	self.line_clears = 0
+	
+	if secret_inputs.rotate_left and secret_inputs.rotate_right then
+		self.gravity_multiplier = 4
+	elseif secret_inputs.rotate_left then
+		self.gravity_multiplier = 2
+	elseif secret_inputs.rotate_right then
+		self.gravity_multiplier = 3
+	else
+		self.gravity_multiplier = 1
+	end
 	
 	self.randomizer = SegaRandomizer()
 
@@ -52,20 +62,24 @@ function MarathonC88Game:getLineClearDelay() return 42 end
 function MarathonC88Game:getLockDelay() return 30 end
 
 function MarathonC88Game:getGravity()
-	    if self.level == 0  then return 1/30
-	elseif self.level == 1  then return 1/15
-	elseif self.level == 2  then return 1/12
-	elseif self.level == 3  then return 1/10
-	elseif self.level == 4  then return 1/8
-	elseif self.level == 5  then return 1/6
-	elseif self.level == 6  then return 1/4
-	elseif self.level == 7  then return 1/2
-	elseif self.level <= 9  then return 1
-	elseif self.level == 10 then return 1/8
-	elseif self.level == 11 then return 1/6
-	elseif self.level == 12 then return 1/4
-	elseif self.level == 13 then return 1/2
-	else return 1 end
+	local gravity
+
+	    if self.level == 0  then gravity = 1/30
+	elseif self.level == 1  then gravity = 1/15
+	elseif self.level == 2  then gravity = 1/12
+	elseif self.level == 3  then gravity = 1/10
+	elseif self.level == 4  then gravity = 1/8
+	elseif self.level == 5  then gravity = 1/6
+	elseif self.level == 6  then gravity = 1/4
+	elseif self.level == 7  then gravity = 1/2
+	elseif self.level <= 9  then gravity = 1
+	elseif self.level == 10 then gravity = 1/8
+	elseif self.level == 11 then gravity = 1/6
+	elseif self.level == 12 then gravity = 1/4
+	elseif self.level == 13 then gravity = 1/2
+	else gravity = 1 end
+	
+	return gravity * self.gravity_multiplier
 end
 
 function MarathonC88Game:getLevelTimerLimit()
@@ -129,6 +143,12 @@ function MarathonC88Game:drawScoringInfo()
 	love.graphics.printf("SCORE", 240, 120, 40, "left")
 	love.graphics.printf("LINES", 240, 200, 40, "left")
 	love.graphics.printf("LEVEL", 240, 280, 40, "left")
+	if self.gravity_multiplier ~= 1 then
+		love.graphics.printf(
+			self.gravity_multiplier .. "x GRAVITY ACTIVE!",
+			240, 350, 150, "left"
+		)
+	end
 
 	love.graphics.setFont(font_3x5_3)
 	if self.score >= 999999 then love.graphics.setColor(1, 1, 0, 1) end
