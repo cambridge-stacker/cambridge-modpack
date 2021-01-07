@@ -3,7 +3,8 @@ local Randomizer = require 'tetris.randomizers.randomizer'
 local HistoryRandomizer = Randomizer:extend()
 
 function HistoryRandomizer:new(history_length, rolls, allowed_pieces)
-    self.history = {}
+	self.super:new()
+	self.history = {}
     for i = 1, history_length do
         table.insert(self.history, '')
     end

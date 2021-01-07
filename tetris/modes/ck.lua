@@ -104,12 +104,8 @@ function SurvivalCKGame:getRegretTime()
 	else return frameTime(0,30) end
 end
 
-function SurvivalCKGame:getNextPiece(ruleset)
-	return {
-		skin = self.level >= 2000 and "bone" or "2tie",
-		shape = self.randomizer:nextPiece(),
-		orientation = ruleset:getDefaultOrientation(),
-	}
+function SurvivalCKGame:getSkin()
+	return self.level >= 2000 and "bone" or "2tie"
 end
 
 local torikan_times = {300, 330, 360, 390, 420, 450, 478, 504, 528, 550, 570}

@@ -7,6 +7,8 @@ local DTETRandomizer = require 'tetris.randomizers.dtet'
 
 local JokerGame = GameMode:extend()
 
+local rush = false
+
 JokerGame.name = "Final J"
 JokerGame.hash = "Joker"
 JokerGame.tagline = "One of the hardest modes! Can you retain your stock to level 300?"
@@ -33,7 +35,10 @@ end
 
 function JokerGame:getLineARE() return self:getARE() end
 function JokerGame:getDasLimit() return 6 end
-function JokerGame:getARR() return math.min(1, config.arr) end
+
+function JokerGame:getARR()
+	return rush and 0 or 1
+end
 
 function JokerGame:getLineClearDelay()
 	if self.level < 200 then return math.ceil(6 - (self.level - 50) / 50)
@@ -47,10 +52,14 @@ end
 
 function JokerGame:getGravity() return 20 end
 
-function JokerGame:advanceOneFrame()
+function JokerGame:advanceOneFrame(inputs, ruleset)
 	if self.ready_frames == 0 then
 		self.frames = self.frames + 1
 		self.time_limit = self.time_limit - 1
+	else
+		if not self.prev_inputs.hold and inputs.hold then
+			rush = not rush
+		end
 	end
 	if self.time_limit <= 0 then self.game_over = true end
 	return true
@@ -100,6 +109,12 @@ function JokerGame:drawScoringInfo()
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.printf(self.level, 240, 220, 90, "left")
 	love.graphics.printf(math.max(self.stock, 0), 240, 300, 90, "left")
+	if (self.ready_frames ~= 0) then
+		love.graphics.printf(
+			"RUSH: " .. (rush and "ON" or "OFF"),
+			64, 110, 160, "center"
+		)
+	end
 
 	love.graphics.setFont(font_8x11)
 	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
