@@ -16,6 +16,16 @@ BONKERS.spawn_positions = {
 	Z = { x=4, y=5 },
 }
 
+BONKERS.big_spawn_positions = {
+	I = { x=3, y=2 },
+	J = { x=2, y=3 },
+	L = { x=2, y=3 },
+	O = { x=3, y=3 },
+	S = { x=2, y=3 },
+	T = { x=2, y=3 },
+	Z = { x=2, y=3 },
+}
+
 BONKERS.colourscheme = {
 	I = "G",
 	J = "G",
