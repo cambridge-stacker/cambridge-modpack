@@ -143,7 +143,7 @@ function MarathonC88Game:drawScoringInfo()
 	love.graphics.printf("SCORE", 240, 120, 40, "left")
 	love.graphics.printf("LINES", 240, 200, 40, "left")
 	love.graphics.printf("LEVEL", 240, 280, 40, "left")
-	if self.gravity_multiplier ~= 1 then
+	if self.gravity_multiplier ~= 1 and self:getGravity() < 20 then
 		love.graphics.printf(
 			self.gravity_multiplier .. "x GRAVITY ACTIVE!",
 			240, 350, 150, "left"

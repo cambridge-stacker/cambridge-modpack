@@ -8,6 +8,10 @@ SurvivalC88Game.name = "Survival C88"
 SurvivalC88Game.hash = "Shimizu"
 SurvivalC88Game.tagline = "You can't rotate the pieces initially! What will you do?"
 
+function SurvivalC88Game:new(secret_inputs)
+    self.super:new(secret_inputs)
+end
+
 function SurvivalC88Game:getGravity()
     return 20
 end
