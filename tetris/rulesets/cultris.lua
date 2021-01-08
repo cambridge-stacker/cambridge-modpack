@@ -10,7 +10,7 @@ Cultris.colourscheme = {
 	L = "M",
 	J = "B",
 	S = "C",
-	Z = "X",
+	Z = "F",
 	O = "Y",
 	T = "R",
 }
