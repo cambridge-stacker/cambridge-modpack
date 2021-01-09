@@ -11,14 +11,12 @@ MarathonWCBGame.name = "Marathon WCB"
 MarathonWCBGame.hash = "MarathonWCB"
 MarathonWCBGame.tagline = "When all the pieces slip right to their destinations... can you keep up?"
 
-local slow = false
 
 function MarathonWCBGame:new()
 	MarathonWCBGame.super:new()
 
 	self.pieces = 0
 	self.randomizer = History6RollsRandomizer()
-	self.colour_changed = true
 
 	self.lock_drop = true
 	self.lock_hard_drop = true
@@ -42,7 +40,7 @@ function MarathonWCBGame:getDropSpeed()
 end
 
 function MarathonWCBGame:getARR()
-	return slow and 1 or 0
+	return 0
 end
 
 function MarathonWCBGame:getARE()
@@ -54,7 +52,7 @@ function MarathonWCBGame:getLineARE()
 end
 
 function MarathonWCBGame:getDasLimit()
-	return slow and 15 or 0
+	return 0
 end
 
 function MarathonWCBGame:getLineClearDelay()
@@ -69,21 +67,9 @@ function MarathonWCBGame:getGravity()
 	return self.piece_is_active and 20 or 0
 end
 
-function MarathonWCBGame:advanceOneFrame(inputs, ruleset)
+function MarathonWCBGame:advanceOneFrame()
 	if self.ready_frames == 0 then
 		self.frames = self.frames + 1
-		slow = inputs.hold
-		if self.pieces % 50 == 0 and not self.colour_changed then
-			local colours = copy(ruleset.colourscheme)
-			local pieces = {}
-			for k, v in pairs(ruleset.colourscheme) do
-				table.insert(pieces, k)
-			end
-			for k, v in pairs(ruleset.colourscheme) do
-				ruleset.colourscheme[k] = colours[table.remove(pieces, math.random(#pieces))]
-			end
-			self.colour_changed = true
-		end
 	end
 	return true
 end
@@ -103,7 +89,6 @@ end
 function MarathonWCBGame:onPieceLock()
 	self.super:onPieceLock()
 	self.piece_is_active = false
-	self.colour_changed = false
 	self.pieces = self.pieces + 1
 end
 
