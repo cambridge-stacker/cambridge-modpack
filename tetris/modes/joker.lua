@@ -118,14 +118,7 @@ end
 function JokerGame:drawGrid() self.grid:drawOutline() end
 
 function JokerGame:drawScoringInfo()
-	local colour = (
-		(
-			rush and
-			(self.frames % 4 < 2 and self.frames ~= 0)
-		) and {1, 1, 0.3, 1}
-		or {1, 1, 1, 1}
-	)
-	love.graphics.setColor(colour)
+	love.graphics.setColor(1, 1, 1, 1)
 
 	love.graphics.setFont(font_3x5_2)
 	love.graphics.print(
@@ -143,7 +136,7 @@ function JokerGame:drawScoringInfo()
 		love.graphics.setColor(1, 0.3, 0.3, 1)
 	end
 	love.graphics.printf(formatTime(self.time_limit), 240, 140, 120, "left")
-	love.graphics.setColor(colour)
+	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.printf(self.level, 240, 220, 90, "left")
 	love.graphics.printf(math.max(self.stock, 0), 240, 300, 90, "left")
 	if (self.ready_frames ~= 0) then
