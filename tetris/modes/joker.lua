@@ -33,8 +33,13 @@ function JokerGame:getARE()
 	else return math.max(math.ceil(20 - (self.level - 200) / 7), 5) end
 end
 
-function JokerGame:getLineARE() return self:getARE() end
-function JokerGame:getDasLimit() return 6 end
+function JokerGame:getLineARE()
+	return self:getARE()
+end
+
+function JokerGame:getDasLimit()
+	return 6
+end
 
 function JokerGame:getARR()
 	return rush and 0 or 1
@@ -63,6 +68,31 @@ function JokerGame:advanceOneFrame(inputs, ruleset)
 	end
 	if self.time_limit <= 0 then self.game_over = true end
 	return true
+end
+
+function JokerGame:onPieceEnter()
+	-- The Initial Movement System, pioneered by DTET
+	if self.grid:canPlacePiece(self.piece) then
+		if self.das.direction == "left" then
+			for i = 1, 10 do
+				local new_piece = self.piece:withOffset({x=-i, y=0})
+				if self.grid:canPlacePiece(new_piece) then
+					self.piece = new_piece
+					break
+				end
+				if not rush then break end
+			end
+		elseif self.das.direction == "right" then
+			for i = 1, 10 do
+				local new_piece = self.piece:withOffset({x=i, y=0})
+				if self.grid:canPlacePiece(new_piece) then
+					self.piece = new_piece
+					break
+				end
+				if not rush then break end
+			end
+		end
+	end
 end
 
 function JokerGame:onLineClear(cleared_row_count)
@@ -112,7 +142,7 @@ function JokerGame:drawScoringInfo()
 	if (self.ready_frames ~= 0) then
 		love.graphics.printf(
 			"RUSH: " .. (rush and "ON" or "OFF"),
-			64, 110, 160, "center"
+			64, 100, 160, "center"
 		)
 	end
 
