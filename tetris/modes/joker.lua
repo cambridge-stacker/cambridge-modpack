@@ -77,7 +77,7 @@ function JokerGame:onPieceEnter()
 			for i = 1, 10 do
 				local new_piece = self.piece:withOffset({x=-i, y=0})
 				if self.grid:canPlacePiece(new_piece) then
-					self.piece = new_piece
+					self.piece:setOffset({x=-i, y=0})
 					break
 				end
 				if not rush then break end
@@ -86,7 +86,7 @@ function JokerGame:onPieceEnter()
 			for i = 1, 10 do
 				local new_piece = self.piece:withOffset({x=i, y=0})
 				if self.grid:canPlacePiece(new_piece) then
-					self.piece = new_piece
+					self.piece:setOffset({x=i, y=0})
 					break
 				end
 				if not rush then break end
