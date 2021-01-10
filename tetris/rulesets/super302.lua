@@ -5,6 +5,16 @@ local BONKERS = ARS:extend()
 BONKERS.name = "SUPER302"
 BONKERS.hash = "Super302"
 
+BONKERS.colourscheme = {
+	I = "C",
+	J = "G",
+	L = "G",
+	O = "B",
+	S = "C",
+	T = "G",
+	Z = "C"
+}
+
 function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	unfilled_block_offsets = {}
 	for y = 4, 23 do
