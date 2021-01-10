@@ -4,7 +4,6 @@ local Shirase = SRS:extend()
 
 Shirase.name = "Shirase RS"
 Shirase.hash = "Shirase"
-Shirase.world = false
 
 Shirase.colourscheme = {
     I = "R",
@@ -64,9 +63,5 @@ Shirase.block_offsets = {
 function Shirase:onPieceDrop(piece) piece.lock_delay = 0 end
 function Shirase:onPieceMove(piece) piece.lock_delay = 0 end
 function Shirase:onPieceRotate(piece) piece.lock_delay = 0 end
-
-function Shirase:getDefaultOrientation()
-    return math.random(4)
-end
 
 return Shirase
