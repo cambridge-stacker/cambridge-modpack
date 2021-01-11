@@ -12,7 +12,7 @@ FourWideGame.tagline = "The board has gotten narrower! Can you survive the incre
 
 function FourWideGame:initialize(ruleset)
 	self.super:initialize(ruleset)
-	self.grid = Grid(4)
+	self.grid = Grid(4, 24)
 end
 
 local function getLetterGrade(grade)
