@@ -37,4 +37,15 @@ function BigMemeGame:onLineClear(cleared_row_count)
 	end
 end
 
+function BigMemeGame:advanceBottomRow(dx)
+	if self.level >= 500 and self.level < 1000 then
+		self.garbage = math.max(self.garbage + dx, 0)
+		if self.garbage >= self:getGarbageLimit() then
+			self.grid:copyBottomRow()
+			self.grid:copyBottomRow()
+			self.garbage = 0
+		end
+	end
+end
+
 return BigMemeGame
