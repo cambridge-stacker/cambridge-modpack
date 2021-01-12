@@ -1,35 +1,35 @@
 local Piece = require 'tetris.components.piece'
 local Ruleset = require 'tetris.rulesets.ruleset'
 
-local TheNext = Ruleset:extend()
+local TheNew = Ruleset:extend()
 
-TheNext.name = "The Nextris"
-TheNext.hash = "TheNext"
+TheNew.name = "The Newtris"
+TheNew.hash = "TheNew"
 
-TheNext.softdrop_lock = false
-TheNext.harddrop_lock = false
+TheNew.softdrop_lock = false
+TheNew.harddrop_lock = false
 
-TheNext.colourscheme = {
+TheNew.colourscheme = {
     I = "C",
     J = "B",
     L = "M",
-    O = "X",
+    O = "F",
     S = "G",
     Z = "R",
     T = "Y"
 }
 
-TheNext.spawn_positions = {
-	I = { x=5, y=3 },
-	J = { x=4, y=4 },
-	L = { x=4, y=4 },
-	O = { x=5, y=4 },
-	S = { x=4, y=4 },
-	T = { x=4, y=4 },
-	Z = { x=4, y=4 },
+TheNew.spawn_positions = {
+	I = { x=5, y=4 },
+	J = { x=4, y=5 },
+	L = { x=4, y=5 },
+	O = { x=5, y=5 },
+	S = { x=4, y=5 },
+	T = { x=4, y=5 },
+	Z = { x=4, y=5 },
 }
 
-TheNext.big_spawn_positions = {
+TheNew.big_spawn_positions = {
 	I = { x=3, y=2 },
 	J = { x=2, y=3 },
 	L = { x=2, y=3 },
@@ -39,7 +39,7 @@ TheNext.big_spawn_positions = {
 	Z = { x=2, y=3 },
 }
 
-TheNext.block_offsets = {
+TheNew.block_offsets = {
     T={
 		{ {x=0, y=-1}, {x=-1, y=-1}, {x=1, y=-1}, {x=0, y=-2} },
 		{ {x=0, y=-1}, {x=0, y=-2}, {x=0, y=0}, {x=1, y=-1} },
@@ -84,18 +84,18 @@ TheNext.block_offsets = {
 	},
 }
 
-TheNext.wallkicks_ccw = {{x=-1, y=0}, {x=0, y=1}, {x=1, y=0}, {x=0, y=-1}}
-TheNext.wallkicks_cw = {{x=1, y=0}, {x=0, y=1}, {x=-1, y=0}, {x=0, y=-1}}
+TheNew.wallkicks_ccw = {{x=0, y=1}, {x=-1, y=0}, {x=1, y=0}, {x=0, y=-1}}
+TheNew.wallkicks_cw = {{x=0, y=1}, {x=1, y=0}, {x=-1, y=0}, {x=0, y=-1}}
 
-function TheNext:attemptWallkicks(piece, new_piece, rot_dir, grid)
+function TheNew:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	
 	local kicks
     if piece.shape == "O" then
 		return
 	elseif rot_dir == 1 then
-		kicks = TheNext.wallkicks_cw
+		kicks = TheNew.wallkicks_cw
 	else
-		kicks = TheNext.wallkicks_ccw
+		kicks = TheNew.wallkicks_ccw
 	end
 
 	assert(piece.rotation ~= new_piece.rotation)
@@ -112,11 +112,11 @@ function TheNext:attemptWallkicks(piece, new_piece, rot_dir, grid)
 
 end
 
-function TheNext:onPieceDrop(piece, grid)
+function TheNew:onPieceDrop(piece, grid)
 	piece.lock_delay = 0 -- step reset
 end
 
-function TheNext:get180RotationValue() 
+function TheNew:get180RotationValue() 
 	if config.gamesettings.world_reverse == 1 then
 		return 1
 	else
@@ -124,6 +124,6 @@ function TheNext:get180RotationValue()
 	end
 end
 
-function TheNext:getDefaultOrientation() return 3 end
+function TheNew:getDefaultOrientation() return 3 end
 
-return TheNext
+return TheNew
