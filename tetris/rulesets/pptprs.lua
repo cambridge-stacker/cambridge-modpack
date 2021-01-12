@@ -7,13 +7,13 @@ PPTPRS.name = "PPTPRS"
 PPTPRS.hash = "Puyo Tetris Pentos"
 
 PPTPRS.spawn_positions = {
-	I = { x=5, y=2 },
-	J = { x=4, y=2 },
-	L = { x=4, y=2 },
-	O = { x=5, y=2 },
-	S = { x=4, y=3 },
-	T = { x=4, y=3 },
-	Z = { x=4, y=2 },
+	I = { x=5, y=4 },
+	J = { x=4, y=4 },
+	L = { x=4, y=4 },
+	O = { x=5, y=4 },
+	S = { x=4, y=5 },
+	T = { x=4, y=5 },
+	Z = { x=4, y=4 },
 }
 
 PPTPRS.block_offsets = {
