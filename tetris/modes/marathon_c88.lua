@@ -38,19 +38,10 @@ function MarathonC88Game:new(secret_inputs)
 
 	self.irs = false
 
-	self.grid.getCell = function(_, x, y)
-		if x < 1 or x > 10 or y < 5 or y > 24 then return oob
+	self.grid.getCell = function(self, x, y)
+		if x < 1 or x > self.width or y < 5 or y > self.height then return oob
 		elseif y < 1 then return empty
 		else return self.grid[y][x]
-		end
-	end
-end
-
-function MarathonC88Game:initialize(ruleset)
-	self.super:initialize(ruleset)
-	for _, p in pairs(ruleset.spawn_positions) do
-		while p.y < 4 do
-			p.y = p.y + 2
 		end
 	end
 end
@@ -96,6 +87,22 @@ function MarathonC88Game:getScoreMultiplier()
 	elseif self.level <= 5 then return 3
 	elseif self.level <= 7 then return 4
 	else return 5 end
+end
+
+function MarathonC88Game:onPieceEnter()
+	function checkOOB()
+		local offsets = self.piece:getBlockOffsets()
+		for _, offset in pairs(offsets) do
+			if self.piece.position.y + offset.y < 4 then
+				return true
+			end
+		end
+		return false
+	end
+	
+	while checkOOB() do
+		self.piece.position.y = self.piece.position.y + 1
+	end
 end
 
 function MarathonC88Game:advanceOneFrame()
