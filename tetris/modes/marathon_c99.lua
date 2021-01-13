@@ -15,6 +15,27 @@ local lines_to_next_level = {
     16, 16, 0, 1, math.huge
 }
 
+local level_names = {
+	[0]="LITTLE ISLE",
+	"GRAND CANYON",
+	"SHIBUYA",
+	"SOUTH POLE",
+	"ATLANTIS",
+	"Is. GALAPAGOS",
+	"EGYPT",
+	"NETHERLANDS",
+	"PARIS",
+	"ASAKUSA",
+	"VENICE",
+	"NIAGARA FALLS",
+	"Mt. RUSHMORE",
+	"BEI-JING",
+	"EASTER ISLAND",
+	"TRIP",
+	"THE MOON",
+	"[time]"
+}
+
 local score_table = {
     [0] = 0, 50, 200, 450, 1000, 2000, 3000, 4000
 }
@@ -22,6 +43,9 @@ local score_table = {
 local slots_table = {
     50, 10000, 50000, 100000
 }
+
+local slot_popup = {["text"]="",["time"]=0,["slotnum"]=0}
+local line_popup = {["y"]=0,["score"]=0,["lines"]=0}
 
 function MarathonC99Game:new()
     self.super:new()
@@ -32,7 +56,7 @@ function MarathonC99Game:new()
     self.slots = {}
     self.tetris_slots = 0
     self.ccw_bonus = 10 ^ 7
-
+	slot_popup = {["text"]="",["time"]=0}
     self.irs = false
     self.enable_hard_drop = false
     self.lock_drop = false
@@ -146,7 +170,7 @@ end
 
 function MarathonC99Game:onLineClear(cleared_row_count)
     self.lines = self.lines + cleared_row_count
-
+	line_popup.lines = cleared_row_count
     local score_to_add = score_table[cleared_row_count]
 
     local highest_row_cleared
@@ -156,7 +180,9 @@ function MarathonC99Game:onLineClear(cleared_row_count)
             break
         end
     end
-
+	if(cleared_row_count > 0) then
+		line_popup.y = (highest_row_cleared)*16
+	end
     if highest_row_cleared + 1 <= 22 and self.grid:isRowFull(highest_row_cleared + 1) and
        highest_row_cleared + 2 <= 22 and not self.grid:isRowFull(highest_row_cleared + 2) and
        highest_row_cleared + 3 <= 22 and self.grid:isRowFull(highest_row_cleared + 3) then
@@ -173,8 +199,17 @@ function MarathonC99Game:onLineClear(cleared_row_count)
             end
             if cleared_row_count == 4 and self.tetris_slots == 0 then
                 self.score = self.score + 999999
+				slot_popup.text = "3xTETRIS\n+999999"
+				slot_popup.time = 150
+				slot_popup.slotnum = 4
             else
+				clear_names = {"SINGLE","DOUBLE","TRIPLE","***RIS"}
+				local score_text = tostring(slots_table[cleared_row_count] * self:getSlotMultiplier())
+				while #score_text < 6 do score_text = "0"..score_text end
                 self.score = self.score + slots_table[cleared_row_count] * self:getSlotMultiplier()
+				slot_popup.text = "3x"..clear_names[cleared_row_count].."\n+"..score_text
+				slot_popup.time = 150
+				slot_popup.slotnum = cleared_row_count
             end
         end
         self.slots = {}
@@ -184,8 +219,10 @@ function MarathonC99Game:onLineClear(cleared_row_count)
 
     if self.grid:checkForBravo(cleared_row_count) then
         self.score = self.score + 200000 * self:getSlotMultiplier()
+		line_popup.score = 200000 * self:getSlotMultiplier()
     else
         self.score = self.score + score_to_add * self:getScoreMultiplier()
+		line_popup.score = score_to_add * self:getScoreMultiplier()
     end
 
     if cleared_row_count >= self.lines_to_next_level then
@@ -214,6 +251,12 @@ function MarathonC99Game:onLineClear(cleared_row_count)
 end
 
 function MarathonC99Game:drawGrid()
+	if(self.lcd > 0) then
+		love.graphics.setColor(1,1,1,1)
+		love.graphics.setFont(font_3x5_2)
+		--if(line_popup.lines > 1) then love.graphics.setFont(font_3x5_3) end
+		love.graphics.printf(line_popup.score,40,line_popup.y-1,200,"center")
+	end
     self.grid:draw()
 end
 
@@ -228,48 +271,72 @@ function MarathonC99Game:drawScoringInfo()
 		strTrueValues(self.prev_inputs) ..
 		self.drop_bonus
     )
-    
     love.graphics.printf("NEXT", 64, 40, 40, "left")
-    love.graphics.printf("LEVEL", 240, 120, 80, "left")
-    love.graphics.printf("LINES: " .. self.lines .. "/300", 240, 180, 200, "left")
-    if self.level <= 15 then
-        love.graphics.printf("LINES TO NEXT LEVEL", 240, 220, 200, "left")
-    elseif self.level == 17 then
-        love.graphics.printf("TIME REMAINING", 240, 220, 200, "left")
-    end
+    love.graphics.printf("LEVEL "..self.level, 240, 120, 80, "left")
+    love.graphics.printf("LINES", 240, 190, 200, "left")
+	love.graphics.printf(self.lines.."/300", 240, 210, 200, "left")
+	
+	if(self.level ~= 15 and self.level ~= 17) then
+		xp = -0.5
+		love.graphics.setColor(0,1,0,1)
+		for i=1,lines_to_next_level[self.level]-self.lines_to_next_level do
+			love.graphics.printf("|", 240+xp*5, 165, 30, "left")
+			xp = xp+1
+		end
+		love.graphics.setColor(0,0.5,0,1)
+		for i=1,self.lines_to_next_level do
+			love.graphics.printf("|", 240+xp*5, 165, 30, "left")
+			xp = xp+1
+		end
+	end
+	love.graphics.setColor(1,1,1,1)
 
     love.graphics.setFont(font_3x5_4)
 
     love.graphics.printf(formatBigNum(self.score), 64, 400, 160, "center")
-    
-    love.graphics.setFont(font_3x5_3)
-
-    love.graphics.setColor(
-        (self.slots[1] and self.slots[2] and
-        self.slots[1] == self.slots[2] and
-        (self.frames + self.roll_frames) % 4 < 2) and
-        {0.3, 1, 0.3, 1} or
-        {1, 1, 1, 1}
-    )
     if self.ready_frames == 0 then
-        love.graphics.printf(
-            (self.slots[1] and self.slots[1] or math.random(4)) .. " " ..
-            (self.slots[2] and self.slots[2] or math.random(4)) .. " " ..
-            math.random(4),
-            240, 80, 100, "left"
-        )
+		love.graphics.setColor(
+			((self.frames + self.roll_frames) % 4 < 2) and
+			{0.3, 1, 0.3, 1} or
+			{1, 1, 1, 1}
+		)
+		if(slot_popup.time > 0) then
+			love.graphics.setFont(font_3x5_2)
+			love.graphics.printf(slot_popup.text, 310, 80, 200, "left")
+			slot_popup.time = slot_popup.time - 1
+			love.graphics.setFont(font_3x5_3)
+			love.graphics.printf(
+			slot_popup.slotnum .. " " ..
+			slot_popup.slotnum .. " " ..
+			slot_popup.slotnum,
+			240, 80, 100, "left")
+			love.graphics.setColor(1,1,1,1)
+			
+		else
+			love.graphics.setFont(font_3x5_3)
+			love.graphics.setColor(
+				(self.slots[1] and self.slots[2] and
+				self.slots[1] == self.slots[2] and
+				(self.frames + self.roll_frames) % 4 < 2) and
+				{0.3, 1, 0.3, 1} or
+				{1, 1, 1, 1}
+			)
+			love.graphics.printf(
+			(self.slots[1] and self.slots[1] or math.random(4)) .. " " ..
+			(self.slots[2] and self.slots[2] or math.random(4)) .. " " ..
+			math.random(4),
+			240, 80, 100, "left")
+			love.graphics.setColor(1,1,1,1)
+		end
     end
+	love.graphics.setFont(font_3x5_3)
     love.graphics.setColor(1, 1, 1, 1)
-
-    if self.level <= 15 then
-        love.graphics.printf(self.lines_to_next_level, 240, 240, 200, "left")
-    elseif self.level == 17 then
-        love.graphics.printf(formatTime(frameTime(3,19) - self.roll_frames), 240, 240, 200, "left")
-    end
-
+	level_names[17] = formatTime(frameTime(3,19) - self.roll_frames)
+	love.graphics.printf(level_names[self.level], 240, 137, 200, "left")
+	love.graphics.setFont(font_3x5_2)
 	love.graphics.setFont(font_8x11)
     love.graphics.printf(formatTime(self.frames), 240, 300, 160, "left")
-    love.graphics.printf(self.level, 290, 120, 80, "left")
+	
 end
 
 function MarathonC99Game:getBackground()
