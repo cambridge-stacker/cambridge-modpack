@@ -140,10 +140,6 @@ function MarathonC99Game:startLeftDAS()
 	end
 end
 
-function MarathonC99Game:onSoftDrop(dropped_row_count)
-    self.score = self.score + dropped_row_count
-end
-
 function MarathonC99Game:advanceOneFrame(inputs, ruleset)
     if self.clear then
         if self.level == 17 then
@@ -153,17 +149,16 @@ function MarathonC99Game:advanceOneFrame(inputs, ruleset)
                 self.completed = true
             end
         end
-        if inputs.rotate_right or inputs.rotate_right2 or
-        (inputs.rotate_180 and ruleset:get180RotationValue() ~= 3)
-        and self.piece ~= nil then
-            self.ccw_bonus = 0
-        end
     elseif self.ready_frames == 0 then
         self.frames = self.frames + 1
+    end
+    if self.piece ~= nil then
         if inputs.rotate_right or inputs.rotate_right2 or
-        (inputs.rotate_180 and ruleset:get180RotationValue() ~= 3)
-        and self.piece ~= nil then
+        (inputs.rotate_180 and ruleset:get180RotationValue() ~= 3) then
             self.ccw_bonus = 0
+        end
+        if inputs.down then
+            self.score = self.score + 1
         end
     end
 end
