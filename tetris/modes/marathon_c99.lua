@@ -51,7 +51,7 @@ function MarathonC99Game:new()
     self.super:new()
     self.grid = Grid(10, 22)
 
-    self.roll_frames = -57
+    self.roll_frames = 0
     self.lines_to_next_level = lines_to_next_level[self.level]
     self.slots = {}
     self.tetris_slots = 0
@@ -192,7 +192,7 @@ function MarathonC99Game:onLineClear(cleared_row_count)
             if cleared_row_count == 4 then
                 self.tetris_slots = (self.tetris_slots + 1) % 10
             end
-            if cleared_row_count == 4 and self.tetris_slots == 0 then
+            if cleared_row_count == 4 and (self.tetris_slots == 0 or self.level == 17) then
                 self.score = self.score + 999999
 				slot_popup.text = "3xTETRIS\n+999999"
 				slot_popup.time = 150
