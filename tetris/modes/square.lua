@@ -12,8 +12,7 @@ function SquareMode:new()
 
     self.randomizer = Bag63Randomiser()
 
-    self.squares = 0
-
+    self.square_mode = true
     self.enable_hard_drop = true
     self.enable_hold = true
     self.next_queue_length = 3
@@ -44,7 +43,6 @@ function SquareMode:getLockDelay()
 end
 
 function SquareMode:advanceOneFrame()
-    self.square_table = self.grid:scanForSquares()
     if self.ready_frames == 0 then
         self.frames = self.frames + 1
     end
@@ -61,7 +59,7 @@ function SquareMode:onPieceLock(piece, cleared_row_count)
         end
     end
     self.lines = self.lines + cleared_row_count + (cleared_row_count >= 4 and 1 or 0)
-    self.squares = self.squares + self.grid:markSquares()
+    self.square_table = self.grid:scanForSquares()
     local _, rows_cleared = self.grid:getClearedRowCount()
     for _, row in pairs(rows_cleared) do
         self.lines = self.lines + self.square_table[row]
