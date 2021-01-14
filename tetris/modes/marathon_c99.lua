@@ -52,9 +52,7 @@ function MarathonC99Game:new()
     self.grid = Grid(10, 22)
 
     self.roll_frames = frameTime(3,00)
-    self.level = 15
-    self.lines = 299
-    self.lines_to_next_level = 1--lines_to_next_level[self.level]
+    self.lines_to_next_level = lines_to_next_level[self.level]
     self.slots = {}
     self.tetris_slots = 0
     self.ccw_bonus = 10 ^ 7
