@@ -52,7 +52,9 @@ function MarathonC99Game:new()
     self.grid = Grid(10, 22)
 
     self.roll_frames = 0
-    self.lines_to_next_level = lines_to_next_level[self.level]
+    self.level = 15
+    self.lines = 299
+    self.lines_to_next_level = 1--lines_to_next_level[self.level]
     self.slots = {}
     self.tetris_slots = 0
     self.ccw_bonus = 10 ^ 7
@@ -326,7 +328,7 @@ function MarathonC99Game:drawScoringInfo()
     end
 	love.graphics.setFont(font_3x5_3)
     love.graphics.setColor(1, 1, 1, 1)
-	level_names[17] = formatTime(frameTime(3,19) - self.roll_frames)
+	level_names[17] = self.roll_frames == 0 and "THE EDGE OF THE WORLD" or formatTime(frameTime(3,19) - self.roll_frames)
 	love.graphics.printf(level_names[self.level], 240, 137, 200, "left")
 	love.graphics.setFont(font_3x5_2)
 	love.graphics.setFont(font_8x11)
