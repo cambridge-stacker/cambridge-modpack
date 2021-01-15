@@ -19,6 +19,7 @@ function MarathonGFGame:new()
     self.message_timer = 0
     self.randomizer = Bag7Randomizer()
     self.combo = 0
+    self.immobile_spin_bonus = true
 
     self.lock_drop = true
 	self.lock_hard_drop = true
@@ -127,28 +128,6 @@ function MarathonGFGame:updateScore(level, drop_bonus, cleared_lines)
         else self.back_to_back = false end
         self.combo = self.combo + 1
     else self.combo = 0 end
-end
-
-function MarathonGFGame:onAttemptPieceMove(piece)
-    if self.piece ~= nil then
-        if not piece:isMoveBlocked(self.grid, { x=-1, y=0 }) and
-           not piece:isMoveBlocked(self.grid, { x=1, y=0 }) then
-            piece.spin = false
-        end
-    end
-end
-
-function MarathonGFGame:onAttemptPieceRotate(piece)
-    if self.piece ~= nil then
-       if piece:isDropBlocked(self.grid) and
-       piece:isMoveBlocked(self.grid, { x=-1, y=0 }) and 
-       piece:isMoveBlocked(self.grid, { x=1, y=0 }) and
-       piece:isMoveBlocked(self.grid, { x=0, y=-1 }) then
-        piece.spin = true
-       else
-        piece.spin = false
-       end
-    end
 end
 
 function MarathonGFGame:onPieceLock(piece, cleared_row_count)
