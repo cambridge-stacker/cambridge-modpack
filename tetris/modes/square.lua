@@ -86,7 +86,11 @@ function SquareMode:drawGrid()
 end
 
 function SquareMode:getHighscoreData()
-    return {}
+    return {
+        lines = self.lines,
+        squares = self.squares,
+        frames = self.frames,
+    }
 end
 
 function SquareMode:getBackground()
