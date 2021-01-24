@@ -70,6 +70,10 @@ function Race40Game:getGravity()
 	return 1/64
 end
 
+function Race40Game:getDasCutDelay()
+	return config.dcd
+end
+
 function Race40Game:advanceOneFrame()
 	if self.clear then
 		self.roll_frames = self.roll_frames + 1
@@ -81,11 +85,6 @@ function Race40Game:advanceOneFrame()
 		self.frames = self.frames + 1
 	end
 	return true
-end
-
-function Race40Game:onPieceEnter()
-	self.irs = false
-	self.ihs = false
 end
 
 function Race40Game:onPieceLock()

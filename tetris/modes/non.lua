@@ -36,6 +36,7 @@ function NightOfNights:getLineARE() return 0 end
 function NightOfNights:getLineClearDelay() return 0 end
 function NightOfNights:getDasLimit() return config.das end
 function NightOfNights:getARR() return config.arr end
+function NightOfNights:getDasCutDelay() return config.dcd end
 function NightOfNights:getGravity() return 20 end
 
 function NightOfNights:advanceOneFrame()

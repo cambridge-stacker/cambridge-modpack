@@ -83,13 +83,12 @@ function PacerTest:getGravity()
 	return 1/64
 end
 
-function PacerTest:getSection()
-	return math.floor(level / 100) + 1
+function PacerTest:getDasCutDelay()
+	return config.dcd
 end
 
-function PacerTest:onPieceEnter()
-	self.irs = false
-	self.ihs = false
+function PacerTest:getSection()
+	return math.floor(level / 100) + 1
 end
 
 function PacerTest:advanceOneFrame()

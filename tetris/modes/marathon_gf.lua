@@ -34,6 +34,7 @@ function MarathonGFGame:getLineARE() return 6 end
 function MarathonGFGame:getLineClearDelay() return 24 end
 function MarathonGFGame:getDasLimit() return config.das end
 function MarathonGFGame:getARR() return config.arr end
+function MarathonGFGame:getDasCutDelay() return config.dcd end
 
 function MarathonGFGame:getGravity()
     if self.lines < 180 then

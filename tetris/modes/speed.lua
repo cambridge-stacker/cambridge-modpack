@@ -39,6 +39,7 @@ function LudicrousSpeed:getLineARE() return 0 end
 function LudicrousSpeed:getLineClearDelay() return 0 end
 function LudicrousSpeed:getDasLimit() return config.das end
 function LudicrousSpeed:getARR() return config.arr end
+function LudicrousSpeed:getDasCutDelay() return config.dcd end
 function LudicrousSpeed:getDropSpeed() return 20 end
 
 local function mean(t)
@@ -72,11 +73,6 @@ function LudicrousSpeed:advanceOneFrame()
         end
     end
     return true
-end
-
-function LudicrousSpeed:onPieceEnter()
-    self.irs = false
-    self.ihs = false
 end
 
 function LudicrousSpeed:onPieceLock()

@@ -27,6 +27,7 @@ function ProGame:getLineARE() return 6 end
 function ProGame:getLineClearDelay() return 6 end
 function ProGame:getDasLimit() return config.das end
 function ProGame:getARR() return config.arr end
+function ProGame:getDasCutDelay() return config.dcd end
 function ProGame:getDropSpeed() return 20 end
 
 function ProGame:getGravity()
