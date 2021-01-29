@@ -1,6 +1,6 @@
 require 'funcs'
 
-local MarathonAX4Game = require 'tetris.modes.marathon_ax4'
+local MarathonAX4Game = require 'tetris.modes.survival_ax'
 local TetraRandomizer = require 'tetris.randomizers.tetra'
 
 local ProGame = MarathonAX4Game:extend()

@@ -1,4 +1,4 @@
-local SRS = require 'tetris.rulesets.standard_exp'
+local SRS = require 'tetris.rulesets.standard'
 
 local OSpin = SRS:extend()
 
