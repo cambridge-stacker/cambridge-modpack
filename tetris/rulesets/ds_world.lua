@@ -1,4 +1,4 @@
-local SRS = require 'tetris.rulesets.standard_exp'
+local SRS = require 'tetris.rulesets.standard'
 
 local DS = SRS:extend()
 
@@ -12,11 +12,7 @@ function DS:onPieceMove(piece) piece.lock_delay = 0 end
 function DS:onPieceRotate(piece) piece.lock_delay = 0 end
 
 function DS:get180RotationValue() 
-	if config.gamesettings.world_reverse == 1 then
-		return 1
-	else
-		return 3
-	end
+	return 3
 end
 
 return DS

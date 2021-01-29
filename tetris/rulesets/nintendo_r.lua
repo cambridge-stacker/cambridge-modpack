@@ -75,11 +75,7 @@ function Nintendo:onPieceDrop(piece)
 end
 
 function Nintendo:get180RotationValue() 
-	if config.gamesettings.world_reverse == 3 then
-		return 1
-	else
-		return 3
-	end
+	return 3
 end
 
 function Nintendo:getDefaultOrientation() return 3 end  -- downward facing pieces by default

@@ -1,5 +1,5 @@
 local Piece = require 'tetris.components.piece'
-local SRS = require 'tetris.rulesets.standard_exp'
+local SRS = require 'tetris.rulesets.standard'
 
 local PPTPRS = SRS:extend()
 

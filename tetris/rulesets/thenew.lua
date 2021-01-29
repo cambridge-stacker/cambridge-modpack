@@ -117,11 +117,7 @@ function TheNew:onPieceDrop(piece, grid)
 end
 
 function TheNew:get180RotationValue() 
-	if config.gamesettings.world_reverse == 1 then
-		return 1
-	else
-		return 3
-	end
+	return 3
 end
 
 function TheNew:getDefaultOrientation() return 3 end
