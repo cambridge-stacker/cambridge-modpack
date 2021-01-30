@@ -133,7 +133,6 @@ function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 			if grid:canPlacePiece(kicked_piece) then
 				piece:setRelativeRotation(rot_dir)
 				piece:setOffset(offset)
-				piece.lock_delay = 0 -- rotate reset
 				return
 			end
 		end

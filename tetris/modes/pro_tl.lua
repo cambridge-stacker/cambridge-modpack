@@ -80,9 +80,13 @@ function ProGame:onHold()
 end
 
 function ProGame:whilePieceActive()
-	self.piece.lock_delay = self.piece.lowest_y < self.piece.position.y
-							and 0 or self.piece.lock_delay
-	self.piece.lowest_y = math.max(self.piece.lowest_y, self.piece.position.y)
+	for _, block in pairs(self.piece:getBlockOffsets()) do
+		local y = self.piece.position.y + block.y
+		if y > self.piece.lowest_y then
+			self.piece.lock_delay = 0
+			self.piece.lowest_y = y
+		end
+	end
 end
 
 function ProGame:onLineClear(cleared_row_count)
