@@ -137,11 +137,11 @@ function MarathonGFGame:onPieceLock(piece, cleared_row_count)
         self.message = "ALL CLEAR!"
     elseif piece.spin then
         self.message = (self.back_to_back and cleared_row_count ~= 0 and "B2B " or "") ..
-                       piece.shape .. "-SPIN " ..
-                       cleared_row_count .. "!"
-    elseif cleared_row_count == 4 then
+            (type(piece.shape) == "string" and piece.shape .. "-" or "") ..
+            "SPIN " .. cleared_row_count .. "!"
+    elseif cleared_row_count >= 4 then
         self.message = (self.back_to_back and "B2B " or "") ..
-                       "QUADRA!"
+            string.upper(string.sub(number_names[cleared_row_count * 3 + 3], 1, -7)) .. "A!"
     elseif cleared_row_count ~= 0 and self.combo > 0 then
         self.message = "COMBO " .. self.combo .. "!"
     else
