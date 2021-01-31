@@ -94,7 +94,7 @@ end
 function ZenMode:onPieceLock(piece, cleared_row_count)
     self.super:onPieceLock()
     self.pieces = self.pieces + 1
-    self.score = self.score + bigint.new(self:getLockDelay() - piece.lock_delay)
+    self.score = self.score + bigint.new(math.max(0, self:getLockDelay() - piece.lock_delay))
     if self.grid:checkForBravo(cleared_row_count) then
         self.message = "ALL CLEAR!"
     elseif piece.spin then
