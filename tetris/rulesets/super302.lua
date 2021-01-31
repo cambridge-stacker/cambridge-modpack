@@ -17,7 +17,7 @@ BONKERS.colourscheme = {
 
 function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	unfilled_block_offsets = {}
-	for y = 4, 23 do
+	for y = 4, grid.height - 1 do
 		for x = 0, 9 do
 			if not grid:isOccupied(x, y) then
 				table.insert(unfilled_block_offsets, {x=x-100, y=y-100})

@@ -140,6 +140,10 @@ function MarathonC99Game:startLeftDAS()
 	end
 end
 
+function MarathonC99Game:onPieceEnter()
+    self.piece.last_orientation = self.piece.rotation
+end
+
 function MarathonC99Game:advanceOneFrame(inputs, ruleset)
     if self.clear then
         if self.level == 17 then
@@ -153,13 +157,17 @@ function MarathonC99Game:advanceOneFrame(inputs, ruleset)
         self.frames = self.frames + 1
     end
     if self.piece ~= nil then
-        if inputs.rotate_right or inputs.rotate_right2 or
-        (inputs.rotate_180 and ruleset:get180RotationValue() ~= 3) then
+        if not (
+            self.piece.rotation - self.piece.last_orientation == -1 or -- 3 >> 2, 2 >> 1, 1 >> 0
+            self.piece.rotation - self.piece.last_orientation == 3 or -- 0 >> 3
+            self.piece.rotation - self.piece.last_orientation == 0 -- not rotated
+        ) then
             self.ccw_bonus = 0
         end
-        if inputs.down then
+        if inputs.down and not self.piece:isDropBlocked(self.grid) then
             self.score = self.score + 1
         end
+        self.piece.last_orientation = self.piece.rotation
     end
 end
 
@@ -199,9 +207,9 @@ function MarathonC99Game:onLineClear(cleared_row_count)
 				slot_popup.slotnum = 4
             else
 				clear_names = {"SINGLE","DOUBLE","TRIPLE","***RIS"}
-				local score_text = tostring(slots_table[cleared_row_count] * self:getSlotMultiplier())
+				local score_text = tostring(math.min(999999, slots_table[cleared_row_count] * self:getSlotMultiplier()))
 				while #score_text < 6 do score_text = "0"..score_text end
-                self.score = self.score + slots_table[cleared_row_count] * self:getSlotMultiplier()
+                self.score = self.score + math.min(999999, slots_table[cleared_row_count] * self:getSlotMultiplier())
 				slot_popup.text = "3x"..clear_names[cleared_row_count].."\n+"..score_text
 				slot_popup.time = 150
 				slot_popup.slotnum = cleared_row_count
