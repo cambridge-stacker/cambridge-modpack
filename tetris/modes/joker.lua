@@ -25,6 +25,8 @@ function JokerGame:new()
 	self.lock_drop = true
 	self.lock_hard_drop = true
 	self.enable_hold = false
+	self.instant_soft_drop = false
+    self.instant_hard_drop = true
 	self.next_queue_length = 6
 end
 

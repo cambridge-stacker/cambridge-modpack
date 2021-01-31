@@ -28,7 +28,9 @@ function ArcadeScoreAttack:new()
     self.lock_drop = true
     self.lock_hard_drop = true
 	self.enable_hard_drop = true
-	self.enable_hold = true
+    self.enable_hold = true
+    self.instant_soft_drop = false
+    self.instant_hard_drop = true
 	self.next_queue_length = 5
 end
 
