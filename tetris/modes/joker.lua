@@ -74,7 +74,8 @@ end
 
 function JokerGame:onPieceEnter()
 	-- The Initial Movement System, pioneered by DTET
-	if self.grid:canPlacePiece(self.piece) then
+	if self.das.frames >= self:getDasLimit() - self:getARR() and self.grid:canPlacePiece(self.piece) then
+		print("IMS")
 		if self.das.direction == "left" then
 			for i = 1, 10 do
 				local new_piece = self.piece:withOffset({x=-i, y=0})
