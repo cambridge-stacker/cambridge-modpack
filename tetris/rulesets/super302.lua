@@ -16,6 +16,7 @@ BONKERS.colourscheme = {
 }
 
 function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
+	if piece.big then return end
 	unfilled_block_offsets = {}
 	for y = 4, grid.height - 1 do
 		for x = 0, 9 do
