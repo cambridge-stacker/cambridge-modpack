@@ -78,36 +78,6 @@ DTET.block_offsets = {
 DTET.wallkicks_cw = {{x=1, y=0}, {x=-1, y=0}, {x=0, y=1}, {x=1, y=1}, {x=-1, y=1}}
 DTET.wallkicks_ccw = {{x=-1, y=0}, {x=1, y=0}, {x=0, y=1}, {x=-1, y=1}, {x=1, y=1}}
 
-function DTET:attemptRotate(new_inputs, piece, grid, initial)
-	local rot_dir = 0
-	
-	if (new_inputs["rotate_180"]) or
-	(new_inputs["rotate_left"] and new_inputs["rotate_right"]) or
-	(new_inputs["rotate_left2"] and new_inputs["rotate_right2"]) then
-		rot_dir = self:get180RotationValue()
-	elseif (new_inputs["rotate_left"] or new_inputs["rotate_left2"]) then
-		rot_dir = 3
-	elseif (new_inputs["rotate_right"] or new_inputs["rotate_right2"]) then
-		rot_dir = 1
-	end
-
-	if rot_dir == 0 then return end
-    if config.gamesettings.world_reverse == 3 or (self.world and config.gamesettings.world_reverse == 2) then
-        rot_dir = 4 - rot_dir
-    end
-
-	local new_piece = piece:withRelativeRotation(rot_dir)
-
-	if (grid:canPlacePiece(new_piece)) then
-		piece:setRelativeRotation(rot_dir)
-		self:onPieceRotate(piece, grid)
-	else
-		if not(initial and self.enable_IRS_wallkicks == false) then
-			self:attemptWallkicks(piece, new_piece, rot_dir, grid)
-		end
-	end
-end
-
 function DTET:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	
 	local kicks
