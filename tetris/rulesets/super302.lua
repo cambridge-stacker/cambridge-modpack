@@ -16,7 +16,10 @@ BONKERS.colourscheme = {
 }
 
 function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
-	if piece.big then return end
+	local prev_rot = piece.rotation
+	ARS:attemptWallkicks(piece, new_piece, rot_dir, grid)
+	if prev_rot ~= piece.rotation then return end
+	piece.big = false
 	unfilled_block_offsets = {}
 	for y = 4, grid.height - 1 do
 		for x = 0, 9 do
