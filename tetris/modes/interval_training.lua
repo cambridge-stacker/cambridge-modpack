@@ -21,6 +21,7 @@ function IntervalTrainingGame:new()
 	self.combo = 1
 	self.randomizer = History6RollsRandomizer()
 	
+	self.section_time_limit = 0
 	self.section_start_time = 0
 	self.section_times = { [0] = 0 }
 	self.lock_drop = true
