@@ -123,7 +123,7 @@ function IntervalTrainingGame:drawScoringInfo()
 	self:drawSectionTimesWithSplits(current_section)
 
 	love.graphics.setFont(font_3x5_3)
-	love.graphics.printf(self.level, 240, 340, 40, "right")
+	love.graphics.printf(self.level, 240, 340, 50, "right")
 
 	-- draw time left, flash red if necessary
 	local time_left = self.section_time_limit - math.max(self:getSectionTime(), 0)
@@ -133,7 +133,7 @@ function IntervalTrainingGame:drawScoringInfo()
 	love.graphics.printf(formatTime(time_left), 240, 270, 160, "left")
 
 	love.graphics.setColor(1, 1, 1, 1)
-	love.graphics.printf(self:getSectionEndLevel(), 240, 370, 40, "right")
+	love.graphics.printf(self:getSectionEndLevel(), 240, 370, 50, "right")
 end
 
 function IntervalTrainingGame:getSectionEndLevel()
