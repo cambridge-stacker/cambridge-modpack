@@ -59,12 +59,7 @@ function IntervalTrainingGame:getSection()
 end
 
 function IntervalTrainingGame:advanceOneFrame(inputs, ruleset)
-	if self.clear then
-		self.roll_frames = self.roll_frames + 1
-		if self.roll_frames > 2968 then
-			self.completed = true
-		end
-	elseif self.ready_frames == 0 then
+	if self.ready_frames == 0 then
 		self.frames = self.frames + 1
 		if self:getSectionTime() >= self.section_time_limit then
 			self.game_over = true
@@ -76,21 +71,16 @@ function IntervalTrainingGame:advanceOneFrame(inputs, ruleset)
 end
 
 function IntervalTrainingGame:onPieceEnter()
-	if (self.level % 100 ~= 99 and self.level ~= 998) and not self.clear and self.frames ~= 0 then
+	if (self.level % 100 ~= 99) and self.frames ~= 0 then
 		self.level = self.level + 1
 	end
 end
 
 function IntervalTrainingGame:onLineClear(cleared_row_count)
 	local cleared_level_bonus = {1, 2, 4, 6}
-	if not self.clear then
-		local new_level = self.level + cleared_level_bonus[cleared_row_count]
-		self:updateSectionTimes(self.level, new_level)
-		self.level = math.min(new_level, 999)
-		if self.level == 999 then
-			self.clear = true
-		end
-	end
+	local new_level = self.level + cleared_level_bonus[cleared_row_count]
+	self:updateSectionTimes(self.level, new_level)
+	self.level = new_level
 end
 
 function IntervalTrainingGame:getSectionTime()
@@ -126,7 +116,7 @@ function IntervalTrainingGame:drawScoringInfo()
 		strTrueValues(self.prev_inputs)
 	)
 	love.graphics.printf("NEXT", 64, 40, 40, "left")
-	if not self.clear then love.graphics.printf("TIME LEFT", 240, 250, 80, "left") end
+	love.graphics.printf("TIME LEFT", 240, 250, 80, "left")
 	love.graphics.printf("LEVEL", 240, 320, 40, "left")
 
 	local current_section = math.floor(self.level / 100) + 1
@@ -140,19 +130,18 @@ function IntervalTrainingGame:drawScoringInfo()
 	if not self.game_over and time_left < frameTime(0,10) and time_left % 4 < 2 then
 		love.graphics.setColor(1, 0.3, 0.3, 1)
 	end
-	if not self.clear then love.graphics.printf(formatTime(time_left), 240, 270, 160, "left") end
+	love.graphics.printf(formatTime(time_left), 240, 270, 160, "left")
 
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.printf(self:getSectionEndLevel(), 240, 370, 40, "right")
 end
 
 function IntervalTrainingGame:getSectionEndLevel()
-	if self.level >= 900 then return 999
-	else return math.floor(self.level / 100 + 1) * 100 end
+	return math.floor(self.level / 100 + 1) * 100
 end
 
 function IntervalTrainingGame:getBackground()
-	return math.floor(self.level / 100)
+	return math.floor(self.level / 100) % 20
 end
 
 return IntervalTrainingGame
