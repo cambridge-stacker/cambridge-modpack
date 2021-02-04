@@ -38,8 +38,7 @@ function SquareMode:getGravity()
 end
 
 function SquareMode:getLockDelay()
-    if self:getGravity() <= 20 then return 30
-    else return 30 - math.log(self:getGravity() - 20) end
+    return math.ceil(30 * 0.9998 ^ self.lines)
 end
 
 function SquareMode:advanceOneFrame()
