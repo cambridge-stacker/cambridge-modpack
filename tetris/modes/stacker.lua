@@ -26,7 +26,7 @@ function StackerGame:new()
 end
 
 function StackerGame:getSpeed()
-    return 5--20 ^ ((self.row - 4) / 15)
+    return 20 ^ ((self.row - 4) / 15)
 end
 
 function StackerGame:getMaxBlockWidth()
