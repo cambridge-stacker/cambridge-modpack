@@ -136,7 +136,7 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
                     self.current_attack = math.random(4)
                 end
             until prev_attack ~= self.current_attack and (
-                self.current_attack ~= 5 or attack_rolls == 3
+                self.current_attack ~= 5 or attack_rolls == 2
             )
             if self.current_attack == 1 then
                 self.var = math.floor(3 + math.random(
