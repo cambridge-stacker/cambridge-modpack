@@ -17,7 +17,7 @@ function StackerGame:new()
     self.row = 19
     self.block_width = 3
     self.position = 0
-    self.direction = 1
+    self.direction = 0
     self.ticks = 0
     self.are = 30
     self.map = {}
@@ -26,7 +26,7 @@ function StackerGame:new()
 end
 
 function StackerGame:getSpeed()
-    return 20 ^ ((self.row - 4) / 15)
+    return 5--20 ^ ((self.row - 4) / 15)
 end
 
 function StackerGame:getMaxBlockWidth()
@@ -54,6 +54,10 @@ function StackerGame:advanceOneFrame(inputs, ruleset)
     if self.are > 0 then
         self.are = self.are - 1
         return false
+    elseif self.are == 0 then
+        self.position = math.random(1, 7 + self.block_width - 1)
+        self.direction = ({-1, 1})[math.random(2)]
+        self.are = -1
     end
     if not self.prev_inputs.up and inputs.up then
         self.prev_inputs = inputs
@@ -84,6 +88,7 @@ function StackerGame:advanceOneFrame(inputs, ruleset)
             self.ticks = 0
             self.block_width = new_width
             self.position = 0
+            self.direction = 0
             self.are = 30
             self:updateGrid()
         end
@@ -109,7 +114,24 @@ local function noOutline(game, block, x, y, age)
     return x, x, x, 1, 0
 end
 
-function StackerGame:onGameComplete() end
+function StackerGame:onGameComplete()
+    self.grid:clear()
+    local win = {
+        [6] = {nil, block, nil, nil, nil, block, nil},
+        [7] = {nil, block, nil, block, nil, block, nil},
+        [8] = {nil, block, block, nil, block, block, nil},
+        [9] = {nil, block, nil, nil, nil, block, nil},
+        [11] = {nil, nil, nil, block, nil, nil, nil},
+        [12] = {nil, nil, nil, block, nil, nil, nil},
+        [13] = {nil, nil, nil, block, nil, nil, nil},
+        [14] = {nil, nil, nil, block, nil, nil, nil},
+        [16] = {nil, block, nil, block, block, nil, nil},
+        [17] = {nil, block, block, nil, nil, block, nil},
+        [18] = {nil, block, nil, nil, nil, block, nil},
+        [19] = {nil, block, nil, nil, nil, block, nil},
+    }
+    self.grid:applyMap(win)
+end
 
 function StackerGame:drawGrid()
     self.grid:drawCustom(noOutline, self)
