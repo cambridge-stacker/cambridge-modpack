@@ -1,6 +1,7 @@
 require 'funcs'
 
 local GameMode = require 'tetris.modes.gamemode'
+local Grid = require 'tetris.components.grid'
 local Piece = require 'tetris.components.piece'
 
 local DTETRandomizer = require 'tetris.randomizers.dtet'
@@ -16,6 +17,7 @@ JokerGame.tagline = "One of the hardest modes! Can you retain your stock to leve
 function JokerGame:new()
 	self.super:new()
 
+	self.grid = Grid(10, 25)
 	self.randomizer = DTETRandomizer()
 	
 	self.level = 50
