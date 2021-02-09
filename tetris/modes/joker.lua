@@ -109,7 +109,7 @@ function JokerGame:onLineClear(cleared_row_count)
 			self.time_limit = math.min(self.time_limit + frameTime(0,15), frameTime(5,00))
 		elseif self.stock == 0 then
 			self.level = self.level + 1
-                        self.time_limit = math.min(self.time_limit + frameTime(0,15), frameTime(5,00))
+            self.time_limit = math.min(self.time_limit + frameTime(0,15), frameTime(5,00))
 		end
 	else
 		self.level = self.level + 1
@@ -151,7 +151,7 @@ function JokerGame:drawScoringInfo()
 	end
 
 	love.graphics.setFont(font_8x11)
-	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
+	love.graphics.printf(formatTime(self.frames), 64, 428, 160, "center")
 end
 
 function JokerGame:getBackground()
