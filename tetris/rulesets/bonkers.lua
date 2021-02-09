@@ -5,6 +5,7 @@ local BONKERS = Ruleset:extend()
 BONKERS.name = "B.O.N.K.E.R.S."
 BONKERS.hash = "Bonkers"
 BONKERS.world = true
+BONKERS.spawn_above_field = true
 
 BONKERS.spawn_positions = {
 	I = { x=5, y=4 },

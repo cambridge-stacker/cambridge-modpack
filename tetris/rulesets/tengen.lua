@@ -14,6 +14,7 @@ Tengen.colourscheme = {
 	T = "Y",
 	Z = "C"
 }
+Tengen.spawn_above_field = true
 
 Tengen.spawn_positions = {
 	I = { x=3, y=4 },

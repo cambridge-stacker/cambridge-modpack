@@ -18,6 +18,7 @@ TheNew.colourscheme = {
     Z = "R",
     T = "Y"
 }
+TheNew.spawn_above_field = true
 
 TheNew.spawn_positions = {
 	I = { x=5, y=4 },

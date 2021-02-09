@@ -8,6 +8,7 @@ MizuRS.hash = "MizuRS"
 
 MizuRS.softdrop_lock = false
 MizuRS.harddrop_lock = true
+MizuRS.spawn_above_field = true
 
 MizuRS.colourscheme = {
 	I = "R",

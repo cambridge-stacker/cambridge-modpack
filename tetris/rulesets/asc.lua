@@ -16,6 +16,7 @@ Ascension.colourscheme = {
 }
 Ascension.softdrop_lock = false
 Ascension.harddrop_lock = true
+Ascension.spawn_above_field = true
 
 Ascension.spawn_positions = {
 	I = { x=4, y=4 },

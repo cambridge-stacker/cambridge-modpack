@@ -18,6 +18,7 @@ CRAP.colourscheme = {
 }
 CRAP.softdrop_lock = true
 CRAP.harddrop_lock = false
+CRAP.spawn_above_field = true
 
 CRAP.spawn_positions = {
 	I = { x=5, y=4 },
