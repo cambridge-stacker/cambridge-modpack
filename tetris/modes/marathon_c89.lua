@@ -34,6 +34,7 @@ function MarathonC89Game:new()
 	self.enable_hold = false
 	self.next_queue_length = 1
 	self.additive_gravity = false
+	self.classic_lock = true
 	
 	self.irs = false
 end
