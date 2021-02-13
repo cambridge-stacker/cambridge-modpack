@@ -51,14 +51,7 @@ function ProGame:getLockDelay()
 end
 
 function ProGame:advanceOneFrame(inputs, ruleset)
-	if self.clear then
-		self.roll_frames = self.roll_frames + 1
-		if self.roll_frames < 0 then		
-			return false
-		elseif self.roll_frames > 2968 then
-			self.completed = true
-		end
-	elseif self.ready_frames == 0 then
+	if self.ready_frames == 0 then
 		if not self.section_clear then
 			self.frames = self.frames + 1
 		end
@@ -95,9 +88,7 @@ function ProGame:onLineClear(cleared_row_count)
 		self:updateSectionTimes(self.lines, new_lines)
 		self.lines = math.min(new_lines, 200)
 		if self.lines == 200 then
-			self.grid:clear()
-			self.clear = true
-            self.roll_frames = -150
+			self.completed = true
         else
             self.enable_hold = self.lines < 160
             self.next_queue_length = math.max(1, 6 - math.floor(self.lines / 20))
