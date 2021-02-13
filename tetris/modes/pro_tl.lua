@@ -88,6 +88,7 @@ function ProGame:onLineClear(cleared_row_count)
 		self:updateSectionTimes(self.lines, new_lines)
 		self.lines = math.min(new_lines, 200)
 		if self.lines == 200 then
+			self.clear = true
 			self.completed = true
         else
             self.enable_hold = self.lines < 160
