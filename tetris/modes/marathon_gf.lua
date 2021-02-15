@@ -132,7 +132,7 @@ function MarathonGFGame:updateScore(level, drop_bonus, cleared_lines)
 end
 
 function MarathonGFGame:onPieceLock(piece, cleared_row_count)
-    self.super:onPieceLock()
+    GameMode:onPieceLock()
     if self.grid:checkForBravo(cleared_row_count) then
         self.message = "ALL CLEAR!"
     elseif piece.spin then
