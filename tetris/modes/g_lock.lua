@@ -167,11 +167,21 @@ function GLock:onPieceLock()
 	end
 end
 
+function GLock:onGameComplete() end
+
+function GLock:onPieceMove(piece)
+	piece.lock_delay = 0
+end
+
+function GLock:onPieceRotate(piece)
+	piece.lock_delay = 0
+end
+
+function GLock:onPieceDrop(piece)
+	piece.lock_delay = 0
+end
+
 function GLock:whilePieceActive()
-	if not self.piece:isMoveBlocked(self.grid, {x=-1, y=0}) and self.prev_inputs["left"]
-	or not self.piece:isMoveBlocked(self.grid, {x=1, y=0}) and self.prev_inputs["right"] then
-		self.piece.lock_delay = 0
-	end
 	if self.piece:isDropBlocked(self.grid) then
 		self.time_active = self.time_active + 1
 		if self.time_active >= 240 then self.piece.locked = true end
