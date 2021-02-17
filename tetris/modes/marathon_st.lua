@@ -164,7 +164,9 @@ function MarathonSTGame:updateSectionTimes(old_level, new_level)
         ) then
             self.section_boosts = self.section_boosts + 1
             table.insert(self.section_boost_status, true)
-            self.grade_point_multiplier = self.grade_point_multiplier + 15
+            self.grade_point_multiplier = self.grade_point_multiplier + (
+                self.section_boosts == 9 and 12 or 11
+            )
             self.boost_message_time = 180
         else
             table.insert(self.section_boost_status, false)
