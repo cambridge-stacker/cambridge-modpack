@@ -102,7 +102,7 @@ function PPTPRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 		if grid:canPlacePiece(kicked_piece) then
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset(offset)
-			self:onPieceRotate(piece, grid)
+			self:onPieceRotate(piece, grid, offset.y < 0)
 			return
 		end
 	end
