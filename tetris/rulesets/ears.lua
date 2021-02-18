@@ -24,9 +24,9 @@ function EARS:attemptWallkicks(piece, new_piece, rot_dir, grid)
                     offset = {x=tx, y=y}
                     kicked_piece = new_piece:withOffset(offset)
 		            if grid:canPlacePiece(kicked_piece) then
-			            self:onPieceRotate(piece, grid)
 			            piece:setRelativeRotation(rot_dir)
 			            piece:setOffset(offset)
+                        self:onPieceRotate(piece, grid, offset.y < 0)
 			            return
                     end
                 end
