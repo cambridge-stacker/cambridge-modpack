@@ -41,10 +41,6 @@ RandomPieces.big_spawn_positions = {
     { x=2, y=3 }
 }
 
-RandomPieces.draw_offsets = {
-    { x=0, y=0 }
-}
-
 RandomPieces.next_sounds = {
     "O"
 }
