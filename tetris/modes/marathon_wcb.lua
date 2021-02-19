@@ -30,6 +30,7 @@ end
 
 function MarathonWCBGame:initialize(ruleset)
 	self.super.initialize(self, ruleset)
+	self.colourscheme = copy(ruleset.colourscheme)
 	ruleset.onPieceDrop = function() end
 	ruleset.onPieceMove = function() end
 	ruleset.onPieceRotate = function() end
@@ -86,14 +87,37 @@ function MarathonWCBGame:onAttemptPieceRotate()
     self.piece_is_active = true
 end
 
-function MarathonWCBGame:onPieceLock()
+function MarathonWCBGame:shuffleColours()
+	local temp_colours = {}
+	for _, colour in pairs(self.colourscheme) do
+		table.insert(temp_colours, colour)
+	end
+	for piece in pairs(self.ruleset.colourscheme) do
+		self.ruleset.colourscheme[piece] = table.remove(temp_colours, math.random(#temp_colours))
+	end
+end
+
+function MarathonWCBGame:resetColours()
+	for piece in pairs(self.colourscheme) do
+		self.ruleset.colourscheme[piece] = self.colourscheme[piece]
+	end
+end
+
+function MarathonWCBGame:onPieceLock()	
 	self.super:onPieceLock()
 	self.piece_is_active = false
 	self.pieces = self.pieces + 1
+	if self.pieces % 50 == 0 then
+		self:shuffleColours()
+	end
 end
 
 function MarathonWCBGame:onLineClear(cleared_row_count)
 	self.lines = self.lines + cleared_row_count
+end
+
+function MarathonWCBGame:onExit()
+	self:resetColours()
 end
 
 function MarathonWCBGame:drawGrid(ruleset)
