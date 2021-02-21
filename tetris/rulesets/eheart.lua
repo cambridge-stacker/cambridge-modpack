@@ -13,26 +13,20 @@ function EHeart:attemptWallkicks(piece, new_piece, rot_dir, grid)
 
 	-- center column rule (kicks)
 	local offsets = new_piece:getBlockOffsets()
-		table.sort(offsets, function(A, B) return A.y < B.y or A.y == B.y and A.x < B.y end)
-		for index, offset in pairs(offsets) do
-			if grid:isOccupied(piece.position.x + offset.x, piece.position.y + offset.y) then
-		-- individual checks for all 9 cells, in the given order
-				if offset.y < 0 then
-			if offset.x < 0 then self:lateralKick(1, piece, new_piece, rot_dir, grid)
-			elseif offset.x == 0 then return
-			elseif offset.x > 0 then self:lateralKick(-1, piece, new_piece, rot_dir, grid) end
-		elseif offset.y == 0 then
-			if offset.x < 0 then self:lateralKick(1, piece, new_piece, rot_dir, grid)
-						elseif offset.x == 0 then return
-						elseif offset.x > 0 then self:lateralKick(-1, piece, new_piece, rot_dir, grid) end
-				elseif offset.y > 0 then
-			if offset.x < 0 then self:lateralKick(1, piece, new_piece, rot_dir, grid)
-						elseif offset.x == 0 then return
-						elseif offset.x > 0 then self:lateralKick(-1, piece, new_piece, rot_dir, grid) end
-				end
+	table.sort(offsets, function(A, B) return A.y < B.y or A.y == B.y and A.x < B.y end)
+	for index, offset in pairs(offsets) do
+		if grid:isOccupied(piece.position.x + offset.x, piece.position.y + offset.y) then
+			if offset.x < 0 then
+				self:lateralKick(1, piece, new_piece, rot_dir, grid)
+				break
+			elseif offset.x == 0 then
+				return
+			elseif offset.x > 0 then
+				self:lateralKick(-1, piece, new_piece, rot_dir, grid)
+				break
 			end
 		end
-
+	end
 end
 
 function EHeart:lateralKick(dx, piece, new_piece, rot_dir, grid)
