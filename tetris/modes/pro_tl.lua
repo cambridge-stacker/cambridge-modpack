@@ -23,7 +23,7 @@ function ProGame:initialize(ruleset)
 end
 
 function ProGame:getARE() return 6 end
-function ProGame:getLineARE() return 6 end
+function ProGame:getLineARE() return 12 end
 function ProGame:getLineClearDelay() return 6 end
 function ProGame:getDasLimit() return config.das end
 function ProGame:getARR() return config.arr end

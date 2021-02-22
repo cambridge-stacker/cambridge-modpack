@@ -10,6 +10,10 @@ FourWideGame.name = "4-wide Simulator"
 FourWideGame.hash = "4wide"
 FourWideGame.tagline = "The board has gotten narrower! Can you survive the increasing speeds?"
 
+function FourWideGame:new()
+	SurvivalA3Game:new()
+end
+
 function FourWideGame:initialize(ruleset)
 	self.super:initialize(ruleset)
 	self.grid = Grid(4, 24)
