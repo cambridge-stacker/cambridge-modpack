@@ -217,9 +217,9 @@ function PAIRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	for idx, offset in pairs(kicks) do
 		kicked_piece = new_piece:withOffset(offset)
 		if grid:canPlacePiece(kicked_piece) then
-			self:onPieceRotate(piece, grid)
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset(offset)
+            self:onPieceRotate(piece, grid)
 			return
 		end
 	end
@@ -240,6 +240,10 @@ function PAIRS:onPieceCreate(piece, grid)
 end
 
 function PAIRS:onPieceDrop(piece, grid)
+    self:checkNewLow(piece)
+end
+
+function PAIRS:onPieceRotate(piece, grid)
     self:checkNewLow(piece)
 end
 

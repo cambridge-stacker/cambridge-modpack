@@ -8,6 +8,10 @@ BigMemeGame.name = "Big Survival A3"
 BigMemeGame.hash = "BigA3"
 BigMemeGame.tagline = "The blocks are bigger and the speeds are faster!"
 
+function BigMemeGame:new()
+	SurvivalA3Game:new()
+end
+
 function BigMemeGame:initialize(ruleset)
     self.super:initialize(ruleset)
     self.big_mode = true

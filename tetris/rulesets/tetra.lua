@@ -77,9 +77,9 @@ function Tetra:attemptWallkicks(piece, new_piece, rot_dir, grid)
 	for idx, offset in pairs(kicks) do
 		kicked_piece = new_piece:withOffset(offset)
 		if grid:canPlacePiece(kicked_piece) then
-			self:onPieceRotate(piece, grid)
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset(offset)
+			self:onPieceRotate(piece, grid)
 			return
 		end
 	end
@@ -99,7 +99,7 @@ end
 function Tetra:onPieceCreate(piece) piece.lowest_y = -math.huge end
 function Tetra:onPieceDrop(piece) self:checkNewLow(piece) end
 function Tetra:onPieceMove() end
-function Tetra:onPieceRotate() end
+function Tetra:onPieceRotate() self:checkNewLow(piece) end
 function Tetra:canPieceRotate() return true end
 function Tetra:get180RotationValue() return 2 end
 
