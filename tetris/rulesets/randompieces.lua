@@ -58,49 +58,7 @@ RandomPieces.block_offsets = {
     }
 }
 
-function RandomPieces:initializePiece(
-	inputs, data, grid, gravity, prev_inputs,
-	move, lock_delay, drop_speed,
-	drop_locked, hard_drop_locked, big, irs,
-	buffer_hard_drop, buffer_soft_drop,
-	lock_on_hard_drop, lock_on_soft_drop
-)
-    local spawn_positions
-	if big then
-		spawn_positions = self.big_spawn_positions
-	else
-		spawn_positions = self.spawn_positions
-	end
-	local colours = ({self.colourscheme, ColourSchemes.Arika, ColourSchemes.TTC})[config.gamesettings.piece_colour]
-	
-	local spawn_x
-	if (grid.width ~= 10) then
-		local percent = spawn_positions[data.shape].x / 10
-		for i = 0, grid.width - 1 do
-			if i / grid.width >= percent then
-				spawn_x = i
-				break
-			end
-		end
-	end
-
-	local spawn_dy
-	if (config.gamesettings.spawn_positions == 1) then
-		spawn_dy = (
-			self.spawn_above_field and 2 or 0
-		)
-	else
-		spawn_dy = (
-			config.gamesettings.spawn_positions == 3 and
-			2 or 0
-		)
-	end
-
-	local piece = Piece(data.shape, data.orientation - 1, {
-		x = spawn_x and spawn_x or spawn_positions[data.shape].x,
-		y = spawn_positions[data.shape].y - spawn_dy
-	}, self.block_offsets, 0, 0, data.skin, colours[data.shape], big)
-    
+function RandomPieces:onPieceCreate(piece)
     local offsets = self:generateBlockOffsets()
     piece.getBlockOffsets = function()
         return offsets
@@ -147,23 +105,6 @@ function RandomPieces:initializePiece(
         end
         return piece
     end
-
-	self:onPieceCreate(piece)
-	if irs then
-		self:rotatePiece(inputs, piece, grid, {}, true)
-		if (data.orientation - 1) ~= piece.rotation then
-			playSE("irs")
-		end
-	end
-	self:dropPiece(inputs, piece, grid, gravity, drop_speed, drop_locked, hard_drop_locked)
-	if (buffer_hard_drop and config.gamesettings.buffer_lock == 1) then
-		piece:dropToBottom(grid)
-		if lock_on_hard_drop then piece.locked = true end
-	end
-	if (buffer_soft_drop and lock_on_soft_drop and piece:isDropBlocked(grid) and config.gamesettings.buffer_lock == 1) then
-		piece.locked = true
-	end
-	return piece
 end
 
 function RandomPieces:attemptRotate(new_inputs, piece, grid, initial)
