@@ -50,7 +50,7 @@ OSpin.block_offsets = {
 	}
 }
 
-function SRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
+function OSpin:attemptWallkicks(piece, new_piece, rot_dir, grid)
 
 	local kicks
 	if piece.shape == "I" then
