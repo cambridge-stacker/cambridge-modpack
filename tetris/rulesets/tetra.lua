@@ -99,7 +99,7 @@ end
 function Tetra:onPieceCreate(piece) piece.lowest_y = -math.huge end
 function Tetra:onPieceDrop(piece) self:checkNewLow(piece) end
 function Tetra:onPieceMove() end
-function Tetra:onPieceRotate() self:checkNewLow(piece) end
+function Tetra:onPieceRotate(piece) self:checkNewLow(piece) end
 function Tetra:canPieceRotate() return true end
 function Tetra:get180RotationValue() return 2 end
 
