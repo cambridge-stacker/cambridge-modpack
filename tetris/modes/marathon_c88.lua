@@ -120,7 +120,6 @@ local score_table = {[0] = 0, 1, 4, 9, 20}
 
 function MarathonC88Game:updateScore(level, drop_bonus, cleared_lines)
 	local bravo = self.grid:checkForBravo(cleared_lines) and 10 or 1
-	self.score = self.score + score_table[cleared_lines] * 100 * self:getScoreMultiplier() * bravo
 	self.level_lines = self.level_lines + cleared_lines
 	self.lines = self.lines + cleared_lines
 	if (cleared_lines >= 1) then self.line_clears = self.line_clears + 1 end
@@ -130,6 +129,7 @@ function MarathonC88Game:updateScore(level, drop_bonus, cleared_lines)
 		self.level_lines = 0
 		self.level_timer = 0
 	end
+	self.score = self.score + score_table[cleared_lines] * 100 * self:getScoreMultiplier() * bravo
 end
 
 function MarathonC88Game:drawGrid()

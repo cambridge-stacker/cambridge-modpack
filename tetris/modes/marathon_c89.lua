@@ -167,9 +167,9 @@ end
 
 function MarathonC89Game:updateScore(level, drop_bonus, cleared_lines)
 	if cleared_lines > 0 then
-		self.score = self.score + cleared_line_scores[cleared_lines] * (self.level + 1)
 		self.lines = self.lines + cleared_lines
 		self.level = self:getLevelForLines()
+		self.score = self.score + cleared_line_scores[cleared_lines] * (self.level + 1)
 		self.line_clears = self.line_clears + 1
 		if cleared_lines == 4 then self.tetrises = self.tetrises + 1 end
 		for i = 1, 4 do
