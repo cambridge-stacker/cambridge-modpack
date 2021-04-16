@@ -9,8 +9,8 @@ Once done, extract the `tetris` and `res` folder into one of these directories, 
 
 * If you're running the game through a .exe, extract them into `%APPDATA%\cambridge\`.
 * If you're running the game through a .love on Windows, extract them into `%APPDATA%\LOVE\cambridge\`.
-* If you're running the game on Mac, extract them into `/Users/user/Library/Application Support/LOVE/`.
-* If you're running the game on Linux, extract them into `~/.local/share/love/`.
+* If you're running the game on Mac, extract them into `/Users/user/Library/Application Support/LOVE/cambridge/`.
+* If you're running the game on Linux, extract them into `~/.local/share/love/cambridge/`.
 * If you're running the game from the source code, extract them into the folder you installed Cambridge to.
 
 Also, we have a `skins` folder. Click it to read instructions.
