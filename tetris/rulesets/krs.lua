@@ -153,7 +153,7 @@ function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid, new_inputs)
         piece:setRelativeRotation(rot_dir)
         piece:setOffset({x=priority, y=0})
         self:onPieceRotate(piece)
-        piece.das_kicked = true
+        piece.das_kicked = priority ~= 0
         return
     end
 
@@ -164,7 +164,7 @@ function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid, new_inputs)
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset({x=offset[1]+priority, y=offset[2]})
 			self:onPieceRotate(piece)
-            piece.das_kicked = true
+            piece.das_kicked = priority ~= 0
 			return
 		end
     end
