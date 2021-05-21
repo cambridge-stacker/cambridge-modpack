@@ -117,8 +117,15 @@ end
 function MarathonSTGame:advanceOneFrame()
 	if self.clear then
 		self.roll_frames = self.roll_frames + 1
-		if self.roll_frames < 0 then return false end
+		if self.roll_frames < 0 then
+			if self.roll_frames + 1 == 0 then
+				switchBGM("credit_roll", "gm3")
+				return true
+			end
+			return false
+        end
 		if self.roll_frames > 3694 then
+            switchBGM(nil)
 			self.completed = true
 		end
 	elseif self.ready_frames == 0 then
@@ -142,6 +149,7 @@ function MarathonSTGame:onPieceLock(piece, cleared_row_count)
 		self.clear = true
 		self.grid:clear()
 		self.roll_frames = -150
+        switchBGM(nil)
     end
 end
 
@@ -275,6 +283,24 @@ local function rollOpacityFunction(game, block, x, y, age)
     end
 end
 
+function MarathonSTGame:swapMusic(level)
+	if self.ready_frames ~= 0 then return end
+	local bgm_table = {
+		0, 480, 500, 680,
+		700, 880, 900, 1080,
+        1100, 1280, 1300, 1480
+	}
+	for entry, lvl in ipairs(bgm_table) do
+		if (level >= lvl and self.bgm_progression < entry) then
+			if entry % 2 == 0 then
+				fadeoutBGM(0.5)
+			else
+				switchBGMLoop(0.5 * (entry - 1) + 1)
+			end
+			self.bgm_progression = entry
+		end
+	end
+end
 
 function MarathonSTGame:drawGrid()
     if self.clear and not (self.game_over or self.completed) then

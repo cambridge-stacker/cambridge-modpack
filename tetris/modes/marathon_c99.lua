@@ -51,6 +51,7 @@ function MarathonC99Game:new()
     self.super:new()
     self.grid = Grid(10, 22)
 
+    self.additive_gravity = false
     self.roll_frames = 0
     self.lines_to_next_level = lines_to_next_level[self.level]
     self.slots = {}

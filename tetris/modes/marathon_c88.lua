@@ -31,6 +31,7 @@ function MarathonC88Game:new(secret_inputs)
 	
 	self.randomizer = SegaRandomizer()
 
+	self.additive_gravity = false
 	self.lock_drop = false
 	self.enable_hard_drop = false
 	self.enable_hold = false

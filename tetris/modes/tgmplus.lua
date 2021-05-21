@@ -25,6 +25,7 @@ function TGMPlusGame:new()
 	
 	self.randomizer = History6RollsRandomizer()
 
+	self.additive_gravity = false
 		self.lock_drop = false
 	self.lock_hard_drop = false
 	self.enable_hold = false
