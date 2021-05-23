@@ -1,8 +1,8 @@
 # cambridge-modpack
-Repository for custom modes in [Cambridge](https://github.com/SashLilac/cambridge).
+Repository for custom modes in [Cambridge](https://github.com/MillaBasset/cambridge).
 
 ## How to use
-Download the source code ZIP from [here](https://github.com/SashLilac/cambridge-modpack/archive/main.zip).
+Download the source code ZIP from [here](https://github.com/MillaBasset/cambridge-modpack/archive/main.zip).
 
 Once done, extract the `tetris` and `res` folder into one of these directories, depending on how you're running Cambridge
 (create any folders that don't exist!):  
