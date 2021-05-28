@@ -127,7 +127,7 @@ function BONKERS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 		horizontal_kicks = {0, 1, -1}
 	end
 
-	for y_offset = 24, -24, -1 do
+	for y_offset = grid.height, -grid.height, -1 do
 		for idx, x_offset in pairs(horizontal_kicks) do
 			local offset = {x=x_offset, y=y_offset}
 			kicked_piece = new_piece:withOffset(offset)
