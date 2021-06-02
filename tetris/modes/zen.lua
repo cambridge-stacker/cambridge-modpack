@@ -144,7 +144,7 @@ function ZenMode:drawScoringInfo()
 
     love.graphics.setFont(font_3x5_3)
     love.graphics.printf(
-        {self:getColor(self.b2b), formatBigNum(bigint.unserialize(self.score, "s"))},
+        {self:getColor(self.b2b), formatBigNum(tostring(self.score))},
         text_x, 120, 400, "left"
     )
     love.graphics.printf(self.pieces, text_x, 300, 80, "left")
