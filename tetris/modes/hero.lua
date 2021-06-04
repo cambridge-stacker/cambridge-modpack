@@ -127,17 +127,19 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
             self.section_frames = 0
             self.attack_number = self.attack_number + 1
             local prev_attack = self.current_attack
+            self.current_attack = -1
             local attack_rolls = 0
-            repeat
+            while ((
+                prev_attack == self.current_attack or
+                self.current_attack == 5
+            ) and (attack_rolls < 2)) or attack_rolls == 0 do
                 attack_rolls = attack_rolls + 1
                 if self.attack_number > 20 then
                     self.current_attack = math.random(#self.attacks)
                 else
                     self.current_attack = math.random(4)
                 end
-            until prev_attack ~= self.current_attack and (
-                self.current_attack ~= 5 or attack_rolls == 2
-            )
+            end
             if self.current_attack == 1 then
                 self.var = math.floor(3 + math.random(
                     math.floor(self.attack_number / 4),
