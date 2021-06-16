@@ -140,6 +140,7 @@ function MizuRS:onPieceMove(piece, grid)
 end
 
 function MizuRS:onPieceRotate(piece, grid)
+	self:checkNewLow(piece)
 	if piece:isDropBlocked(grid) then
 		piece.lock_delay = math.max((piece.lock_delay - piece.ldincrease), 0)
 		piece.ldincrease = piece.ldincrease - 1
