@@ -12,4 +12,4 @@ That's it!
 
 ## Credits
 
-[Dr Ocelot](https://github.com/ZacharyLohrman) for the Tetra-X skin.
+[Dr Ocelot](https://github.com/ZacharyLohrman) for the Tetra-X skin. (I've yet to license this properly, however I've been given permission to use the skin with credit.)
