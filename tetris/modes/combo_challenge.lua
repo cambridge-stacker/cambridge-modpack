@@ -74,6 +74,9 @@ function ComboChallenge:hold(inputs, ruleset, ihs)
 	if ihs then playSE("ihs")
 	else playSE("hold") end
 	self:onHold()
+    if not self.grid:canPlacePiece(self.piece) then
+        self.game_over = true
+    end
 end
 
 function ComboChallenge:advanceOneFrame()
