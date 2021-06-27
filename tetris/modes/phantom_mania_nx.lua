@@ -232,6 +232,8 @@ function PhantomManiaNXGame:updateSectionTimes(old_level, new_level)
 			self.last_section_cool = true
             self.coolregret_message = "COOL!!"
 			self.coolregret_timer = 300
+		else
+			self.last_section_cool = false
 		end
     end
 end
