@@ -11,8 +11,8 @@ local StrategyPFGame = GameMode:extend()
 bgm.strategy_pf=
 	{
 		love.audio.newSource("res/bgm/data_jack_2nd_version.s3m", "stream"),
-		love.audio.newSource("res/bgm/OMNIPHIL.s3m", "stream"),
-		love.audio.newSource("res/bgm/ICEFRONT.s3m", "stream"),
+		love.audio.newSource("res/bgm/omniphil.s3m", "stream"),
+		love.audio.newSource("res/bgm/icefront.s3m", "stream"),
 	}
 	
 
