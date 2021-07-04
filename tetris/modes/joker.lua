@@ -59,7 +59,7 @@ function JokerGame:getLockDelay()
 	else return math.max(math.ceil(30 - (self.level - 200) / 7), 15) end
 end
 
-function JokerGame:getGravity() return 20 end
+function JokerGame:getGravity() return 21 end
 
 function JokerGame:advanceOneFrame(inputs, ruleset)
 	if self.ready_frames == 0 then
