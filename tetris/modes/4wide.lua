@@ -1,6 +1,5 @@
 require 'funcs'
 
-local GameMode = require 'tetris.modes.gamemode'
 local SurvivalA3Game = require 'tetris.modes.survival_a3'
 local Grid = require 'tetris.components.grid'
 
@@ -28,13 +27,27 @@ local function getLetterGrade(grade)
 end
 
 function FourWideGame:drawScoringInfo()
-	GameMode:drawScoringInfo()
-
+	-- hack to disable big mode roll
+	self.big_mode = false
+	
 	love.graphics.setColor(1, 1, 1, 1)
 
 	local text_x = 160
 
 	love.graphics.setFont(font_3x5_2)
+
+	if config["side_next"] then
+		love.graphics.printf("NEXT", 240, 72, 40, "left")
+	else
+		love.graphics.printf("NEXT", 64, 40, 40, "left")
+	end
+
+	love.graphics.print(
+		self.das.direction .. " " ..
+		self.das.frames .. " " ..
+		strTrueValues(self.prev_inputs)
+	)
+
 	love.graphics.printf("GRADE", text_x, 120, 40, "left")
 	love.graphics.printf("SCORE", text_x, 200, 40, "left")
 	love.graphics.printf("LEVEL", text_x, 320, 40, "left")
@@ -53,7 +66,7 @@ function FourWideGame:drawScoringInfo()
 
 	love.graphics.setFont(font_3x5_3)
 	if self.roll_frames > 3238 then love.graphics.setColor(1, 0.5, 0, 1)
-		elseif self.level >= 1300 and self.clear then love.graphics.setColor(0, 1, 0, 1) end
+	elseif self.level >= 1300 then love.graphics.setColor(0, 1, 0, 1) end
 	love.graphics.printf(getLetterGrade(math.floor(self.grade)), text_x, 140, 90, "left")
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.printf(self.score, text_x, 220, 90, "left")
@@ -66,6 +79,9 @@ function FourWideGame:drawScoringInfo()
 	if sg >= 5 then
 		love.graphics.printf(self.SGnames[sg], 240, 450, 180, "left")
 	end
+
+	love.graphics.setFont(font_8x11)
+	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
 end
 
 return FourWideGame
