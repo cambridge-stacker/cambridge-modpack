@@ -39,8 +39,8 @@ function ComboChallenge:new()
     GameMode:new()
     self.grid = Grid(4, 24)
     self.grid:applyMap(maps[math.random(#maps)])
-    self.lock_drop = true
-    self.lock_hard_drop = true
+    self.lock_drop = false
+    self.lock_hard_drop = false
     self.enable_hold = true
     self.next_queue_length = 6
     self.rta = 0
