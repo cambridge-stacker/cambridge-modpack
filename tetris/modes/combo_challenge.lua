@@ -32,6 +32,12 @@ local maps = {
     },
     [6] = {
         [24] = {nil, blk, blk, blk},
+    },
+    [7] = {
+        [24] = {blk, blk, nil, blk},
+    },
+    [8] = {
+        [24] = {blk, nil, blk, blk},
     }
 }
 
