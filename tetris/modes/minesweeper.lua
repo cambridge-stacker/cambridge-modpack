@@ -228,6 +228,7 @@ function Minesweeper:onGameComplete()
         {0.3, 1, 0.3, 1} or
         {1, 1, 1, 1}
     )
+    love.graphics.setFont(font_3x5_3)
     love.graphics.print("GOOD JOB!", 80 + 16 * width, 280)
 end
 
