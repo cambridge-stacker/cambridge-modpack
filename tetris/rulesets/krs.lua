@@ -61,6 +61,7 @@ KRS.wallkicks_line = {
 }
 
 function KRS:onPieceCreate(piece)
+    piece.das_kicked = false
     piece.recovery_frames = self.game:getLockDelay() * 15
 end
 
@@ -80,11 +81,12 @@ function KRS:onPieceRotate(piece)
     end
 end
 
-function KRS:canPieceMove(piece) return true end
+function KRS:canPieceMove(piece) return not piece.das_kicked end
 function KRS:canPieceRotate(piece) return true end
 
 function KRS:attemptRotate(new_inputs, piece, grid, initial)
-	local rot_dir = 0
+	piece.das_kicked = false
+    local rot_dir = 0
 	
 	if (new_inputs["rotate_left"] or new_inputs["rotate_left2"]) then
 		rot_dir = 3
@@ -107,11 +109,11 @@ function KRS:attemptRotate(new_inputs, piece, grid, initial)
             self:onPieceRotate(piece)
         end
     else
-	    self:attemptWallkicks(piece, new_piece, rot_dir, grid)
+	    self:attemptWallkicks(piece, new_piece, rot_dir, grid, new_inputs)
     end
 end
 
-function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
+function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid, new_inputs)
     local kicks = (
         piece.shape == "I" and
         KRS.wallkicks_line[piece.rotation][new_piece.rotation] or
@@ -122,13 +124,15 @@ function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
         self.game.das.frames >= self.game:getDasLimit() - self.game:getARR()
     )
     if (
-        self.game.das.direction == "left" and
-        (das_charged or piece:isMoveBlocked(grid, {x=-1, y=0}))
+        new_inputs.left or
+        (self.game.das.direction == "left" and
+        (das_charged or piece:isMoveBlocked(grid, {x=-1, y=0})))
     ) then
         priority = -1
     elseif (
-        self.game.das.direction == "right" and
-        (das_charged or piece:isMoveBlocked(grid, {x=1, y=0}))
+        new_inputs.right or
+        (self.game.das.direction == "right" and
+        (das_charged or piece:isMoveBlocked(grid, {x=1, y=0})))
     ) then
         priority = 1
     end
@@ -138,6 +142,7 @@ function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
         piece:setRelativeRotation(rot_dir)
         piece:setOffset({x=priority, y=0})
         self:onPieceRotate(piece)
+        piece.das_kicked = priority ~= 0
         return
     end
 
@@ -148,6 +153,7 @@ function KRS:attemptWallkicks(piece, new_piece, rot_dir, grid)
 			piece:setRelativeRotation(rot_dir)
 			piece:setOffset({x=offset[1]+priority, y=offset[2]})
 			self:onPieceRotate(piece)
+            piece.das_kicked = priority ~= 0
 			return
 		end
     end
