@@ -75,7 +75,7 @@ function SurvivalAXHGame:drawGrid()
     if self:getHiddenDelay() then
         for i = 1, self.hidden_rows do
             for j = 1, 10 do
-                love.graphics.draw(blocks["2tie"]["F"], 48+j*16, (24-i+1)*16)
+                love.graphics.draw(blocks["2tie"]["W"], 48+j*16, (24-i+1)*16)
             end
         end
     end

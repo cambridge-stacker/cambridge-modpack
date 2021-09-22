@@ -93,7 +93,7 @@ end
 function Minesweeper:mainGameLoop(inputs)
     self:moveCursor(inputs)
     if not self.prev_inputs.rotate_left and inputs.rotate_left and
-    self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "F" and
+    self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "W" and
     self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "A" then
         playSE("lock")
         if not self:isMine(self.cursor.x, self.cursor.y) then
@@ -136,7 +136,7 @@ end
 
 function Minesweeper:flagCell(x, y)
     if self.flags > 0 and self.grid.grid[y+4][x].skin == "2tie" and
-    self.grid.grid[y+4][x].colour ~= "F" then
+    self.grid.grid[y+4][x].colour ~= "W" then
         self.grid.grid[y+4][x] = {
             skin = "gem", colour = "A"
         }
@@ -165,7 +165,7 @@ function Minesweeper:uncoverCell(x, y)
         local x = current.x
         local y = current.y
 
-        self.grid.grid[y+4][x] = { skin = "2tie", colour = "F" }
+        self.grid.grid[y+4][x] = { skin = "2tie", colour = "W" }
 
         if self:getSurroundingMineCount(x, y) == 0 then
             for dy = -1, 1 do
@@ -173,7 +173,7 @@ function Minesweeper:uncoverCell(x, y)
                     if not (dx == 0 and dy == 0) and
                     x+dx >= 1 and x+dx <= width and
                     y+dy >= 1 and y+dy <= height and
-                    self.grid.grid[y+4+dy][x+dx].colour ~= "F"
+                    self.grid.grid[y+4+dy][x+dx].colour ~= "W"
                     then
                         table.insert(stack, {
                             x = x + dx,
@@ -187,7 +187,7 @@ function Minesweeper:uncoverCell(x, y)
 
     for y = 5, height + 4 do
         for x = 1, width do
-            if self.grid.grid[y][x].colour ~= "F" and
+            if self.grid.grid[y][x].colour ~= "W" and
             not self:isMine(x, y-4) then
                 return
             end
@@ -215,7 +215,7 @@ function Minesweeper:onGameOver()
             if self:isMine(x, y-4) then
                 self.grid.grid[y][x] = { skin = "gem", colour = "R" }
             else
-                self.grid.grid[y][x] = { skin = "2tie", colour = "F" }
+                self.grid.grid[y][x] = { skin = "2tie", colour = "W" }
             end
         end
     end
@@ -233,7 +233,7 @@ function Minesweeper:onGameComplete()
 end
 
 local function opacityFunction(game, block, x, y, age)
-    if block.colour == "F" then
+    if block.colour == "W" then
         return 0.5, 0.5, 0.5, 1, 1
     else
         return 1, 1, 1, 1, 1
@@ -251,7 +251,7 @@ function Minesweeper:drawGrid()
                 love.graphics.rectangle("line", 48+x*16, y*16, 16, 16)
             end
             if self:getSurroundingMineCount(x, y-4) ~= 0 and
-            self.grid.grid[y][x].colour == "F" then
+            self.grid.grid[y][x].colour == "W" then
                 love.graphics.print(self:getSurroundingMineCount(x, y-4), 50+x*16, -2+y*16)
             end
         end

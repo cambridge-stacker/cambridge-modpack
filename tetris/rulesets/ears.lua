@@ -6,7 +6,7 @@ EARS.name = "E.A.R.S."
 EARS.hash = "EARS"
 
 EARS.colourscheme = {
-    I = "F",
+    I = "W",
     J = "G",
     L = "R",
     O = "C",

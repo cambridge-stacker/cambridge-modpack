@@ -2033,7 +2033,7 @@ local function parseMap(str, map)
             elseif char == "Z" then
                 insert_this = { skin = "2tie", colour = "R" }
             elseif char == "C" then
-                insert_this = { skin = "gem", colour = "F" }
+                insert_this = { skin = "gem", colour = "W" }
             end
             row_array[col] = insert_this
         end

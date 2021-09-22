@@ -57,7 +57,7 @@ end
 
 function CreditsA3Game:onLineClear(cleared_row_count)
 	if not self.clear then
-		self.norm = self.norm + (cleared_row_count == 4 and 10 or cleared_row_count)
+		self.norm = self.norm + cleared_row_count + (cleared_row_count >= 4 and 6 or 0)
 	end
 end
 
@@ -84,12 +84,14 @@ function CreditsA3Game:drawScoringInfo()
 		strTrueValues(self.prev_inputs)
 	)
 	love.graphics.printf("NEXT", 64, 40, 40, "left")
+	love.graphics.printf("ROLLS COMPLETED", 240, 170, 120, "left")
 	love.graphics.printf("TIME LEFT", 240, 250, 80, "left")
 	love.graphics.printf("NORM", 240, 320, 40, "left")
 
-	self:drawSectionTimesWithSplits(self.section)
-
 	love.graphics.setFont(font_3x5_3)
+
+	love.graphics.printf(self.section, 240, 190, 160, "left")
+
 	-- draw time left, flash red if necessary
 	local time_left = self.section_time_limit - math.max(self:getSectionTime(), 0)
 
@@ -113,7 +115,7 @@ function CreditsA3Game:drawScoringInfo()
 end
 
 function CreditsA3Game:getBackground()
-	return self.section
+	return self.section % 20
 end
 
 return CreditsA3Game

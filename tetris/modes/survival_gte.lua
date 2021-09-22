@@ -24,7 +24,7 @@ function SurvivalGTEGame:getGravity() return 20 end
 function SurvivalGTEGame:getARR() return 2 end
 
 function SurvivalGTEGame:getDasLimit()
-    return math.min(self:getLockDelay() - 2, 10)
+    return math.min(math.floor(self:getLockDelay() * 2/3), 10)
 end
 
 function SurvivalGTEGame:getLockDelay()
@@ -51,8 +51,8 @@ function SurvivalGTEGame:getLineClearDelay()
 end
 
 function SurvivalGTEGame:onLineClear(cleared_row_count)
-    self.lines = math.min(self.lines + cleared_row_count, 300)
-    self.completed = self.lines == 300
+    self.lines = self.lines + cleared_row_count
+    self.completed = self.lines >= 300
 end
 
 function SurvivalGTEGame:advanceOneFrame()
