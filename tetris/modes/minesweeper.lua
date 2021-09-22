@@ -94,7 +94,7 @@ function Minesweeper:mainGameLoop(inputs)
     self:moveCursor(inputs)
     if not self.prev_inputs.rotate_left and inputs.rotate_left and
     self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "W" and
-    self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "A" then
+    self.grid.grid[self.cursor.y+4][self.cursor.x].colour ~= "D" then
         playSE("lock")
         if not self:isMine(self.cursor.x, self.cursor.y) then
             self:uncoverCell(self.cursor.x, self.cursor.y)
@@ -114,7 +114,7 @@ function Minesweeper:updateFlagCount()
     local flags = math.floor(0.15 * width * height)
     for y = 5, height + 4 do
         for x = 1, width do
-            if self.grid.grid[y][x].colour == "A" then
+            if self.grid.grid[y][x].colour == "D" then
                 flags = flags - 1
             end
         end
@@ -138,7 +138,7 @@ function Minesweeper:flagCell(x, y)
     if self.flags > 0 and self.grid.grid[y+4][x].skin == "2tie" and
     self.grid.grid[y+4][x].colour ~= "W" then
         self.grid.grid[y+4][x] = {
-            skin = "gem", colour = "A"
+            skin = "gem", colour = "D"
         }
     elseif self.grid.grid[y+4][x].skin == "gem" then
         self.grid.grid[y+4][x] = {
