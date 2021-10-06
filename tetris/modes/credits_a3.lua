@@ -1,11 +1,11 @@
 require 'funcs'
 
-local IntervalTrainingMode = require 'tetris.modes.interval_training'
+local GameMode = require 'tetris.modes.gamemode'
 local Piece = require 'tetris.components.piece'
 
-local History6RollsRandomizer = require 'tetris.randomizers.history_6rolls'
+local History6RollsRandomizer = require 'tetris.randomizers.history_6rolls_35bag'
 
-local CreditsA3Game = IntervalTrainingMode:extend()
+local CreditsA3Game = GameMode:extend()
 
 CreditsA3Game.name = "Credits A3"
 CreditsA3Game.hash = "CreditsA3"
@@ -16,6 +16,36 @@ function CreditsA3Game:new()
 	self.section_time_limit = 3238
 	self.norm = 0
 	self.section = 0
+	self.roll_frames = 0
+
+	self.lock_drop = true
+	self.lock_hard_drop = true
+	self.enable_hold = true
+	self.next_queue_length = 3
+end
+
+function CreditsA3Game:getARE()
+	return 6
+end
+
+function CreditsA3Game:getLineARE()
+	return 6
+end
+
+function CreditsA3Game:getDasLimit()
+	return 7
+end
+
+function CreditsA3Game:getLineClearDelay()
+	return 4
+end
+
+function CreditsA3Game:getLockDelay()
+	return 15
+end
+
+function CreditsA3Game:getGravity()
+	return 20
 end
 
 function CreditsA3Game:advanceOneFrame(inputs, ruleset)
@@ -36,7 +66,7 @@ function CreditsA3Game:advanceOneFrame(inputs, ruleset)
 		end
 	elseif self.ready_frames == 0 then
 		self.frames = self.frames + 1
-		if self:getSectionTime() >= self.section_time_limit then
+		if self.frames >= self.section_time_limit then
 			self.norm = self.norm + 16
 			self.piece = nil
 			if self.norm >= 60 then
@@ -49,10 +79,6 @@ function CreditsA3Game:advanceOneFrame(inputs, ruleset)
 		end
 	end
 	return true
-end
-
-function CreditsA3Game:onPieceEnter()
-	-- do nothing
 end
 
 function CreditsA3Game:onLineClear(cleared_row_count)
@@ -93,7 +119,7 @@ function CreditsA3Game:drawScoringInfo()
 	love.graphics.printf(self.section, 240, 190, 160, "left")
 
 	-- draw time left, flash red if necessary
-	local time_left = self.section_time_limit - math.max(self:getSectionTime(), 0)
+	local time_left = self.section_time_limit - self.frames
 
 	if not self.game_over and not self.clear and time_left < frameTime(0,10) and time_left % 4 < 2 then
 		if self.norm >= 44 then
