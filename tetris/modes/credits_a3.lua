@@ -58,6 +58,7 @@ function CreditsA3Game:advanceOneFrame(inputs, ruleset)
 			-- reset
 			self.norm = 0
 			self.frames = 0
+			self.clear = false
 			self.grid:clear()
 			switchBGM("credit_roll", "gm3")
 			self:initializeOrHold(inputs, ruleset)
@@ -72,6 +73,7 @@ function CreditsA3Game:advanceOneFrame(inputs, ruleset)
 			if self.norm >= 60 then
 				self.section = self.section + 1
 				self.roll_frames = 150
+				self.clear = true
 			else
 				self.game_over = true
 				switchBGM(nil)
