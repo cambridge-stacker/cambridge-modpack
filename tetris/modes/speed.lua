@@ -13,7 +13,7 @@ LudicrousSpeed.tagline = "Don't make Keanu sad. Always stay above the speed limi
 function LudicrousSpeed:new()
     self.super:new()
 
-    self.time_limit = 301
+    self.time_limit = 300
     self.pps = {}
     self.pps_limit = 1
     self.pieces = 0
@@ -59,17 +59,16 @@ end
 function LudicrousSpeed:advanceOneFrame()
     if self.ready_frames == 0 then
         self.frames = self.frames + 1
-        if mean(self.pps) * 2 < self.pps_limit then
+        if mean(self.pps) * 60 < self.pps_limit then
             self.time_limit = self.time_limit - 1
             self.game_over = self.time_limit <= 0
-        else self.time_limit = 301 end
-        if self.frames % 30 == 0 and self.frames ~= 0 then
-            if table.getn(self.pps) == 30 then
+        else self.time_limit = 300 end
+        if self.frames ~= 0 then
+            if table.getn(self.pps) == 750 then
                 table.remove(self.pps, 1)
                 table.insert(self.pps, self.pieces)
             else table.insert(self.pps, self.pieces) end
             self.pieces = 0
-            --print(table.concat(self.pps, " "))
         end
     end
     return true
@@ -109,11 +108,13 @@ function LudicrousSpeed:drawScoringInfo()
 	)
     
     love.graphics.setFont(font_3x5_4)
-    if self.time_limit <= 300 then love.graphics.printf(formatTime(self.time_limit), text_x, 320, 160, "left") end
+    if self.time_limit < 300 then
+        love.graphics.printf(formatTime(self.time_limit), text_x, 320, 160, "left")
+    end
     
     love.graphics.setFont(font_3x5_3)
 	love.graphics.printf(self.lines, text_x, 140, 80, "left")
-    love.graphics.printf(string.format("%.02f", self.frames > 30 and mean(self.pps) * 2 or 0), text_x, 200, 80, "left")
+    love.graphics.printf(string.format("%.02f", self.frames > 0 and mean(self.pps) * 60 or 0), text_x, 200, 80, "left")
     love.graphics.printf(string.format("%.02f", self.pps_limit), text_x, 260, 80, "left")
 
     love.graphics.setFont(font_8x11)
