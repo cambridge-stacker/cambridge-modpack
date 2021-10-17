@@ -33,8 +33,6 @@ function RandomPieces:generateBlockOffsets()
     return { { offsets, offsets, offsets, offsets } }
 end
 
-RandomPieces.pieces = 1
-
 RandomPieces.spawn_positions = {
     { x=4, y=5 }
 }

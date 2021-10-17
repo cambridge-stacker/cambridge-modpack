@@ -240,7 +240,10 @@ function MarathonC99Game:onLineClear(cleared_row_count)
         if self.level == 16 then
             self.clear = true
             self.grid:clear()
-            if self.used_randomizer.possible_pieces == 7 then
+            if table.equalvalues(
+                self.used_randomizer.possible_pieces,
+                {"I", "J", "L", "O", "S", "T", "Z"}
+            ) then
                 self.used_randomizer = PowerOnSequence()
                 self.next_queue[1].shape = self.used_randomizer:nextPiece()
             end

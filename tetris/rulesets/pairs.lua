@@ -90,8 +90,6 @@ PAIRS.colourscheme = {
     [18] = "R"
 }
 
-PAIRS.pieces = 18
-
 PAIRS.block_offsets = {
     [1]={
         { {x=-2, y=0}, {x=-1, y=0}, {x=0, y=0}, {x=1, y=0}, {x=2, y=0} },
