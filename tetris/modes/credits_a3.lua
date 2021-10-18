@@ -22,6 +22,7 @@ function CreditsA3Game:new()
 	self.lock_hard_drop = true
 	self.enable_hold = true
 	self.next_queue_length = 3
+	self.randomizer = History6RollsRandomizer()
 end
 
 function CreditsA3Game:getARE()

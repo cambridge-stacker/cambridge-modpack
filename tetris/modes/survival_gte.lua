@@ -16,6 +16,7 @@ function SurvivalGTEGame:new()
 	self.instant_soft_drop = false
 	self.enable_hold = true
     self.next_queue_length = 4
+    self.randomizer = Bag7Randomizer()
 end
 
 function SurvivalGTEGame:getARE() return 6 end
