@@ -124,7 +124,7 @@ function MarathonSTGame:advanceOneFrame()
 			end
 			return false
         end
-		if self.roll_frames > 3694 then
+		if self.roll_frames > 3701 then
             switchBGM(nil)
 			self.completed = true
 		end
