@@ -1,4 +1,5 @@
 local GameMode = require 'tetris.modes.gamemode'
+local Bag7Randomizer = require 'tetris.randomizers.bag7'
 
 local MarathonWBGame = GameMode:extend()
 
@@ -15,6 +16,7 @@ function MarathonWBGame:new()
 	self.instant_soft_drop = false
 	self.enable_hold = true
     self.next_queue_length = 6
+    self.randomizer = Bag7Randomizer()
     
     self.keystrokes = 0
     self.pieces = 0
