@@ -40,8 +40,7 @@ function MarathonC88Game:new(secret_inputs)
 	self.irs = false
 
 	self.grid.getCell = function(self, x, y)
-		if x < 1 or x > self.width or y < 5 or y > self.height then return oob
-		elseif y < 1 then return empty
+		if x < 1 or x > self.width or y < 5 or y > self.height then return nil
 		else return self.grid[y][x]
 		end
 	end
