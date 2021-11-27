@@ -56,6 +56,25 @@ function SurvivalGTEGame:onLineClear(cleared_row_count)
     self.completed = self.lines >= 300
 end
 
+local function getLowestBlockY(offsets)
+    local res = -math.huge
+    for _, o in pairs(offsets) do
+        if o.y > res then
+            res = o.y
+        end
+    end
+    return res
+end
+
+function SurvivalGTEGame:onEnterOrHold(...)
+    while (
+        getLowestBlockY(self.piece:getBlockOffsets()) + self.piece.position.y
+    ) < 4 do
+        self.piece.position.y = self.piece.position.y + 1
+    end
+    self.super.onEnterOrHold(self, ...)
+end
+
 function SurvivalGTEGame:advanceOneFrame()
     if self.ready_frames == 0 then
         self.frames = self.frames + 1
