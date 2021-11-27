@@ -21,28 +21,34 @@ function Trans:attemptRotate(new_inputs, piece, grid, initial)
     end
 
     local new_piece = piece:withRelativeRotation(rot_dir)
+
+    if initial then
+	    if (grid:canPlacePiece(new_piece)) then
+		    self:onPieceRotate(piece, grid)
+            piece:setRelativeRotation(rot_dir)
+        end
+	else
+		self:attemptWallkicks(piece, new_piece, rot_dir, grid)
+	end
+end
+
+function Trans:attemptWallkicks(piece, new_piece, rot_dir, grid)
     local pieces = {"I", "J", "L", "O", "S", "T", "Z"}
     repeat
         new_piece.shape = pieces[math.random(7)]
     until piece.shape ~= new_piece.shape
 
-	if (grid:canPlacePiece(new_piece)) then
-		self:onPieceRotate(piece, grid)
-        piece:setRelativeRotation(rot_dir)
-        piece.shape = new_piece.shape
-	else
-		if not(initial and self.enable_IRS_wallkicks == false) then
-			if (grid:canPlacePiece(new_piece:withOffset({x=1, y=0}))) then
-                self:onPieceRotate(piece, grid)
-                piece:setRelativeRotation(rot_dir):setOffset({x=1, y=0})
-                piece.shape = new_piece.shape
-            elseif (grid:canPlacePiece(new_piece:withOffset({x=-1, y=0}))) then
-                self:onPieceRotate(piece, grid)
-                piece:setRelativeRotation(rot_dir):setOffset({x=-1, y=0})
-                piece.shape = new_piece.shape
-            end
-		end
-	end
+    local offsets = {{x=0, y=0}, {x=1, y=0}, {x=-1, y=0}}
+    for _, o in pairs(offsets) do
+        local kicked_piece = new_piece:withOffset(o)
+        if (grid:canPlacePiece(kicked_piece)) then
+            self:onPieceRotate(piece, grid)
+            piece:setRelativeRotation(rot_dir)
+            piece:setOffset(o)
+            piece.shape = new_piece.shape
+            return
+        end
+    end
 end
 
 return Trans
