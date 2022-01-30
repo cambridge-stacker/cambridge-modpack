@@ -14,9 +14,9 @@ function LudicrousSpeed:new()
     self.super:new()
 
     self.time_limit = 300
-    self.pps = {}
+    self.delays = {}
+    self.last_piece = 0
     self.pps_limit = 1
-    self.pieces = 0
 
     self.randomizer = Bag7Randomizer()
 
@@ -26,6 +26,16 @@ function LudicrousSpeed:new()
     self.instant_hard_drop = true
     self.enable_hold = true
     self.next_queue_length = 6
+end
+
+local function mean(t)
+    local sum = 0
+    
+    for _, v in ipairs(t) do
+        sum = sum + v
+    end
+
+    return sum / #t
 end
 
 function LudicrousSpeed:getGravity()
@@ -42,41 +52,31 @@ function LudicrousSpeed:getARR() return config.arr end
 function LudicrousSpeed:getDasCutDelay() return config.dcd end
 function LudicrousSpeed:getDropSpeed() return 20 end
 
-local function mean(t)
-    local sum = 0
-    local count = 0
-  
-    for k, v in pairs(t) do
-        if type(v) == 'number' then
-            sum = sum + v
-            count = count + 1
-        end
-    end
-
-    return (sum / count)
+function LudicrousSpeed:getPPS()
+    if #self.delays == 0 then return 0 end
+    local delays = copy(self.delays)
+    delays[#delays + 1] = self.frames - self.last_piece
+    return (mean(delays) / 60) ^ -1
 end
 
 function LudicrousSpeed:advanceOneFrame()
     if self.ready_frames == 0 then
         self.frames = self.frames + 1
-        if mean(self.pps) * 60 < self.pps_limit then
+        if self:getPPS() < self.pps_limit then
             self.time_limit = self.time_limit - 1
             self.game_over = self.time_limit <= 0
         else self.time_limit = 300 end
-        if self.frames ~= 0 then
-            if table.getn(self.pps) == 750 then
-                table.remove(self.pps, 1)
-                table.insert(self.pps, self.pieces)
-            else table.insert(self.pps, self.pieces) end
-            self.pieces = 0
-        end
     end
     return true
 end
 
-function LudicrousSpeed:onPieceLock()
-    self.super:onPieceLock()
-    self.pieces = self.pieces + 1
+function LudicrousSpeed:onPieceLock(...)
+    self.super:onPieceLock(...)
+    self.delays[#self.delays + 1] = self.frames - self.last_piece
+    if #self.delays >= 25 then
+        table.remove(self.delays, 1)
+    end
+    self.last_piece = self.frames
 end
 
 function LudicrousSpeed:onLineClear(cleared_row_count)
@@ -114,7 +114,7 @@ function LudicrousSpeed:drawScoringInfo()
     
     love.graphics.setFont(font_3x5_3)
 	love.graphics.printf(self.lines, text_x, 140, 80, "left")
-    love.graphics.printf(string.format("%.02f", self.frames > 0 and mean(self.pps) * 60 or 0), text_x, 200, 80, "left")
+    love.graphics.printf(string.format("%.02f", self:getPPS()), text_x, 200, 80, "left")
     love.graphics.printf(string.format("%.02f", self.pps_limit), text_x, 260, 80, "left")
 
     love.graphics.setFont(font_8x11)
