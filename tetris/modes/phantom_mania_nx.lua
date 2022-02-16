@@ -118,6 +118,11 @@ function PhantomManiaNXGame:advanceOneFrame()
 			end
 			return false
 		elseif self.roll_frames > 3238 then
+			if self:qualifiesForGMRoll() then
+				self.roll_points = self.roll_points + 160
+			else
+				self.roll_points = self.roll_points + 50
+			end
 			switchBGM(nil)
 			self.completed = true
 		end
