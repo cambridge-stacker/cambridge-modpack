@@ -291,11 +291,7 @@ end
 function PhantomManiaNXGame:getAggregateGrade()
     local grade_cap
     if self:qualifiesForGMRoll() then
-        if self.roll_frames > 3238 then
-            grade_cap = 42
-        else
-            grade_cap = 41
-        end
+        grade_cap = 42
     else
         grade_cap = 26
     end
@@ -308,7 +304,7 @@ end
 
 local master_grades = {"M", "MK", "MV", "MO"}
 
-local function getLetterGrade(grade)
+local function getLetterGrade(grade, roll_frames)
     if grade == 0 then
         return "1"
     elseif grade <= 13 then
@@ -317,7 +313,7 @@ local function getLetterGrade(grade)
         return "M" .. tostring(grade - 13)
     elseif grade <= 30 then
         return master_grades[grade - 26]
-    elseif grade <= 41 then
+    elseif roll_frames <= 3238 then
         return "MM-" .. tostring(grade - 30)
     else
         return "GM"
@@ -351,7 +347,7 @@ function PhantomManiaNXGame:drawScoringInfo()
 	love.graphics.setFont(font_3x5_3)
 	if self.roll_frames > 3238 then love.graphics.setColor(1, 0.5, 0, 1)
 	elseif self.level >= 1300 then love.graphics.setColor(0, 1, 0, 1) end
-	love.graphics.printf(getLetterGrade(self:getAggregateGrade()), text_x, 140, 90, "left")
+	love.graphics.printf(getLetterGrade(self:getAggregateGrade(), self.roll_frames), text_x, 140, 90, "left")
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.printf(self.score, text_x, 220, 90, "left")
 	love.graphics.printf(self.level, text_x, 340, 50, "right")
