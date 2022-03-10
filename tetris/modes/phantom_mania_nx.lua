@@ -313,7 +313,7 @@ local function getLetterGrade(grade, roll_frames)
         return "M" .. tostring(grade - 13)
     elseif grade <= 30 then
         return master_grades[grade - 26]
-    elseif roll_frames <= 3238 then
+    elseif grade <= 41 or roll_frames <= 3238 then
         return "MM-" .. tostring(grade - 30)
     else
         return "GM"
