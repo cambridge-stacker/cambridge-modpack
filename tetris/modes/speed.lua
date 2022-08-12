@@ -100,7 +100,7 @@ function LudicrousSpeed:drawScoringInfo()
     love.graphics.printf("piece/sec", text_x, 180, 80, "left")
     love.graphics.printf("REQUIRED PPS", text_x, 240, 120, "left")
     if self.time_limit < 300 then
-        if self.time_limit % 4 < 2 then
+        if self.time_limit % 4 < 2 or self.time_limit == 0 then
             love.graphics.setColor(1, 0.3, 0.3, 1)
         end
         love.graphics.printf("SPEED UP!", text_x, 300, 120, "left")
