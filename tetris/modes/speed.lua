@@ -31,7 +31,7 @@ end
 local function mean(t)
     local sum = 0
     
-    for _, v in ipairs(t) do
+    for _, v in pairs(t) do
         sum = sum + v
     end
 
@@ -55,7 +55,7 @@ function LudicrousSpeed:getDropSpeed() return 20 end
 function LudicrousSpeed:getPPS()
     if #self.delays == 0 then return 0 end
     local delays = copy(self.delays)
-    delays[#delays + 1] = self.frames - self.last_piece
+    delays[0] = self.frames - self.last_piece
     return (mean(delays) / 60) ^ -1
 end
 
