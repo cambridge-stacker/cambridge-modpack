@@ -56,7 +56,7 @@ function LudicrousSpeed:getPPS()
     if #self.delays == 0 then return 0 end
     local delays = copy(self.delays)
     delays[0] = self.frames - self.last_piece
-    return (mean(delays) / 60) ^ -1
+    return 60 / mean(delays)
 end
 
 function LudicrousSpeed:advanceOneFrame()
@@ -99,6 +99,13 @@ function LudicrousSpeed:drawScoringInfo()
 	love.graphics.printf("LINES", text_x, 120, 80, "left")
     love.graphics.printf("piece/sec", text_x, 180, 80, "left")
     love.graphics.printf("REQUIRED PPS", text_x, 240, 120, "left")
+    if self.time_limit < 300 then
+        if self.time_limit % 4 < 2 then
+            love.graphics.setColor(1, 0.3, 0.3, 1)
+        end
+        love.graphics.printf("SPEED UP!", text_x, 300, 120, "left")
+        love.graphics.setColor(1, 1, 1, 1)
+    end
 
     love.graphics.print(
 		self.das.direction .. " " ..
@@ -109,13 +116,13 @@ function LudicrousSpeed:drawScoringInfo()
     
     love.graphics.setFont(font_3x5_4)
     if self.time_limit < 300 then
-        love.graphics.printf(formatTime(self.time_limit), text_x, 320, 160, "left")
+        love.graphics.printf(formatTime(self.time_limit):sub(-4, -1), text_x, 320, 160, "left")
     end
     
     love.graphics.setFont(font_3x5_3)
 	love.graphics.printf(self.lines, text_x, 140, 80, "left")
-    love.graphics.printf(string.format("%.02f", self:getPPS()), text_x, 200, 80, "left")
-    love.graphics.printf(string.format("%.02f", self.pps_limit), text_x, 260, 80, "left")
+    love.graphics.printf(("%.02f"):format(self:getPPS()), text_x, 200, 80, "left")
+    love.graphics.printf(("%.02f"):format(self.pps_limit), text_x, 260, 80, "left")
 
     love.graphics.setFont(font_8x11)
 	love.graphics.printf(formatTime(self.frames), 64, 420, 160, "center")
