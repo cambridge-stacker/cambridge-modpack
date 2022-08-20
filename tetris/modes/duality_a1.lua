@@ -41,13 +41,13 @@ function DualityA1Game:afterLineClear(cleared_row_count)
 end
 
 local function fadeOut(game, block, x, y, age)
-    local opacity = game.are / (game:getARE() / 2) - 1
+    local opacity = 2 * game.are / game:getARE() - 1
     return 0.5, 0.5, 0.5, opacity, opacity
 end
 
 local function fadeIn(game, block, x, y, age)
-    local opacity = game.are / (game:getARE() / 2) - 1
-    return 0.5, 0.5, 0.5, 1 - opacity, 1 - opacity
+    local opacity = 1 - (2 * game.are / game:getARE())
+    return 0.5, 0.5, 0.5, opacity, opacity
 end
 
 function DualityA1Game:drawGrid()
