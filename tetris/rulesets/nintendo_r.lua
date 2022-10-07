@@ -7,12 +7,12 @@ Nintendo.hash = "NintendoR"
 
 Nintendo.spawn_positions = {
 	I = { x=5, y=4 },
-	J = { x=4, y=5 },
-	L = { x=4, y=5 },
+	J = { x=5, y=5 },
+	L = { x=5, y=5 },
 	O = { x=5, y=5 },
-	S = { x=4, y=5 },
-	T = { x=4, y=5 },
-	Z = { x=4, y=5 },
+	S = { x=5, y=5 },
+	T = { x=5, y=5 },
+	Z = { x=5, y=5 },
 }
 
 Nintendo.big_spawn_positions = {
