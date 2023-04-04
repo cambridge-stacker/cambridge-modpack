@@ -1,4 +1,4 @@
-local SRS = require 'tetris.rulesets.arika_srs'
+local SRS = require 'tetris.rulesets.standard_ace'
 
 local TOD = SRS:extend()
 
