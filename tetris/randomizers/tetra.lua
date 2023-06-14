@@ -28,7 +28,7 @@ end
 function TetraXRandomizer:generatePiece()
     local generated = nil
     while true do
-        generated = self.pieceselection[math.random(#self.pieceselection)]
+        generated = self.pieceselection[love.math.random(#self.pieceselection)]
         if not (self.lastseen[generated] == 0 or self.lastseen[generated] == 1) then
             break
         end

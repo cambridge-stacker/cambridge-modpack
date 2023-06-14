@@ -93,7 +93,7 @@ function MarathonWCBGame:shuffleColours()
 		table.insert(temp_colours, colour)
 	end
 	for piece in pairs(self.ruleset.colourscheme) do
-		self.ruleset.colourscheme[piece] = table.remove(temp_colours, math.random(#temp_colours))
+		self.ruleset.colourscheme[piece] = table.remove(temp_colours, love.math.random(#temp_colours))
 	end
 end
 

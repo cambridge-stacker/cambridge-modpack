@@ -8,13 +8,13 @@ CRAP.hash = "Completely Random Auto-Positioner"
 CRAP.world = true
 CRAP.colors={"C","O","M","R","G","Y","B"}
 CRAP.colourscheme = {
-	I = CRAP.colors[math.ceil(math.random(7))],
-	L = CRAP.colors[math.ceil(math.random(7))],
-	J = CRAP.colors[math.ceil(math.random(7))],
-	S = CRAP.colors[math.ceil(math.random(7))],
-	Z = CRAP.colors[math.ceil(math.random(7))],
-	O = CRAP.colors[math.ceil(math.random(7))],
-	T = CRAP.colors[math.ceil(math.random(7))],
+	I = CRAP.colors[math.ceil(love.math.random(7))],
+	L = CRAP.colors[math.ceil(love.math.random(7))],
+	J = CRAP.colors[math.ceil(love.math.random(7))],
+	S = CRAP.colors[math.ceil(love.math.random(7))],
+	Z = CRAP.colors[math.ceil(love.math.random(7))],
+	O = CRAP.colors[math.ceil(love.math.random(7))],
+	T = CRAP.colors[math.ceil(love.math.random(7))],
 }
 CRAP.softdrop_lock = true
 CRAP.harddrop_lock = false
@@ -111,8 +111,8 @@ end
 function CRAP:attemptWallkicks(piece, new_piece, rot_dir, grid)
 
 	for i=1,20 do
-		dx=math.floor(math.random(11))-5
-		dy=math.floor(math.random(11))-5
+		dx=math.floor(love.math.random(11))-5
+		dy=math.floor(love.math.random(11))-5
 		if grid:canPlacePiece(new_piece:withOffset({x=dx, y=dy})) then
 			self:onPieceRotate(piece, grid)
 			piece:setRelativeRotation(rot_dir):setOffset({x=dx, y=dy})
@@ -147,13 +147,13 @@ function CRAP:get180RotationValue() return 2 end
 
 function CRAP:randomizeColours()
 	CRAP.colourscheme = {
-		I = CRAP.colors[math.ceil(math.random(7))],
-		L = CRAP.colors[math.ceil(math.random(7))],
-		J = CRAP.colors[math.ceil(math.random(7))],
-		S = CRAP.colors[math.ceil(math.random(7))],
-		Z = CRAP.colors[math.ceil(math.random(7))],
-		O = CRAP.colors[math.ceil(math.random(7))],
-		T = CRAP.colors[math.ceil(math.random(7))],
+		I = CRAP.colors[math.ceil(love.math.random(7))],
+		L = CRAP.colors[math.ceil(love.math.random(7))],
+		J = CRAP.colors[math.ceil(love.math.random(7))],
+		S = CRAP.colors[math.ceil(love.math.random(7))],
+		Z = CRAP.colors[math.ceil(love.math.random(7))],
+		O = CRAP.colors[math.ceil(love.math.random(7))],
+		T = CRAP.colors[math.ceil(love.math.random(7))],
 	}
 end
 

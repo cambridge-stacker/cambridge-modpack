@@ -11,10 +11,10 @@ function Bag5AltRandomizer:generatePiece()
 	if next(self.bag) == nil then
 		self.bag = {"I", "J", "L", "O", "T"}
 	end
-	local x = math.random(table.getn(self.bag))
+	local x = love.math.random(table.getn(self.bag))
 	local temp = table.remove(self.bag, x)
 	if temp == self.prev then
-		local y = math.random(table.getn(self.bag))
+		local y = love.math.random(table.getn(self.bag))
 		temp = table.remove(self.bag, y)
 	end
 	self.prev = temp

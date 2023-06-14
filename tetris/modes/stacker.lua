@@ -55,8 +55,8 @@ function StackerGame:advanceOneFrame(inputs, ruleset)
         self.are = self.are - 1
         return false
     elseif self.are == 0 then
-        self.position = math.random(1, 7 + self.block_width - 1)
-        self.direction = ({-1, 1})[math.random(2)]
+        self.position = love.math.random(1, 7 + self.block_width - 1)
+        self.direction = ({-1, 1})[love.math.random(2)]
         self.are = -1
     end
     if not self.prev_inputs.up and inputs.up then

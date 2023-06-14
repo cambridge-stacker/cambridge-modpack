@@ -135,25 +135,25 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
             ) and (attack_rolls < 2)) or attack_rolls == 0 do
                 attack_rolls = attack_rolls + 1
                 if self.attack_number > 20 then
-                    self.current_attack = math.random(#self.attacks)
+                    self.current_attack = love.math.random(#self.attacks)
                 else
-                    self.current_attack = math.random(4)
+                    self.current_attack = love.math.random(4)
                 end
             end
             if self.current_attack == 1 then
-                self.var = math.floor(3 + math.random(
+                self.var = math.floor(3 + love.math.random(
                     math.floor(self.attack_number / 4),
                     math.floor(self.attack_number / 3)
                 ) *
                 self.section_times[Mod1(self.attack_number, #self.section_times)] / 342)
             elseif self.current_attack == 2 then
-                self.var = math.floor(1 + math.random(
+                self.var = math.floor(1 + love.math.random(
                     math.floor(self.attack_number / 6),
                     math.floor(self.attack_number / 4)
                 ) *
                 self.section_times[Mod1(self.attack_number, #self.section_times)] / 342)
             elseif self.current_attack == 3 then
-                self.var = math.max(10 - math.random(
+                self.var = math.max(10 - love.math.random(
                     math.floor(self.attack_number / 8),
                     math.floor(self.attack_number / 4)
                 ), 3)
@@ -212,7 +212,7 @@ end
 function TheTrueHero:advanceBottomRow(dx)
 	if self.var <= 0 and self.current_attack == 3 then
         self.grid:copyBottomRow()
-        self.var = math.max(10 - math.random(
+        self.var = math.max(10 - love.math.random(
             math.floor(self.attack_number / 8),
             math.floor(self.attack_number / 4)
         ), 3)

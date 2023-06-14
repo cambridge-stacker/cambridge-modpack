@@ -89,7 +89,7 @@ function Shirase:onPieceMove(piece) piece.lock_delay = 0 end
 function Shirase:onPieceRotate(piece) piece.lock_delay = 0 end
 
 function Shirase:getDefaultOrientation()
-    return math.random(4)
+    return love.math.random(4)
 end
 
 return Shirase

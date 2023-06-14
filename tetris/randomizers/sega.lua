@@ -6,7 +6,7 @@ function SegaRandomizer:initialize()
 	self.bag = {"I", "J", "L", "O", "S", "T", "Z"}
 	self.sequence = {}
 	for i = 1, 1000 do
-		self.sequence[i] = self.bag[math.random(table.getn(self.bag))]
+		self.sequence[i] = self.bag[love.math.random(table.getn(self.bag))]
 	end
 	self.counter = 0
 end

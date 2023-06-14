@@ -561,7 +561,7 @@ function LifeGrid:advanceLife()
 				if (count == 3) and (newgrid[y][x] == empty) then
 					newgrid[y][x] = {
 						skin = "2tie",
-						colour = ({"R", "O", "Y", "G", "B", "C", "M"})[math.random(7)]
+						colour = ({"R", "O", "Y", "G", "B", "C", "M"})[love.math.random(7)]
 					}
 				end
 			end
