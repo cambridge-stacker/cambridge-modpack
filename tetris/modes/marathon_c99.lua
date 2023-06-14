@@ -330,9 +330,9 @@ function MarathonC99Game:drawScoringInfo()
 				{1, 1, 1, 1}
 			)
 			love.graphics.printf(
-			(self.slots[1] and self.slots[1] or love.math.random(4)) .. " " ..
-			(self.slots[2] and self.slots[2] or love.math.random(4)) .. " " ..
-			love.math.random(4),
+			(self.slots[1] and self.slots[1] or math.random(4)) .. " " ..
+			(self.slots[2] and self.slots[2] or math.random(4)) .. " " ..
+			math.random(4),
 			240, 80, 100, "left")
 			love.graphics.setColor(1,1,1,1)
 		end
