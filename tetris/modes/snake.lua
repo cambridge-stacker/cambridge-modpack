@@ -59,8 +59,8 @@ end
 
 function Snake:generateGem()
     repeat
-        self.gem.x = math.random(1, 25)
-        self.gem.y = math.random(5, 24)
+        self.gem.x = love.math.random(1, 25)
+        self.gem.y = love.math.random(5, 24)
     until not self:isInSnake({x=self.gem.x, y=self.gem.y})
 end
 

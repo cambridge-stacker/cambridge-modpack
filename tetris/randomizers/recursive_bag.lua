@@ -10,7 +10,7 @@ function RecursiveRandomizer:generatePiece()
 	--if next(self.bag) == nil then
 	--	self.bag = {"I", "J", "L", "O", "S", "T", "Z"}
 	--end
-	local x = math.random(table.getn(self.bag) + 1)
+	local x = love.math.random(table.getn(self.bag) + 1)
 	while x == table.getn(self.bag) + 1 do
 		--print("Refill piece pulled")
 		table.insert(self.bag, "I")
@@ -20,7 +20,7 @@ function RecursiveRandomizer:generatePiece()
 		table.insert(self.bag, "S")
 		table.insert(self.bag, "T")
 		table.insert(self.bag, "Z")
-		x = math.random(table.getn(self.bag) + 1)
+		x = love.math.random(table.getn(self.bag) + 1)
 	end
 	--print("Number of pieces in bag: "..table.getn(self.bag))
 	--print("Bag: "..table.concat(self.bag, ", "))

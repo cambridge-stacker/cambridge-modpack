@@ -44,7 +44,7 @@ local maps = {
 function ComboChallenge:new()
     GameMode:new()
     self.grid = Grid(4, 24)
-    self.grid:applyMap(maps[math.random(#maps)])
+    self.grid:applyMap(maps[love.math.random(#maps)])
     self.randomizer = BagRandomizer()
     self.lock_drop = false
     self.lock_hard_drop = false

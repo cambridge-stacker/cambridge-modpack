@@ -8,9 +8,9 @@ function NES:initialize()
 end
 
 function NES:generatePiece()
-	local x = math.random(8)
+	local x = love.math.random(8)
 	if x == 8 or x == self.history then
-		x = math.random(7)
+		x = love.math.random(7)
 	end
 	self.history = x
 	return self.shapes[x]

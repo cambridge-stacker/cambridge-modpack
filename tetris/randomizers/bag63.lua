@@ -18,7 +18,7 @@ function Bag63Randomiser:generatePiece()
             "O", "O", "O", "O", "O", "O", "O", "O", "O",
         }
     end
-    return table.remove(self.bag, math.random(#self.bag))
+    return table.remove(self.bag, love.math.random(#self.bag))
 end
 
 return Bag63Randomiser

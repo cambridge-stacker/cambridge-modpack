@@ -31,7 +31,7 @@ function H:attemptRotate(new_inputs, piece, grid, initial)
 end
 
 function H:getDefaultOrientation()
-    return math.random(4)
+    return love.math.random(4)
 end
 
 return H

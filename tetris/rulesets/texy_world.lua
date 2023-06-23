@@ -1,4 +1,4 @@
-local SRS = require 'tetris.rulesets.ti_srs'
+local SRS = require 'tetris.rulesets.standard_ti'
 
 local TexyWorld = SRS:extend()
 

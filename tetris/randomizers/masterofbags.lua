@@ -12,19 +12,19 @@ function MasterOfBags:initialize()
 end
 
 function MasterOfBags:generatePiece()
-	local piece=math.random(({[true]=#self.bag,[false]=#self.bag+1})[#self.bag>14])
+	local piece=love.math.random(({[true]=#self.bag,[false]=#self.bag+1})[#self.bag>14])
 	if piece>#self.bag then
 		self.bag={}
 		for x=1,28 do
 			self.bag[x]=({"I", "J", "L", "O", "S", "T", "Z"})[(x-1)%7+1]
 		end
-		piece=math.random(#self.bag)
+		piece=love.math.random(#self.bag)
 	end
 	for i = 1, 6 do
 		if not inHistory(self.bag[piece], self.history) then
 			break
 		end
-		piece=math.random(#self.bag)
+		piece=love.math.random(#self.bag)
 	end
 	self:updateHistory(self.bag[piece])
 

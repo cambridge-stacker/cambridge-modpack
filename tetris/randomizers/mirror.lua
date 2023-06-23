@@ -35,7 +35,7 @@ function MirrorRandomizer:generatePiece()
         generated = table.remove(self.piece_stack)
     else
         repeat
-            generated = self.shapes[math.random(7)]
+            generated = self.shapes[love.math.random(7)]
         until not inHistory(generated, self.history)
         table.remove(self.history, 1)
         table.insert(self.history, generated)

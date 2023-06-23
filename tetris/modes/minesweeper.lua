@@ -33,7 +33,7 @@ end
 function Minesweeper:initializeGrid()
     self.grid = Grid(width, height + 4)
     self.flags = math.floor(0.15 * width * height)
-    self.chosen_colour = ({ "R", "O", "Y", "G", "C", "B", "M" })[math.random(7)]
+    self.chosen_colour = ({ "R", "O", "Y", "G", "C", "B", "M" })[love.math.random(7)]
     for y = 1, height do
         for x = 1, width do
             self.grid.grid[y+4][x] = { skin = "2tie", colour = self.chosen_colour }
@@ -45,8 +45,8 @@ function Minesweeper:initializeMines(sel_x, sel_y)
     for i = 1, self.flags do
         local x, y
         repeat
-            x = math.random(1, width)
-            y = math.random(1, height)
+            x = love.math.random(1, width)
+            y = love.math.random(1, height)
         until not (self:isMine(x, y) or (sel_x == x and sel_y == y))
         table.insert(self.mines, {x=x, y=y})
     end

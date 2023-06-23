@@ -14,10 +14,10 @@ function BagKonoha:generatePiece()
 	if #self.bag == 0 then
 		self.bag = {"I", "J", "L", "O", "T"}
 	end
-	local x = math.random(#self.bag)
+	local x = love.math.random(#self.bag)
 	local temp = table.remove(self.bag, x)
 	if temp == self.prev and not self.allowrepeat then
-		local y = math.random(#self.bag)
+		local y = love.math.random(#self.bag)
 		table.insert(self.bag, temp) -- should insert at the end of the bag, bag[y] doesnt change
 		temp = table.remove(self.bag, y)
 	end

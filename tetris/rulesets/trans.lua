@@ -35,7 +35,7 @@ end
 function Trans:attemptWallkicks(piece, new_piece, rot_dir, grid)
     local pieces = {"I", "J", "L", "O", "S", "T", "Z"}
     repeat
-        new_piece.shape = pieces[math.random(7)]
+        new_piece.shape = pieces[love.math.random(7)]
     until piece.shape ~= new_piece.shape
 
     local offsets = {{x=0, y=0}, {x=1, y=0}, {x=-1, y=0}}

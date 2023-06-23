@@ -58,7 +58,7 @@ function DTETRandomizer:generatePiece()
     end
 
     -- pull piece from 21-bag and update drought counters
-    local generated = bag[math.random(#bag)]
+    local generated = bag[love.love.math.random(#bag)]
     self:updateDroughts(generated)
     return generated
 end

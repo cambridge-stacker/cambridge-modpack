@@ -5,7 +5,7 @@ local Bag7Randomizer = Randomizer:extend()
 function Bag7Randomizer:initialize()
 	self.bag = {"I", "J", "L", "O", "S", "T", "Z"}
 	self.extra = {"I", "J", "L", "O", "S", "T", "Z"}
-	table.insert(self.bag, table.remove(self.extra, math.random(table.getn(self.extra))))
+	table.insert(self.bag, table.remove(self.extra, love.math.random(table.getn(self.extra))))
 end
 
 function Bag7Randomizer:generatePiece()
@@ -14,9 +14,9 @@ function Bag7Randomizer:generatePiece()
 	end
 	if next(self.bag) == nil then
 		self.bag = {"I", "J", "L", "O", "S", "T", "Z"}
-		table.insert(self.bag, table.remove(self.extra, math.random(table.getn(self.extra))))
+		table.insert(self.bag, table.remove(self.extra, love.math.random(table.getn(self.extra))))
 	end
-	local x = math.random(table.getn(self.bag))
+	local x = love.math.random(table.getn(self.bag))
 	--print("Bag: "..table.concat(self.bag, ", ").." | Extra: "..table.concat(self.extra, ", "))
 	return table.remove(self.bag, x)
 end

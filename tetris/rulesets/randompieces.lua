@@ -23,8 +23,8 @@ function RandomPieces:generateBlockOffsets()
         local generated_offset = {}
         repeat
             generated_offset = {
-                x = math.random(-1, 1),
-                y = math.random(-2, 0)
+                x = love.math.random(-1, 1),
+                y = love.math.random(-2, 0)
             }
         until not containsPoint(offsets, generated_offset)
         offsets[i] = generated_offset

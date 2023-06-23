@@ -14,7 +14,7 @@ end
 
 function HistoryRandomizer:generatePiece()
 	for i = 1, self.rolls do
-		local x = math.random(table.getn(self.allowed_pieces))
+		local x = love.math.random(table.getn(self.allowed_pieces))
 		if not inHistory(self.allowed_pieces[x], self.history) or i == self.rolls then
 			return self:updateHistory(self.allowed_pieces[x])
 		end
