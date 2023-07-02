@@ -50,6 +50,7 @@ local line_popup = {["y"]=0,["score"]=0,["lines"]=0}
 function MarathonC99Game:new()
     self.super:new()
     self.grid = Grid(10, 22)
+    self.slots_random = love.math.newRandomGenerator(os.time())
 
     self.randomizer = SegaRandomizer()
     self.additive_gravity = false
@@ -330,9 +331,9 @@ function MarathonC99Game:drawScoringInfo()
 				{1, 1, 1, 1}
 			)
 			love.graphics.printf(
-			(self.slots[1] and self.slots[1] or math.random(4)) .. " " ..
-			(self.slots[2] and self.slots[2] or math.random(4)) .. " " ..
-			math.random(4),
+			(self.slots[1] or self.slots_random:random(4)) .. " " ..
+			(self.slots[2] or self.slots_random:random(4)) .. " " ..
+			self.slots_random:random(4),
 			240, 80, 100, "left")
 			love.graphics.setColor(1,1,1,1)
 		end
