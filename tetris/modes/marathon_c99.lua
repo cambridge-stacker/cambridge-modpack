@@ -147,6 +147,11 @@ function MarathonC99Game:onPieceEnter()
     self.piece.last_orientation = self.piece.rotation
 end
 
+function MarathonC99Game:onPieceLock()
+    playSE("lock")
+    self.score = self.score + (self.prev_inputs["down"] and 1 or 0)
+end
+
 function MarathonC99Game:advanceOneFrame(inputs, ruleset)
     if self.clear then
         if self.level == 17 then
@@ -283,6 +288,7 @@ function MarathonC99Game:drawScoringInfo()
     love.graphics.printf("NEXT", 64, 40, 40, "left")
     love.graphics.printf("LEVEL "..self.level, 240, 120, 80, "left")
     love.graphics.printf("LINES", 240, 190, 200, "left")
+    love.graphics.printf("TIMER", 240, 280, 200, "left")
 	love.graphics.printf(self.lines.."/300", 240, 210, 200, "left")
 	
 	if(self.level ~= 15 and self.level ~= 17) then
@@ -300,9 +306,12 @@ function MarathonC99Game:drawScoringInfo()
 	end
 	love.graphics.setColor(1,1,1,1)
 
-    love.graphics.setFont(font_3x5_4)
+    love.graphics.setFont(font_8x11)
 
-    love.graphics.printf(formatBigNum(self.score), 64, 400, 160, "center")
+    love.graphics.printf(
+        formatBigNum(string.format("%08d", self.score)),
+        44, 390, 200, "center"
+    )
     if self.ready_frames == 0 then
 		love.graphics.setColor(
 			((self.frames + self.roll_frames) % 4 < 2) and
@@ -342,8 +351,7 @@ function MarathonC99Game:drawScoringInfo()
     love.graphics.setColor(1, 1, 1, 1)
 	level_names[17] = self.roll_frames == frameTime(3,19) and "THE EDGE OF THE WORLD" or formatTime(frameTime(3,19) - self.roll_frames)
 	love.graphics.printf(level_names[self.level], 240, 137, 200, "left")
-	love.graphics.setFont(font_3x5_2)
-	love.graphics.setFont(font_8x11)
+	love.graphics.setFont(font_3x5_4)
     love.graphics.printf(formatTime(self.frames), 240, 300, 160, "left")
 	
 end
