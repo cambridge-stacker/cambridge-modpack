@@ -35,6 +35,8 @@ function PhantomManiaNXGame:new()
 
 	self.coolregret_message = "COOL!!"
 	self.coolregret_timer = 0
+	self.section_cools = { [0] = 0 }
+	self.section_regrets = { [0] = 0 }
 end
 
 function PhantomManiaNXGame:getARE()
@@ -209,11 +211,15 @@ function PhantomManiaNXGame:updateSectionTimes(old_level, new_level)
 		table.insert(self.section_times, section_time)
 		self.section_start_time = self.frames
         if section_time >= frameTime(1,00) then
-            self.last_section_cool = false
+            --self.last_section_cool = false
             self.coolregret_message = "REGRET!!"
 			self.coolregret_timer = 300
             self.grade = self.grade - 1
-        elseif self.last_section_cool then
+			table.insert(self.section_regrets, 1)
+        else
+			table.insert(self.section_regrets, 0)
+		end
+		if self.last_section_cool then
 			self.cools = self.cools + 1
         end
         self.grade = self.grade + 1
@@ -227,8 +233,10 @@ function PhantomManiaNXGame:updateSectionTimes(old_level, new_level)
 			self.last_section_cool = true
             self.coolregret_message = "COOL!!"
 			self.coolregret_timer = 300
+			table.insert(self.section_cools, 1)
 		else
 			self.last_section_cool = false
+			table.insert(self.section_cools, 0)
 		end
     end
 end
@@ -322,6 +330,18 @@ local function getLetterGrade(grade)
     else
         return "GM"
     end
+end
+
+function PhantomManiaNXGame:sectionColourFunction(section)
+	if self.section_cools[section] == 1 and self.section_regrets[section] == 1 then
+		return { 1, 1, 0, 1 }
+	elseif self.section_cools[section] == 1 then
+		return { 0, 1, 0, 1 }
+	elseif self.section_regrets[section] == 1 then
+		return { 1, 0, 0, 1 }
+	else
+		return { 1, 1, 1, 1 }
+	end
 end
 
 function PhantomManiaNXGame:drawScoringInfo()
