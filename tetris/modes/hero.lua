@@ -127,17 +127,17 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
             self.section_frames = 0
             self.attack_number = self.attack_number + 1
             local prev_attack = self.current_attack
-            self.current_attack = -1
-            local attack_rolls = 0
-            while ((
-                prev_attack == self.current_attack or
-                self.current_attack == 5
-            ) and (attack_rolls < 2)) or attack_rolls == 0 do
-                attack_rolls = attack_rolls + 1
+            for i = 1, 3 do
                 if self.attack_number > 20 then
                     self.current_attack = love.math.random(#self.attacks)
                 else
                     self.current_attack = love.math.random(4)
+                end
+                if (
+                    prev_attack ~= self.current_attack and
+                    self.current_attack ~= 5
+                ) then
+                    break
                 end
             end
             if self.current_attack == 1 then
@@ -198,14 +198,16 @@ end
 function TheTrueHero:onPieceLock(piece, cleared_row_count)
     self.super:onPieceLock()
     if self.current_attack == 1 or self.current_attack == 3 then
-        self.var = math.max(self.var - 1, 0)
-        self:advanceBottomRow(1)
-        playSE("undyne", "ding")
-    elseif self.current_attack == 2 then
-        self.var = math.max(self.var - cleared_row_count, 0)
-        if cleared_row_count ~= 0 then
+        if self.var ~= math.floor(self.current_attack / 2) then
             playSE("undyne", "ding")
         end
+        self.var = math.max(self.var - 1, 0)
+        self:advanceBottomRow(1)
+    elseif self.current_attack == 2 then
+        if cleared_row_count ~= 0 and self.var ~= 0 then
+            playSE("undyne", "ding")
+        end
+        self.var = math.max(self.var - cleared_row_count, 0)
     end
 end
 
