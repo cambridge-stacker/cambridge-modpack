@@ -127,7 +127,7 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
             self.section_frames = 0
             self.attack_number = self.attack_number + 1
             local prev_attack = self.current_attack
-            for i = 1, 3 do
+            for i = 1, 2 do
                 if self.attack_number > 20 then
                     self.current_attack = love.math.random(#self.attacks)
                 else
@@ -153,14 +153,16 @@ function TheTrueHero:advanceOneFrame(inputs, ruleset)
                 ) *
                 self.section_times[Mod1(self.attack_number, #self.section_times)] / 342)
             elseif self.current_attack == 3 then
-                self.var = math.max(10 - love.math.random(
-                    math.floor(self.attack_number / 8),
-                    math.floor(self.attack_number / 4)
-                ), 3)
+                self.var = math.floor(
+                    120 * 0.5 ^ ((self.attack_number - 1) / #self.section_times)
+                )
             end
         end
         self.frames = self.frames + 1
         self.section_frames = self.section_frames + 1
+        if self.current_attack == 3 then
+            self.var = math.max(self.var - 1, 0)
+        end
         if self.current_attack == 5 then
             self.lock_on_soft_drop = false
             self.lock_on_hard_drop = false
@@ -197,12 +199,14 @@ end
 
 function TheTrueHero:onPieceLock(piece, cleared_row_count)
     self.super:onPieceLock()
-    if self.current_attack == 1 or self.current_attack == 3 then
-        if self.var ~= math.floor(self.current_attack / 2) then
+    if cleared_row_count == 0 then
+        self:advanceBottomRow()
+    end
+    if self.current_attack == 1 then
+        if self.var ~= 0 then
             playSE("undyne", "ding")
         end
         self.var = math.max(self.var - 1, 0)
-        self:advanceBottomRow(1)
     elseif self.current_attack == 2 then
         if cleared_row_count ~= 0 and self.var ~= 0 then
             playSE("undyne", "ding")
@@ -211,13 +215,12 @@ function TheTrueHero:onPieceLock(piece, cleared_row_count)
     end
 end
 
-function TheTrueHero:advanceBottomRow(dx)
+function TheTrueHero:advanceBottomRow()
 	if self.var <= 0 and self.current_attack == 3 then
         self.grid:copyBottomRow()
-        self.var = math.max(10 - love.math.random(
-            math.floor(self.attack_number / 8),
-            math.floor(self.attack_number / 4)
-        ), 3)
+        self.var = math.floor(
+            120 * 0.5 ^ ((self.attack_number - 1) / #self.section_times)
+        )
         playSE("undyne", "pike")
 	end
 end
