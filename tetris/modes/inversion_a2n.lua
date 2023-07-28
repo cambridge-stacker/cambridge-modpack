@@ -27,7 +27,7 @@ function InversionGame:whilePieceActive()
 end
 
 function InversionGame:getPieceFadeoutTime()
-    return math.ceil(self:getLockDelay() / 4)
+    return math.ceil(self:getLockDelay() / 8)
 end
 
 function InversionGame:drawPiece()
