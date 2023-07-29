@@ -78,10 +78,13 @@ function ComboChallenge:hold(inputs, ruleset, ihs)
     table.insert(self.next_queue, self:getNextPiece(ruleset))
     self.skips = self.skips - 1
 
-	if ihs then playSE("ihs")
-	else playSE("hold") end
 	self:onHold()
-    self:onEnterOrHold(inputs, ruleset)
+	if ihs then
+		playSE("ihs")
+	else
+		playSE("hold")
+		self:onEnterOrHold(inputs, ruleset)
+	end
 end
 
 function ComboChallenge:advanceOneFrame()
