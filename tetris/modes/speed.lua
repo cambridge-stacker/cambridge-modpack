@@ -62,7 +62,7 @@ end
 function LudicrousSpeed:advanceOneFrame()
     if self.ready_frames == 0 then
         self.frames = self.frames + 1
-        if self:getPPS() < self.pps_limit then
+        if self.frames > 60 and self:getPPS() < self.pps_limit then
             self.time_limit = self.time_limit - 1
             self.game_over = self.time_limit <= 0
         else self.time_limit = 300 end
