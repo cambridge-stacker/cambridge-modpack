@@ -232,7 +232,7 @@ function PhantomManiaNXGame:updateSectionTimes(old_level, new_level)
         local old_section = math.floor(old_level / 100)
         table.insert(self.secondary_section_times, section_time)
         if  section_time <= cool_cutoffs[old_section] and (
-            section_time < (self.secondary_section_times[old_section] + 120) or
+            section_time <= (self.secondary_section_times[old_section] + 120) or
 			old_section == 0 )
         then
 			self.last_section_cool = true
