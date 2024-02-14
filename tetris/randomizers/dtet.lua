@@ -13,6 +13,15 @@ function DTETRandomizer:initialize()
         ["T"] = 0,
         ["Z"] = 0
     }
+    self.piece_index = {
+        "I",
+        "J",
+        "L",
+        "O",
+        "S",
+        "T",
+        "Z",
+    }
 end
 
 function DTETRandomizer:updateDroughts(piece)
@@ -40,10 +49,10 @@ function DTETRandomizer:generatePiece()
     for i = 1, 7 do
         local lowest_drought = math.huge
         local lowest_drought_piece = ""
-        for k, v in pairs(droughts) do
-            if v ~= nil and v < lowest_drought then
-                lowest_drought = v
-                lowest_drought_piece = k
+        for k, v in ipairs(self.piece_index) do
+            if droughts[v] ~= nil and droughts[v] < lowest_drought then
+                lowest_drought = droughts[v]
+                lowest_drought_piece = v
             end
         end
         droughts[lowest_drought_piece] = nil
@@ -51,9 +60,11 @@ function DTETRandomizer:generatePiece()
     end
 
     -- insert pieces into 21-bag
-    for k, v in pairs(weights) do
-        for i = 1, v do
-            table.insert(bag, k)
+    for k, v in ipairs(self.piece_index) do
+        if weights[v] then
+            for i = 1, weights[v] do
+                table.insert(bag, v)
+            end
         end
     end
 
