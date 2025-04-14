@@ -46,11 +46,50 @@ function MarathonC88Game:new(secret_inputs)
 	end
 end
 
-function MarathonC88Game:getARE() return 30 end
-function MarathonC88Game:getLineARE() return 30 end
-function MarathonC88Game:getDasLimit() return 20 end
-function MarathonC88Game:getLineClearDelay() return 42 end
-function MarathonC88Game:getLockDelay() return 30 end
+function MarathonC88Game:continueDAS() -- implement sega 88's DAS bug.
+        local das_frames = self.das.frames + 1
+        if das_frames > 1000 then -- frame perfect reversal set by startLeftDAS or startRightDAS below.
+                self.move=self.das.direction
+                self.das.frames=0
+        elseif das_frames >= self:getDasLimit() then
+                if self.das.direction == "left" then
+                        self.move = (self:getARR() == 0 and "speed" or "") .. "left"
+                        self.das.frames = self:getDasLimit() - self:getARR()
+                elseif self.das.direction == "right" then
+                        self.move = (self:getARR() == 0 and "speed" or "") .. "right"
+                        self.das.frames = self:getDasLimit() - self:getARR()
+                end
+        else
+                self.move = "none"
+                self.das.frames = das_frames
+        end
+end
+
+function MarathonC88Game:startRightDAS()
+        self.move = "right"
+        if self.das.direction == "left" then
+           self.das.frames=1000  -- check for this in continueDAS to do one more move.
+        else
+           self.das.frames=0 -- reset UNLESS we switched in one frame
+        end
+        self.das.direction = "right"
+        if self:getDasLimit() == 0 then
+                self:continueDAS()
+        end
+end
+
+function MarathonC88Game:startLeftDAS()
+        self.move = "left"
+        if self.das.direction == "right" then
+           self.das.frames=1000  -- check for this in continueDAS to do one more move.
+        else
+           self.das.frames=0 -- reset UNLESS we switched in one frame
+        end
+        self.das.direction = "left"
+        if self:getDasLimit() == 0 then
+                self:continueDAS()
+        end
+end
 
 function MarathonC88Game:getGravity()
 	local gravity
