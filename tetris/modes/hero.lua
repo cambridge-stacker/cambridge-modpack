@@ -15,6 +15,7 @@ sounds.undyne = {
 TheTrueHero.name = "The True Hero"
 TheTrueHero.hash = "TheTrueHero"
 TheTrueHero.tagline = "A tribute to the Puzzle Maker."
+TheTrueHero.tags = {"Gimmick"}
 
 function TheTrueHero:new()
     self.super:new()

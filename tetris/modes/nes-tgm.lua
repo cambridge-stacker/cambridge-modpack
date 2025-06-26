@@ -6,6 +6,7 @@ local NESTGMMode = GameMode:extend()
 NESTGMMode.name = "NES-TGM"
 NESTGMMode.hash = "NESTGM"
 NESTGMMode.tagline = "An arcade-styled mode with roots in retro!"
+NESTGMMode.tags = {"Marathon"}
 
 function NESTGMMode:new()
     GameMode:new()

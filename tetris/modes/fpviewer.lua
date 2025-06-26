@@ -5,6 +5,7 @@ local FlashPointViewer = GameMode:extend()
 FlashPointViewer.name = "FP Board Viewer"
 FlashPointViewer.hash = "FPViewer"
 FlashPointViewer.tagline = "See all of Flash Point's boards!"
+FlashPointViewer.tags = {"Puzzle"}
 
 local board_str = [[
           

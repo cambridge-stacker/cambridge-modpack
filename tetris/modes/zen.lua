@@ -7,6 +7,7 @@ local ZenMode = Race40Game:extend()
 ZenMode.name = "Marathon WZ"
 ZenMode.hash = "Zen"
 ZenMode.tagline = "Attempt to score as many points as you can!"
+ZenMode.tags = {"Marathon", "Score Attack", "Web", "Beginner Friendly"}
 
 function ZenMode:new()
     self.super:new()

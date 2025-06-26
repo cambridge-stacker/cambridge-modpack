@@ -6,6 +6,7 @@ local MarathonWBGame = GameMode:extend()
 MarathonWBGame.name = "Marathon WB"
 MarathonWBGame.hash = "MarathonWB"
 MarathonWBGame.tagline = "What can you do with 300 keystrokes?"
+MarathonWBGame.tags = {"Marathon", "Web", "Gimmick"}
 
 function MarathonWBGame:new()
     GameMode:new()

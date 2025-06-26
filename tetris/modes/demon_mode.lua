@@ -10,6 +10,7 @@ local DemonModeGame = GameMode:extend()
 DemonModeGame.name = "Demon Mode"
 DemonModeGame.hash = "DemonMode"
 DemonModeGame.tagline = "Can you handle the ludicrous speed past level 20?"
+DemonModeGame.tags = {"Survival", "20G Start", "Web"}
 
 function DemonModeGame:new()
 	DemonModeGame.super:new()

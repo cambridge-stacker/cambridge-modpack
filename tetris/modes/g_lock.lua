@@ -9,6 +9,7 @@ local GLock = GameMode:extend()
 GLock.name = "G-Lock"
 GLock.hash = "GLock"
 GLock.tagline = "The speeds fluctuate rapidly! Can you withstand the pressure?"
+-- TODO: tag
 
 function GLock:new()
 	self.super:new()

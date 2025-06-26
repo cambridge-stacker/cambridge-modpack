@@ -9,6 +9,7 @@ local KamuiGame = GameMode:extend()
 KamuiGame.name = "Race A3"
 KamuiGame.hash = "RaceA3"
 KamuiGame.tagline = "How fast can you reach level 500?"
+KamuiGame.tags = {"Race", "Arika", "20G Start"}
 
 function KamuiGame:new()
     self.super:new()

@@ -10,7 +10,7 @@ local IntervalTrainingGame = GameMode:extend()
 IntervalTrainingGame.name = "Interval Training"
 IntervalTrainingGame.hash = "IntervalTraining"
 IntervalTrainingGame.tagline = "Can you clear the time hurdles when the game goes this fast?"
-
+IntervalTrainingGame.tags = {"Trainer", "20G Start"}
 
 
 

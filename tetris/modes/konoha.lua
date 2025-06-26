@@ -10,6 +10,7 @@ local KonohaGame = GameMode:extend()
 KonohaGame.name = "All Clear A4"
 KonohaGame.hash = "AllClearA4"
 KonohaGame.tagline = "Get as many bravos as you can under the time limit!"
+KonohaGame.tags = {"Gimmick"}
 
 function KonohaGame:new()
 	KonohaGame.super:new()

@@ -13,6 +13,7 @@ local rush = false
 JokerGame.name = "Final J"
 JokerGame.hash = "Joker"
 JokerGame.tagline = "One of the hardest modes! Can you retain your stock to level 300?"
+JokerGame.tags = {"Final", "Web", "20G Start"}
 
 function JokerGame:new()
 	self.super:new()

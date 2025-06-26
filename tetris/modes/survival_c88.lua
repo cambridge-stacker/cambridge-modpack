@@ -7,6 +7,7 @@ local SurvivalC88Game = MarathonC88Game:extend()
 SurvivalC88Game.name = "Survival C88"
 SurvivalC88Game.hash = "Shimizu"
 SurvivalC88Game.tagline = "You can't rotate the pieces initially! What will you do?"
+SurvivalC88Game.tags = {"Survival", "Classic", "Web", "20G Start"}
 
 function SurvivalC88Game:new(secret_inputs)
     self.super:new(secret_inputs)

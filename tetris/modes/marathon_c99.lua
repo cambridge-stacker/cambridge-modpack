@@ -8,6 +8,7 @@ local MarathonC99Game = GameMode:extend()
 MarathonC99Game.name = "Marathon C99"
 MarathonC99Game.hash = "MarathonC99"
 MarathonC99Game.tagline = "A recreation of Sega ***ris Naomi / Dreamcast!"
+MarathonC99Game.tags = {"Marathon", "Classic"}
 
 local lines_to_next_level = {
     [0] = 6, 6, 7, 9, 6, 9,

@@ -5,6 +5,7 @@ local InversionGame = SurvivalA2Game:extend()
 InversionGame.name = "Inversion A2N"
 InversionGame.hash = "InversionA2N"
 InversionGame.tagline = "What if the active piece was invisible?"
+InversionGame.tags = {"Invisible Piece", "Survival", "20G Start"}
 
 function InversionGame:new()
     SurvivalA2Game:new()

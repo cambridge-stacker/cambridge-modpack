@@ -5,6 +5,7 @@ local SurvivalAXHGame = SurvivalAXGame:extend()
 SurvivalAXHGame.name = "Survival AXH"
 SurvivalAXHGame.hash = "SurvivalAXH"
 SurvivalAXHGame.tagline = "An old Heboris mode! The field slowly hides itself!"
+SurvivalAXGame.tags = {"Survival", "Web", "Gimmick"}
 
 function SurvivalAXHGame:new()
     SurvivalAXGame:new()

@@ -10,7 +10,7 @@ local MarathonWCBGame = GameMode:extend()
 MarathonWCBGame.name = "Marathon WCB"
 MarathonWCBGame.hash = "MarathonWCB"
 MarathonWCBGame.tagline = "When all the pieces slip right to their destinations... can you keep up?"
-
+MarathonWCBGame.tags = {"Marathon", "Web", "20G Start"}
 
 function MarathonWCBGame:new()
 	MarathonWCBGame.super:new()

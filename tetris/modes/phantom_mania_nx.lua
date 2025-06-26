@@ -7,6 +7,7 @@ local History6RollsRandomizer = require 'tetris.randomizers.history_6rolls_35bag
 PhantomManiaNXGame.name = "Phantom Mania NX"
 PhantomManiaNXGame.hash = "PhantomManiaNX"
 PhantomManiaNXGame.tagline = "The ultimate invisible challenge! Can you survive the brutal gimmicks?"
+PhantomManiaNXGame.tags = {"Invisible Stack", "Survival", "Gimmick", "Cambridge"}
 
 function PhantomManiaNXGame:new()
 	PhantomManiaNXGame.super:new()

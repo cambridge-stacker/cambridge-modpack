@@ -10,6 +10,7 @@ local SurvivalCKGame = GameMode:extend()
 SurvivalCKGame.name = "Survival CK"
 SurvivalCKGame.hash = "SurvivalCK"
 SurvivalCKGame.tagline = "An endurance mode created by CylinderKnot! Watch out for the fading pieces..."
+SurvivalCKGame.tags = {"Survival", "20G Start"}
 
 function SurvivalCKGame:new()
 	SurvivalCKGame.super:new()

@@ -14,6 +14,7 @@ local NightOfNights = GameMode:extend()
 NightOfNights.name = "Night of Nights"
 NightOfNights.hash = "NightOfNights"
 NightOfNights.tagline = "The pieces lock down super fast! How long can you survive?"
+NightOfNights.tags = {"Survival", "Gimmick"}
 
 function NightOfNights:new()
     self.super:new()

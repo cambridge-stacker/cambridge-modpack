@@ -6,6 +6,7 @@ local SquareMode = GameMode:extend()
 SquareMode.name = "Square"
 SquareMode.hash = "Square"
 SquareMode.tagline = "Make squares to get more lines!"
+SquareMode.tags = {"Marathon", "Classic", "Score Attack"}
 
 function SquareMode:new()
     self.super:new()

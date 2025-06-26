@@ -6,6 +6,7 @@ local SurvivalGTEGame = GameMode:extend()
 SurvivalGTEGame.name = "Survival GTE"
 SurvivalGTEGame.hash = "SurvivalGTE"
 SurvivalGTEGame.tagline = "A well-known Master mode that ramps up in difficulty quickly!"
+SurvivalGTEGame.tags = {"Survival", "Guideline", "20G Start"}
 
 function SurvivalGTEGame:new()
     SurvivalGTEGame.super:new()
