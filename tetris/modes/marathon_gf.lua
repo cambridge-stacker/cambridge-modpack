@@ -8,7 +8,7 @@ local MarathonGFGame = GameMode:extend()
 MarathonGFGame.name = "Marathon GF"
 MarathonGFGame.hash = "MarathonGF"
 MarathonGFGame.tagline = "The old puzzle mode from Tetris Friends!"
-MarathonGFGame.tags = {"Marathon", "Guideline", "Beginner Friendly"}
+MarathonGFGame.tags = {"Marathon", "Score Attack", "Guideline", "Beginner Friendly"}
 
 function MarathonGFGame:new()
     self.super:new()

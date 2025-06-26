@@ -10,6 +10,7 @@ local MarathonC88Game = GameMode:extend()
 MarathonC88Game.name = "Marathon C88"
 MarathonC88Game.hash = "MarathonC88"
 MarathonC88Game.tagline = "An old Japanese game! Can you hit the max score?"
+MarathonC88Game.tags = {"Marathon", "Classic", "Beginner Friendly"}
 
 function MarathonC88Game:new(secret_inputs)
 	self.super:new()
