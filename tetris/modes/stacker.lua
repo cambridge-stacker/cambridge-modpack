@@ -5,7 +5,7 @@ local StackerGame = GameMode:extend()
 
 StackerGame.name = "Stacker"
 StackerGame.hash = "Stacker"
-StackerGame.tagline = "Hey, wait, I didn't mean this kind of block stacking!"
+StackerGame.description = "Hey, wait, I didn't mean this kind of block stacking!"
 
 local block = { skin = "2tie", colour = "C" }
 

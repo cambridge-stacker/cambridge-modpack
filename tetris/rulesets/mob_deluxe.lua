@@ -5,6 +5,8 @@ local SRS = Ruleset:extend()
 
 SRS.name = "MoB-Deluxe"
 SRS.hash = "Spiderman losing his grip"
+SRS.description = "Spiderman losing his grip"
+
 SRS.world = true
 SRS.colourscheme = {
 	I = "C",

@@ -4,6 +4,7 @@ local Nintendo = Ruleset:extend()
 
 Nintendo.name = "Nintendo-R"
 Nintendo.hash = "NintendoR"
+Nintendo.description = "Straight from the NES."
 
 Nintendo.spawn_positions = {
 	I = { x=5, y=4 },

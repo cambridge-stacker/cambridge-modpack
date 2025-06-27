@@ -4,6 +4,7 @@ local Ascension = Ruleset:extend()
 
 Ascension.name = "Ascension"
 Ascension.hash = "Ascension"
+Ascension.description = "A ruleset made for Ascension by winternebs."
 Ascension.world = true
 Ascension.colourscheme = {
 	I = "C",

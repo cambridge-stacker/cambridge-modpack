@@ -4,6 +4,7 @@ local Minote = Ruleset:extend()
 
 Minote.name = "Minote"
 Minote.hash = "Minote"
+Minote.description = "A novel rotation system, inspired by ARS, with proper balancing in mind."
 
 Minote.block_offsets = {
     J={

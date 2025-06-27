@@ -4,6 +4,7 @@ local BONKERS = ARS:extend()
 
 BONKERS.name = "SUPER302"
 BONKERS.hash = "Super302"
+BONKERS.description = "good soup"
 
 BONKERS.colourscheme = {
 	I = "C",

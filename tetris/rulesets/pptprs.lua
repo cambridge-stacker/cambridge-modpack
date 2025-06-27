@@ -5,6 +5,7 @@ local PPTPRS = SRS:extend()
 
 PPTPRS.name = "PPTPRS"
 PPTPRS.hash = "Puyo Tetris Pentos"
+PPTPRS.descriptions = "A pentomino ruleset found in a certain puzzle game crossover."
 
 PPTPRS.spawn_positions = {
 	I = { x=5, y=4 },

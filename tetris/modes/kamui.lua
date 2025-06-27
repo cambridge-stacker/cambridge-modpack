@@ -8,8 +8,8 @@ local KamuiGame = GameMode:extend()
 
 KamuiGame.name = "Race A3"
 KamuiGame.hash = "RaceA3"
-KamuiGame.tagline = "How fast can you reach level 500?"
-KamuiGame.tags = {"Race", "Arika", "20G Start"}
+KamuiGame.description = "How fast can you reach level 500?"
+KamuiGame.tags = {"Race", "Arika", "20G Start"} -- note: based on the unfinished mode from TERROR-INSTINCT
 
 function KamuiGame:new()
     self.super:new()

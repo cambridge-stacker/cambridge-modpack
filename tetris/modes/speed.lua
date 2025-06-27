@@ -8,7 +8,7 @@ local LudicrousSpeed = GameMode:extend()
 
 LudicrousSpeed.name = "Ludicrous Speed"
 LudicrousSpeed.hash = "LSpeed"
-LudicrousSpeed.tagline = "Don't make Keanu sad. Always stay above the speed limit."
+LudicrousSpeed.description = "Don't make Keanu sad. Always stay above the speed limit."
 LudicrousSpeed.tags = {"Gimmick"}
 
 function LudicrousSpeed:new()

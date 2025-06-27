@@ -9,7 +9,7 @@ local ArcadeScoreAttack = GameMode:extend()
 
 ArcadeScoreAttack.name = "Arcade Score Attack"
 ArcadeScoreAttack.hash = "Oshisaure-ArcadeScoreAttack"
-ArcadeScoreAttack.tagline = "Huge scores! How big can you make yours?"
+ArcadeScoreAttack.description = "Huge scores! How big can you make yours?"
 ArcadeScoreAttack.tags = {"Score Attack"}
 
 

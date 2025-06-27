@@ -4,6 +4,7 @@ local DS = SRS:extend()
 
 DS.name = "DS-World"
 DS.hash = "DS-World"
+DS.description = "SRS with infinite lock delay resets and no entry delay."
 
 DS.are = false
 

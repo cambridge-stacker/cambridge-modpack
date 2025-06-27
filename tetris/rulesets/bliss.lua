@@ -5,6 +5,7 @@ local BlissRS = Ruleset:extend()
 
 BlissRS.name = "Blissful"
 BlissRS.hash = "Bliss"
+BlissRS.description = "An original ruleset by CylinderKnot."
 
 BlissRS.world = true
 BlissRS.spawn_above_field = true

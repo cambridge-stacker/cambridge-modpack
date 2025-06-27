@@ -5,6 +5,7 @@ local EHeart = ARS:extend()
 
 EHeart.name = "E-Heart ARS"
 EHeart.hash = "EHeartARS"
+EHeart.description = "A modified version of ARS for ***ris With Card Captor Sakura Eternal Heart. Pairs well with Sakura A3."
 
 function EHeart:attemptWallkicks(piece, new_piece, rot_dir, grid)
 

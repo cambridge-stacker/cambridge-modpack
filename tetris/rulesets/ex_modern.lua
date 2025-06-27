@@ -4,6 +4,7 @@ local EXModern = EXClassic:extend()
 
 EXModern.name = "T-EX-Modern"
 EXModern.hash = "EXModern"
+EXModern.description = "A novel, dynamic rotation system from T-Ex Returns. This variant uses SRS-like piece definitions."
 
 EXModern.world = true
 EXModern.colourscheme = {

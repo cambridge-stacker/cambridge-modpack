@@ -4,7 +4,7 @@ local A3Plus = SurvivalA3Game:extend()
 
 A3Plus.name = "Survival A3+"
 A3Plus.hash = "A3Plus"
-A3Plus.tagline = "A hardcore version of Survival A3."
+A3Plus.description = "A hardcore version of Survival A3."
 
 function A3Plus:new()
     A3Plus.super:new()

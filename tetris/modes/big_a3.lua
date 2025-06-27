@@ -6,7 +6,7 @@ local BigA3Game = MarathonA3Game:extend()
 
 BigA3Game.name = "Big A3"
 BigA3Game.hash = "BigA3-2"
-BigA3Game.tagline = "placeholder text"
+BigA3Game.description = "placeholder text"
 
 function BigA3Game:new()
 	BigA3Game.super:new()

@@ -4,6 +4,7 @@ local EARS = SRS:extend()
 
 EARS.name = "E.A.R.S."
 EARS.hash = "EARS"
+EARS.description = "super janky kicks"
 
 EARS.colourscheme = {
     I = "W",

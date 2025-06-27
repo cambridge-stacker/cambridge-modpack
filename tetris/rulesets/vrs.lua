@@ -4,6 +4,7 @@ local VRS = Ruleset:extend()
 
 VRS.name = "V.R.S."
 VRS.hash = "VRS"
+VRS.description = "A fairly balanced rotation system by Oshisaure."
 
 VRS.world = true
 VRS.colourscheme = {

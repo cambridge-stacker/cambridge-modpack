@@ -5,6 +5,7 @@ local MizuRS = Ruleset:extend()
 
 MizuRS.name = "Mizu Rotation"
 MizuRS.hash = "MizuRS"
+MizuRS.description = "An outdated ruleset made by Mizu."
 
 MizuRS.softdrop_lock = false
 MizuRS.harddrop_lock = true

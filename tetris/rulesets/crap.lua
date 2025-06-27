@@ -5,6 +5,8 @@ local CRAP = Ruleset:extend()
 
 CRAP.name = "C.R.A.P."
 CRAP.hash = "Completely Random Auto-Positioner"
+CRAP.description = "teleportation"
+
 CRAP.world = true
 CRAP.colors={"C","O","M","R","G","Y","B"}
 CRAP.colourscheme = {

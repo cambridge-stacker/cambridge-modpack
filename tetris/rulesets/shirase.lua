@@ -4,6 +4,7 @@ local Shirase = SRS:extend()
 
 Shirase.name = "Shirase RS"
 Shirase.hash = "Shirase"
+Shirase.description = "help what happened to my pieces"
 Shirase.world = false
 
 Shirase.colourscheme = {

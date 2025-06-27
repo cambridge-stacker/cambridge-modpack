@@ -10,7 +10,7 @@ local MarathonA1Game = GameMode:extend()
 
 MarathonA1Game.name = "Conway A1"
 MarathonA1Game.hash = "ConwayA1"
-MarathonA1Game.tagline = "Something isn't right here."
+MarathonA1Game.description = "Something isn't right here."
 MarathonA1Game.tags = {"Marathon", "Gimmick"}
 
 

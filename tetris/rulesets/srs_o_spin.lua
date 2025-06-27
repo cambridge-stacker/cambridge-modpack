@@ -3,6 +3,7 @@ local SRS = require 'tetris.rulesets.standard'
 local OSpin = SRS:extend()
 
 OSpin.name = "SRS O-Spin"
+OSpin.description = "do we really need to explain this"
 OSpin.hash = "OSpin"
 
 OSpin.block_offsets = {

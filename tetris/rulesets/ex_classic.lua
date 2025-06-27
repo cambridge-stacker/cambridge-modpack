@@ -4,6 +4,7 @@ local EXClassic = Ruleset:extend()
 
 EXClassic.name = "T-EX-Classic"
 EXClassic.hash = "EXClassic"
+EXClassic.description = "A novel, dynamic rotation system from T-Ex Returns. This variant uses Sega-like piece definitions."
 
 EXClassic.softdrop_lock = false
 EXClassic.harddrop_lock = true

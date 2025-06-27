@@ -3,6 +3,7 @@ local NRS_X = NRS_R:extend()
 
 NRS_X.name = "Nintendo-X"
 NRS_X.hash = "NintendoX"
+NRS_X.description = "The Nintendo Rotation System with light kicks."
 
 NRS_X.wallkicks_line_cw = {{x=1, y=0}, {x=2, y=0}, {x=-1, y=0}, {x=0, y=-1}}
 NRS_X.wallkicks_line_ccw = {{x=-1, y=0}, {x=1, y=0}, {x=2, y=0}, {x=0, y=-1}}

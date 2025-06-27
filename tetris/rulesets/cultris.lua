@@ -4,6 +4,7 @@ local Cultris = SRS:extend()
 
 Cultris.name = "Cultris II"
 Cultris.hash = "Cultris"
+Cultris.description = "A ruleset made for Cultris II, derived from SRS."
 
 Cultris.colourscheme = {
 	I = "G",

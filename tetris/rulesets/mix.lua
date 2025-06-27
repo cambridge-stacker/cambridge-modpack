@@ -4,6 +4,7 @@ local MixRS = Ruleset:extend()
 
 MixRS.name = "MixRS"
 MixRS.hash = "MixRS"
+MixRS.description = "SRS x ARS."
 
 MixRS.colourscheme = {
     [1] = "R",

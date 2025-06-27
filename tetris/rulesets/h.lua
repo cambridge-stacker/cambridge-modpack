@@ -4,6 +4,7 @@ local H = SRS:extend()
 
 H.name = "h"
 H.hash = "h"
+H.description = "h"
 H.world = false
 
 function H:attemptRotate(new_inputs, piece, grid, initial)

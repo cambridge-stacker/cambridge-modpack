@@ -6,7 +6,7 @@ local DualityA1Game = MarathonA1Game:extend()
 
 DualityA1Game.name = "Duality A1"
 DualityA1Game.hash = "DualityA1"
-DualityA1Game.tagline = "Control two boards at once!"
+DualityA1Game.description = "Control two boards at once!"
 DualityA1Game.tags = {"Marathon", "Gimmick"}
 
 function DualityA1Game:new()

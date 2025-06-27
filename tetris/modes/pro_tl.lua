@@ -7,7 +7,7 @@ local ProGame = MarathonAX4Game:extend()
 
 ProGame.name = "Final TL"
 ProGame.hash = "ProTL"
-ProGame.tagline = "Your next pieces start disappearing! What lies past Mach 9?"
+ProGame.description = "Your next pieces start disappearing! What lies past Mach 9?"
 ProGame.tags = {"Final", "Web"}
 
 function ProGame:new()

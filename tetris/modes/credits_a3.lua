@@ -9,7 +9,7 @@ local CreditsA3Game = GameMode:extend()
 
 CreditsA3Game.name = "Credits A3"
 CreditsA3Game.hash = "CreditsA3"
-CreditsA3Game.tagline = "How consistently can you clear the Ti M-roll?"
+CreditsA3Game.description = "How consistently can you clear the Ti M-roll?"
 CreditsA3Game.tags = {"20G Start", "Invisible Stack", "Trainer"}
 
 function CreditsA3Game:new()

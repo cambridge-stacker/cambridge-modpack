@@ -18,7 +18,7 @@ bgm.strategy_pf=
 
 StrategyPFGame.name = "Strategy PF"
 StrategyPFGame.hash = "StrategyPF"
-StrategyPFGame.tagline = "Work with a limited number of pieces to reach the end!"
+StrategyPFGame.description = "Work with a limited number of pieces to reach the end!"
 StrategyPFGame.tags = {"Strategy"}
 
 

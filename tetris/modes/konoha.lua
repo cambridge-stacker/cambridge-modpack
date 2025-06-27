@@ -9,8 +9,8 @@ local KonohaGame = GameMode:extend()
 
 KonohaGame.name = "All Clear A4"
 KonohaGame.hash = "AllClearA4"
-KonohaGame.tagline = "Get as many bravos as you can under the time limit!"
-KonohaGame.tags = {"Gimmick"}
+KonohaGame.description = "Get as many bravos as you can under the time limit!"
+KonohaGame.tags = {"Gimmick", "Arika"} -- note: based on the Konoha mode from MASTERS 0F ROUND/2015
 
 function KonohaGame:new()
 	KonohaGame.super:new()

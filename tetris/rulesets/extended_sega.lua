@@ -4,6 +4,7 @@ local ExtendedSega = Sega:extend()
 
 ExtendedSega.name = "Extended Sega"
 ExtendedSega.hash = "ExtendedSega"
+ExtendedSega.description = "The Sega ruleset with one-cell lateral kicks."
 
 function ExtendedSega:attemptWallkicks(piece, new_piece, rot_dir, grid)
     if piece.shape == "I" or piece.shape == "O" then return end

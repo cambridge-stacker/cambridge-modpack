@@ -8,7 +8,7 @@ local BeginnerA2Game = GameMode:extend()
 
 BeginnerA2Game.name = "Beginner A2"
 BeginnerA2Game.hash = "BeginnerA2"
-BeginnerA2Game.tagline = "How many points can you score in 300 levels?"
+BeginnerA2Game.description = "How many points can you score in 300 levels?"
 BeginnerA2Game.tags = {"Marathon", "Arika", "Beginner Friendly"}
 
 function BeginnerA2Game:new()

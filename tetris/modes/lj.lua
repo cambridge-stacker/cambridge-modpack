@@ -5,7 +5,7 @@ local MarathonWLJGame = GameMode:extend()
 
 MarathonWLJGame.name = "Marathon WLJ"
 MarathonWLJGame.hash = "MarathonWLJ"
-MarathonWLJGame.tagline = "A simple marathon mode, originating from Lockjaw."
+MarathonWLJGame.description = "A simple marathon mode, originating from Lockjaw."
 MarathonWLJGame.tags = {"Marathon", "Web"}
 
 function MarathonWLJGame:new()

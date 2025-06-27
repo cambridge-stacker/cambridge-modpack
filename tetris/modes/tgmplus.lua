@@ -9,7 +9,7 @@ local TGMPlusGame = GameMode:extend()
 
 TGMPlusGame.name = "Marathon A2+"
 TGMPlusGame.hash = "A2Plus"
-TGMPlusGame.tagline = "The garbage rises steadily! Can you make it to level 999?"
+TGMPlusGame.description = "The garbage rises steadily! Can you make it to level 999?"
 TGMPlusGame.tags = {"Marathon", "Dig", "Arika", "Gimmick"}
 
 function TGMPlusGame:new()

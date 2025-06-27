@@ -5,7 +5,7 @@ local MarathonSTGame = GameMode:extend()
 
 MarathonSTGame.name = "Marathon ST"
 MarathonSTGame.hash = "MarathonST"
-MarathonSTGame.tagline = "Grade points are heavily boosted! Can you make it to the end?"
+MarathonSTGame.description = "Grade points are heavily boosted! Can you make it to the end?"
 MarathonSTGame.tags = {"Marathon"}
 
 function MarathonSTGame:new()

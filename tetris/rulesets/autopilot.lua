@@ -4,6 +4,7 @@ local Autopilot = ARS:extend()
 
 Autopilot.name = "Autopilot-I"
 Autopilot.hash = "Autopilot"
+Autopilot.description = "do you like I pieces? I like I pieces."
 
 function Autopilot:attemptRotate(new_inputs, piece, grid, initial)
 	local rot_dir = 0

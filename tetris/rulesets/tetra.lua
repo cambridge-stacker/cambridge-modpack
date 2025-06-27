@@ -4,6 +4,7 @@ local Tetra = SRS:extend()
 
 Tetra.name = "Tetra-X"
 Tetra.hash = "TetraX"
+Tetra.description = "A novel ruleset by Dr Ocelot."
 
 Tetra.colourscheme = {
 	I = "O",

@@ -4,7 +4,7 @@ local PhantomManiaN2Game = SurvivalA3Game:extend()
 
 PhantomManiaN2Game.name = "Phantom Mania N2"
 PhantomManiaN2Game.hash = "PhantomManiaN2"
-PhantomManiaN2Game.tagline = "As PM1 is to Death, PM2 is to Shirase."
+PhantomManiaN2Game.description = "As PM1 is to Death, PM2 is to Shirase."
 PhantomManiaN2Game.tags = {"Invisible Stack", "Survival", "Gimmick", "Cambridge"}
 
 PhantomManiaN2Game.rollOpacityFunction = function(age)

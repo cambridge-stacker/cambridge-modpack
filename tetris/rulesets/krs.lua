@@ -4,6 +4,8 @@ local KRS = SRS:extend()
 
 KRS.name = "K.R.S."
 KRS.hash = "KRS"
+KRS.description = "chaos"
+
 KRS.colourscheme = {
 	I = "M",
 	L = "R",

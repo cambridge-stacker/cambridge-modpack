@@ -4,6 +4,7 @@ local TOD = SRS:extend()
 
 TOD.name = "TOD M4"
 TOD.hash = "TOD"
+TOD.description = "A light ruleset from Lockjaw: The Overdose."
 
 TOD.colourscheme = {
     I = "C",

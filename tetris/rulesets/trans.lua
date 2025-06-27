@@ -3,6 +3,7 @@ local Trans = ARS:extend()
 
 Trans.name = "TransRS"
 Trans.hash = "TransRS"
+Trans.description = "TRANSFORM"
 
 function Trans:attemptRotate(new_inputs, piece, grid, initial)
 	local rot_dir = 0

@@ -4,6 +4,7 @@ local Sega = ARS:extend()
 
 Sega.name = "Sega CCW"
 Sega.hash = "SegaCCW"
+Sega.description = "You can only rotate counterclockwise in this variant of the Sega ruleset."
 
 function Sega:attemptRotate(new_inputs, piece, grid)
 	local rot_dir = 0

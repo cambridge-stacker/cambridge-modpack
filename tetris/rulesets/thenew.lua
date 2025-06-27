@@ -5,6 +5,7 @@ local TheNew = Ruleset:extend()
 
 TheNew.name = "The Newtris"
 TheNew.hash = "TheNew"
+TheNew.description = "An evolution of the BPS ruleset for The New ***ris."
 
 TheNew.softdrop_lock = false
 TheNew.harddrop_lock = false

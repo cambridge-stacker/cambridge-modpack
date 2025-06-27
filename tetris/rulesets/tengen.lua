@@ -5,6 +5,7 @@ local Tengen = Ruleset:extend()
 
 Tengen.name = "Tengen"
 Tengen.hash = "Tengen"
+Tengen.description = "A very old and barebones ruleset from Tengen ***ris."
 Tengen.colourscheme = {
 	I = "R",
 	J = "O",

@@ -5,6 +5,7 @@ local DTET = Ruleset:extend()
 
 DTET.name = "D.R.S."
 DTET.hash = "DTET"
+DTET.description = "A more modern version of ARS made for DTET."
 
 DTET.softdrop_lock = false
 DTET.harddrop_lock = true

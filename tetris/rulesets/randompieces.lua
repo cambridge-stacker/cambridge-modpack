@@ -7,6 +7,7 @@ local RandomPieces = Ruleset:extend()
 
 RandomPieces.name = "Random Pieces"
 RandomPieces.hash = "RandomPieces"
+RandomPieces.description = "because predictability is lame"
 
 function RandomPieces:generateBlockOffsets()
     function containsPoint(points, p)

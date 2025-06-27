@@ -4,6 +4,7 @@ local kon = SRS:extend()
 
 kon.name = "kon"
 kon.hash = "kon"
+kon.description = "fonx"
 
 kon.colourscheme = {
 	I = "M",

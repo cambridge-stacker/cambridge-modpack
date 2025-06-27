@@ -4,6 +4,7 @@ local TexyWorld = SRS:extend()
 
 TexyWorld.name = "Texy-World"
 TexyWorld.hash = "TexyWorld"
+TexyWorld.description = "Something is wrong with this version of SRS from Texmaster."
 
 function TexyWorld:attemptWallkicks(piece, new_piece, rot_dir, grid)
 

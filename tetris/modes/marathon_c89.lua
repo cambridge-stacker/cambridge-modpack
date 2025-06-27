@@ -9,7 +9,7 @@ local MarathonC89Game = GameMode:extend()
 
 MarathonC89Game.name = "Marathon C89"
 MarathonC89Game.hash = "MarathonC89"
-MarathonC89Game.tagline = "Can you play fast enough to reach the killscreen?"
+MarathonC89Game.description = "Can you play fast enough to reach the killscreen?"
 MarathonC89Game.tags = {"Marathon", "Classic"}
 
 

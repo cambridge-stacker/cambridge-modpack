@@ -6,7 +6,7 @@ local BigMemeGame = SurvivalA3Game:extend()
 
 BigMemeGame.name = "Big Survival A3"
 BigMemeGame.hash = "BigA3"
-BigMemeGame.tagline = "The blocks are bigger and the speeds are faster!"
+BigMemeGame.description = "The blocks are bigger and the speeds are faster!"
 
 function BigMemeGame:new()
 	BigMemeGame.super:new()

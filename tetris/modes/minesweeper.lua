@@ -5,7 +5,7 @@ local Minesweeper = GameMode:extend()
 
 Minesweeper.name = "Minesweeper"
 Minesweeper.hash = "Minesweeper"
-Minesweeper.tagline = "Avoid the exploding mines!"
+Minesweeper.description = "Avoid the exploding mines!"
 
 local width = 15
 local height = 15

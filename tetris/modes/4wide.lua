@@ -7,7 +7,7 @@ local FourWideGame = SurvivalA3Game:extend()
 
 FourWideGame.name = "4-wide Simulator"
 FourWideGame.hash = "4wide"
-FourWideGame.tagline = "The board has gotten narrower! Can you survive the increasing speeds?"
+FourWideGame.description = "The board has gotten narrower! Can you survive the increasing speeds?"
 FourWideGame.tags = {"Survival", "20G Start", "Gimmick", "Trainer"}
 
 function FourWideGame:new()

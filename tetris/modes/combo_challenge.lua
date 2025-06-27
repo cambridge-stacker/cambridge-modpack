@@ -6,7 +6,7 @@ local ComboChallenge = GameMode:extend()
 
 ComboChallenge.name = "Combo Challenge"
 ComboChallenge.hash = "ComboChallenge"
-ComboChallenge.tagline = "Make the highest combo you can in 30 seconds!"
+ComboChallenge.description = "Make the highest combo you can in 30 seconds!"
 ComboChallenge.tags = {"Trainer"}
 
 local blk = { skin = "2tie", colour = "A" }

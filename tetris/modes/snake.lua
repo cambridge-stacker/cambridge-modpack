@@ -5,7 +5,7 @@ local Snake = GameMode:extend()
 
 Snake.name = "Snake"
 Snake.hash = "Snake"
-Snake.tagline = "...It's literally just snake."
+Snake.description = "...It's literally just snake."
 
 local moves = {
     ["right"] = {x=1, y=0},

@@ -4,7 +4,7 @@ local SurvivalAXH2Game = SurvivalAXHGame:extend()
 
 SurvivalAXH2Game.name = "Survival AXH2"
 SurvivalAXH2Game.hash = "SurvivalAXH2"
-SurvivalAXH2Game.tagline = "Hellish speeds, fading blocks!"
+SurvivalAXH2Game.description = "Hellish speeds, fading blocks!"
 SurvivalAXH2Game.tags = {"Survival", "Web", "Gimmick"}
 
 function SurvivalAXH2Game:getSkin()

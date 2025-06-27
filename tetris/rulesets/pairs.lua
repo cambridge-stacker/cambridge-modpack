@@ -4,6 +4,7 @@ local PAIRS = Ruleset:extend()
 
 PAIRS.name = "PAIRS"
 PAIRS.hash = "PAIRS"
+PAIRS.description = "A pentomino ruleset inspired by ARS."
 PAIRS.world = true
 
 PAIRS.spawn_positions = {
